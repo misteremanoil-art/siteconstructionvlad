@@ -1,0 +1,151 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, 'Times New Roman', serif;
+  --font-heading: var(--font-cormorant), Georgia, serif;
+  --font-mono: ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  color-scheme: light;
+  --background: #f4f3f0;
+  --foreground: #1a1a1a;
+  --card: #fffdfa;
+  --card-foreground: #1a1a1a;
+  --popover: #fffdfa;
+  --popover-foreground: #1a1a1a;
+  --primary: #1a1a1a;
+  --primary-foreground: #f7f5f1;
+  --secondary: #ece9e3;
+  --secondary-foreground: #1a1a1a;
+  --muted: #ece9e3;
+  --muted-foreground: #57534e;
+  --accent: #f0ebe3;
+  --accent-foreground: #1a1a1a;
+  --brand: #b45309;
+  --brand-foreground: #ffffff;
+  --destructive: #b91c1c;
+  --border: rgba(17, 17, 17, 0.1);
+  --input: rgba(17, 17, 17, 0.12);
+  --ring: #b45309;
+  --radius: 0.75rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0e0e11;
+  --foreground: #e4e3e1;
+  --card: #16161a;
+  --card-foreground: #e4e3e1;
+  --popover: #16161a;
+  --popover-foreground: #e4e3e1;
+  --primary: #e4e3e1;
+  --primary-foreground: #0e0e11;
+  --secondary: #1c1c21;
+  --secondary-foreground: #e4e3e1;
+  --muted: #1c1c21;
+  --muted-foreground: #a0a0a0;
+  --accent: #1c1c21;
+  --accent-foreground: #e4e3e1;
+  --brand: #d4a054;
+  --brand-foreground: #0e0e11;
+  --destructive: #f87171;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #d4a054;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Editorial long-form typography for MDX content */
+.prose-essay {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  line-height: 1.75;
+  color: var(--foreground);
+}
+.prose-essay p {
+  margin-bottom: 1.5rem;
+  text-wrap: pretty;
+}
+.prose-essay h2 {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  line-height: 1.2;
+}
+.prose-essay h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 0.75rem;
+}
+.prose-essay em {
+  font-style: italic;
+}
+.prose-essay strong {
+  font-weight: 600;
+}
+.prose-essay blockquote {
+  border-left: 3px solid var(--brand);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--muted-foreground);
+  margin: 2rem 0;
+}
+/* Drop cap on the first paragraph */
+.prose-essay > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  float: left;
+  font-size: 4.2rem;
+  line-height: 0.78;
+  font-weight: 600;
+  padding: 0.1rem 0.6rem 0 0;
+  color: var(--brand);
+}
