@@ -12,6 +12,7 @@ export type DatabaseArticle = {
   reading_time: string
   image_url: string
   image_alt: string
+  audio_url: string
   tags: string[]
   featured: boolean
   content: string

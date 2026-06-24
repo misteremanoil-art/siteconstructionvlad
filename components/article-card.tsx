@@ -3,9 +3,11 @@ import Image from 'next/image'
 import type { ArticleMeta } from '@/lib/articles'
 
 export function ArticleCard({ article }: { article: ArticleMeta }) {
+  const href = article.slug ? `/articole/${article.slug}` : '/articole'
+
   return (
     <Link
-      href={`/articole/${article.slug}`}
+      href={href}
       className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg"
     >
       <div className="relative aspect-[16/10] overflow-hidden">

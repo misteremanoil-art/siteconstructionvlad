@@ -1,25 +1,10 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { BackToTop } from '@/components/back-to-top'
 import './globals.css'
-
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const cormorant = Cormorant_Garamond({
-  variable: '--font-cormorant',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +33,7 @@ export default function RootLayout({
     <html
       lang="ro"
       suppressHydrationWarning
-      className={`${inter.variable} ${cormorant.variable} bg-background`}
+      className="bg-background"
     >
       <body className="font-sans antialiased">
         <ThemeProvider

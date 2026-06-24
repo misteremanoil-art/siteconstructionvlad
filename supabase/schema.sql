@@ -27,6 +27,50 @@ as $$
   );
 $$;
 
+grant execute on function public.is_admin() to authenticated;
+
+create or replace function public.promote_user_to_admin(target_email text)
+returns public.admin_users
+language plpgsql
+security definer
+set search_path = public, auth
+as $$
+declare
+  cleaned_email text;
+  target_user auth.users;
+  saved_admin public.admin_users;
+begin
+  if not public.is_admin() then
+    raise exception 'not authorized';
+  end if;
+
+  cleaned_email := lower(trim(target_email));
+
+  if cleaned_email = '' then
+    raise exception 'missing email';
+  end if;
+
+  select * into target_user
+  from auth.users
+  where lower(email) = cleaned_email
+  limit 1;
+
+  if target_user.id is null then
+    raise exception 'user not found';
+  end if;
+
+  insert into public.admin_users (user_id, email)
+  values (target_user.id, cleaned_email)
+  on conflict (user_id) do update set
+    email = excluded.email
+  returning * into saved_admin;
+
+  return saved_admin;
+end;
+$$;
+
+grant execute on function public.promote_user_to_admin(text) to authenticated;
+
 create table if not exists public.articles (
   id uuid primary key default gen_random_uuid(),
   slug text not null unique,
@@ -39,6 +83,7 @@ create table if not exists public.articles (
   reading_time text not null default '',
   image_url text not null default '',
   image_alt text not null default '',
+  audio_url text not null default '',
   tags text[] not null default '{}',
   featured boolean not null default false,
   content text not null default '',
@@ -53,6 +98,9 @@ create index if not exists articles_status_published_at_idx
 
 create index if not exists articles_slug_idx
   on public.articles (slug);
+
+alter table public.articles
+add column if not exists audio_url text not null default '';
 
 create or replace function public.search_published_articles(search_query text)
 returns setof public.articles
@@ -180,6 +228,10 @@ insert into storage.buckets (id, name, public)
 values ('article-images', 'article-images', true)
 on conflict (id) do nothing;
 
+insert into storage.buckets (id, name, public)
+values ('article-audio', 'article-audio', true)
+on conflict (id) do nothing;
+
 drop policy if exists "Article images are public" on storage.objects;
 create policy "Article images are public"
 on storage.objects for select
@@ -190,6 +242,17 @@ create policy "Only admins can upload article images"
 on storage.objects for insert
 to authenticated
 with check (bucket_id = 'article-images' and public.is_admin());
+
+drop policy if exists "Article audio is public" on storage.objects;
+create policy "Article audio is public"
+on storage.objects for select
+using (bucket_id = 'article-audio');
+
+drop policy if exists "Only admins can upload article audio" on storage.objects;
+create policy "Only admins can upload article audio"
+on storage.objects for insert
+to authenticated
+with check (bucket_id = 'article-audio' and public.is_admin());
 
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,

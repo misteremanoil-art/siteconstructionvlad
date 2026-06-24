@@ -7,8 +7,11 @@ import { ShareRow } from "@/components/share-row"
 import { ArticleReviews } from "@/components/article-reviews"
 import { AuthorCard } from "@/components/author-card"
 import { ArticleCard } from "@/components/article-card"
+import { ArticleAudioPlayer } from "@/components/article-audio-player"
 import { mdxComponents } from "@/components/mdx-components"
 import { getArticle, getArticleSlugs, getAllArticles } from "@/lib/articles"
+
+export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
   return (await getArticleSlugs()).map((slug) => ({ slug }))
@@ -77,6 +80,11 @@ export default async function ArticlePage({
               <p className="mt-5 max-w-3xl text-pretty font-serif text-lg italic leading-relaxed text-white/85 sm:text-xl md:text-2xl">
                 {article.standfirst}
               </p>
+              <ArticleAudioPlayer
+                title={article.title}
+                text={`${article.standfirst}\n\n${article.content}`}
+                audioUrl={article.audioUrl}
+              />
               <div className="mt-7 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/75 sm:gap-x-3 sm:text-sm">
                 <span className="font-medium text-white">{article.author}</span>
                 <span aria-hidden>•</span>

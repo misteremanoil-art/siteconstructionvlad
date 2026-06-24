@@ -15,6 +15,13 @@ const NAV = [
   { href: '/cont/setari', label: 'Cont' },
 ]
 
+function formatAccountLabel(value: string) {
+  const cleanValue = value.trim()
+  if (!cleanValue) return 'Cont'
+
+  return cleanValue.charAt(0).toLocaleUpperCase('ro-RO') + cleanValue.slice(1)
+}
+
 export function SiteHeader() {
   const pathname = usePathname()
   const router = useRouter()
@@ -51,7 +58,8 @@ export function SiteHeader() {
         .maybeSingle()
 
       const username = (data?.username as string | null | undefined)?.trim()
-      setAccountLabel(username || user.email?.split('@')[0] || 'Cont')
+      const fallbackName = user.email?.split('@')[0] ?? 'Cont'
+      setAccountLabel(formatAccountLabel(username || fallbackName))
     }
 
     loadAccountLabel()

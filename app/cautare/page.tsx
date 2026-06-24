@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: 'Caută în articolele publicate pe blog.',
 }
 
+export const dynamic = 'force-dynamic'
+
 type SearchPageProps = {
   searchParams: Promise<{
     q?: string | string[]

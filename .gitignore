@@ -15,3 +15,7 @@ node_modules
 .DS_Store
 tsconfig.tsbuildinfo
 *.swp
+.vercel
+
+# Local Netlify folder
+.netlify

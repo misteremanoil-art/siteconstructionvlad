@@ -16,6 +16,7 @@ export type ArticleMeta = {
   readingTime: string
   image: string
   imageAlt: string
+  audioUrl: string
   tags: string[]
   featured?: boolean
 }
@@ -50,6 +51,7 @@ function getLocalArticle(slug: string): Article | null {
     readingTime: data.readingTime ?? '',
     image: data.image ?? '',
     imageAlt: data.imageAlt ?? data.title ?? '',
+    audioUrl: data.audioUrl ?? '',
     tags: data.tags ?? [],
     featured: data.featured ?? false,
     content,
@@ -75,6 +77,7 @@ function fromDatabaseArticle(article: DatabaseArticle): Article {
     readingTime: article.reading_time,
     image: article.image_url,
     imageAlt: article.image_alt || article.title,
+    audioUrl: article.audio_url ?? '',
     tags: article.tags ?? [],
     featured: article.featured,
     content: article.content,

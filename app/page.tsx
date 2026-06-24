@@ -4,6 +4,8 @@ import { getAllArticles, getFeaturedArticle } from '@/lib/articles'
 import { ArticleCard } from '@/components/article-card'
 import { NewsletterCard } from '@/components/newsletter-card'
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const featured = await getFeaturedArticle()
   const articles = (await getAllArticles()).filter((a) => a.slug !== featured?.slug)

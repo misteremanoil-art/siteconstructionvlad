@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "Eseuri și reflecții despre rugăciune, credință și viața interioară.",
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function ArticolePage() {
   const articles = await getAllArticles()
 

@@ -16,6 +16,7 @@ type FormState = {
   reading_time: string
   image_url: string
   image_alt: string
+  audio_url: string
   tags: string
   featured: boolean
   status: 'draft' | 'published'
@@ -33,6 +34,7 @@ const emptyForm: FormState = {
   reading_time: '',
   image_url: '',
   image_alt: '',
+  audio_url: '',
   tags: '',
   featured: false,
   status: 'draft',
@@ -55,9 +57,25 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
   const [loading, setLoading] = useState(Boolean(articleId))
   const [saving, setSaving] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [uploadingAudio, setUploadingAudio] = useState(false)
+  const [adminChecked, setAdminChecked] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [error, setError] = useState('')
 
   useEffect(() => {
+    async function checkAdmin() {
+      const { data: userData } = await supabase.auth.getUser()
+
+      if (!userData.user) {
+        setAdminChecked(true)
+        return
+      }
+
+      const { data } = await supabase.rpc('is_admin')
+      setIsAdmin(Boolean(data))
+      setAdminChecked(true)
+    }
+
     async function loadArticle() {
       if (!articleId) return
 
@@ -85,6 +103,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
         reading_time: article.reading_time,
         image_url: article.image_url,
         image_alt: article.image_alt,
+        audio_url: article.audio_url ?? '',
         tags: article.tags.join(', '),
         featured: article.featured,
         status: article.status,
@@ -93,6 +112,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       setLoading(false)
     }
 
+    checkAdmin()
     loadArticle()
   }, [articleId, supabase])
 
@@ -116,9 +136,31 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       return
     }
 
+    const { data: adminStatus } = await supabase.rpc('is_admin')
+    if (!adminStatus) {
+      setError(`Contul ${userData.user.email ?? ''} este autentificat, dar nu este admin în Supabase. Adaugă emailul în admin_users și încearcă din nou.`)
+      setSaving(false)
+      return
+    }
+
+    const title = form.title.trim()
+    const slug = slugify(form.slug.trim() || title)
+
+    if (!title) {
+      setError('Titlul este obligatoriu.')
+      setSaving(false)
+      return
+    }
+
+    if (!slug) {
+      setError('Slug-ul este obligatoriu. Scrie un titlu cu litere sau cifre.')
+      setSaving(false)
+      return
+    }
+
     const payload = {
-      title: form.title.trim(),
-      slug: form.slug.trim(),
+      title,
+      slug,
       standfirst: form.standfirst.trim(),
       category: form.category.trim() || 'Teologie',
       author: form.author.trim() || 'Albert-Beniamin Cucu',
@@ -127,6 +169,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       reading_time: form.reading_time.trim(),
       image_url: form.image_url.trim(),
       image_alt: form.image_alt.trim(),
+      audio_url: form.audio_url.trim(),
       tags: form.tags
         .split(',')
         .map((tag) => tag.trim())
@@ -145,11 +188,11 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
     setSaving(false)
 
     if (saveError) {
-      setError('Nu am putut salva articolul. Verifică dacă ești admin.')
+      setError(saveError.message || 'Nu am putut salva articolul. Verifică dacă ești admin.')
       return
     }
 
-    router.push('/admin')
+    router.push(payload.status === 'published' ? `/articole/${slug}` : '/admin')
     router.refresh()
   }
 
@@ -183,6 +226,36 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
     setUploading(false)
   }
 
+  async function uploadAudio(file: File | null) {
+    if (!file) return
+    setUploadingAudio(true)
+    setError('')
+
+    const extension = file.name.split('.').pop() || 'mp3'
+    const baseSlug = form.slug || slugify(form.title) || crypto.randomUUID()
+    const filePath = `${baseSlug}/${Date.now()}.${extension}`
+
+    const { error: uploadError } = await supabase.storage
+      .from('article-audio')
+      .upload(filePath, file, {
+        cacheControl: '31536000',
+        upsert: false,
+      })
+
+    if (uploadError) {
+      setError('Nu am putut încărca audio-ul. Verifică Storage/RLS pentru article-audio.')
+      setUploadingAudio(false)
+      return
+    }
+
+    const { data } = supabase.storage
+      .from('article-audio')
+      .getPublicUrl(filePath)
+
+    updateField('audio_url', data.publicUrl)
+    setUploadingAudio(false)
+  }
+
   if (loading) {
     return <main className="mx-auto max-w-4xl px-5 py-16">Se încarcă...</main>
   }
@@ -195,6 +268,12 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       <h1 className="mt-3 font-serif text-4xl">
         {articleId ? 'Editează articol' : 'Articol nou'}
       </h1>
+      {adminChecked && !isAdmin ? (
+        <div className="mt-6 rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm leading-relaxed text-destructive">
+          Contul este autentificat, dar nu are drepturi de admin în Supabase. Salvarea
+          articolelor va fi blocată până când emailul este adăugat în `admin_users`.
+        </div>
+      ) : null}
 
       <form onSubmit={saveArticle} className="mt-8 grid gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
@@ -226,6 +305,41 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
           ) : null}
         </label>
         <TextField label="Alt imagine" value={form.image_alt} onChange={(value) => updateField('image_alt', value)} />
+
+        <div className="rounded-lg border border-border p-4">
+          <TextField label="URL audio articol" value={form.audio_url} onChange={(value) => updateField('audio_url', value)} />
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            Lasă gol pentru citirea automată gratuită din browser. Dacă pui URL sau încarci
+            un fișier audio, articolul va folosi acel audio în locul vocii automate.
+          </p>
+          {form.audio_url ? (
+            <button
+              type="button"
+              onClick={() => updateField('audio_url', '')}
+              className="mt-3 text-sm font-medium text-destructive hover:underline"
+            >
+              Șterge audio și folosește citirea automată
+            </button>
+          ) : null}
+        </div>
+        <label className="block text-sm">
+          <span className="font-medium">Încarcă audio pentru articol</span>
+          <input
+            type="file"
+            accept="audio/*"
+            disabled={uploadingAudio}
+            onChange={(e) => uploadAudio(e.target.files?.[0] ?? null)}
+            className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
+          />
+          {uploadingAudio ? (
+            <span className="mt-2 block text-sm text-muted-foreground">
+              Se încarcă audio-ul...
+            </span>
+          ) : null}
+          {form.audio_url ? (
+            <audio controls src={form.audio_url} className="mt-3 w-full" />
+          ) : null}
+        </label>
 
         <div className="grid gap-4 rounded-lg border border-border p-4 sm:grid-cols-2">
           <label className="flex items-center gap-3 text-sm">

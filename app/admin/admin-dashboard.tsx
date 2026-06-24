@@ -115,8 +115,19 @@ export function AdminDashboard() {
                 {article.status} • {article.display_date || article.published_at}
               </p>
               <h2 className="mt-1 font-serif text-2xl">{article.title}</h2>
+              <p className="mt-1 font-mono text-xs text-muted-foreground">
+                /articole/{article.slug || 'fara-slug'}
+              </p>
             </div>
             <div className="flex gap-3">
+              {article.status === 'published' && article.slug ? (
+                <Link
+                  href={`/articole/${article.slug}`}
+                  className="text-sm font-medium text-foreground hover:underline"
+                >
+                  Vezi articolul
+                </Link>
+              ) : null}
               <Link
                 href={`/admin/articole/${article.id}`}
                 className="text-sm font-medium text-brand hover:underline"

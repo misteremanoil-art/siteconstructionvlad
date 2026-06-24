@@ -28,6 +28,8 @@ export function AccountSettings() {
   const [editingBody, setEditingBody] = useState('')
   const [editingRating, setEditingRating] = useState(5)
   const [isAdmin, setIsAdmin] = useState(false)
+  const [adminEmail, setAdminEmail] = useState('')
+  const [promotingAdmin, setPromotingAdmin] = useState(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
@@ -69,6 +71,13 @@ export function AccountSettings() {
   }
 
   async function loadAdminStatus(userId: string) {
+    const { data: rpcAdmin } = await supabase.rpc('is_admin')
+
+    if (rpcAdmin) {
+      setIsAdmin(true)
+      return
+    }
+
     const { data } = await supabase
       .from('admin_users')
       .select('user_id')
@@ -168,6 +177,33 @@ export function AccountSettings() {
     setReviews((current) => current.filter((review) => review.id !== reviewId))
   }
 
+  async function promoteUserToAdmin(e: React.FormEvent) {
+    e.preventDefault()
+    setMessage('')
+    setError('')
+
+    const email = adminEmail.trim().toLowerCase()
+
+    if (!email) {
+      setError('Scrie emailul utilizatorului pe care vrei să îl faci admin.')
+      return
+    }
+
+    setPromotingAdmin(true)
+    const { error: promoteError } = await supabase.rpc('promote_user_to_admin', {
+      target_email: email,
+    })
+    setPromotingAdmin(false)
+
+    if (promoteError) {
+      setError('Nu am putut face utilizatorul admin. Verifică dacă are deja cont creat.')
+      return
+    }
+
+    setAdminEmail('')
+    setMessage(`${email} are acum acces de admin.`)
+  }
+
   async function signOut() {
     await supabase.auth.signOut()
     router.push('/')
@@ -241,22 +277,22 @@ export function AccountSettings() {
         </form>
       </section>
 
-      {isAdmin ? (
-        <section className="mt-10 rounded-lg border border-brand/30 bg-accent/40 p-5">
+      <section className="mt-10 rounded-lg border border-brand/30 bg-accent/40 p-5">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">
             Admin
           </p>
-          <h2 className="mt-2 font-serif text-2xl">Setări de editare</h2>
+          <h2 className="mt-2 font-serif text-2xl">Panou admin</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Contul tău are acces de admin. Poți edita articolele, crea articole noi și
-            administra conținutul publicat.
+            {isAdmin
+              ? 'Contul tău are acces de admin. Poți edita articolele, crea articole noi și administra conținutul publicat.'
+              : 'Dacă acest cont are drepturi de admin în Supabase, poți intra aici în zona de administrare.'}
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/admin"
               className="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground"
             >
-              Dashboard admin
+              Editează articole
             </Link>
             <Link
               href="/admin/articole/new"
@@ -265,8 +301,36 @@ export function AccountSettings() {
               Articol nou
             </Link>
           </div>
+
+          <form
+            onSubmit={promoteUserToAdmin}
+            className="mt-6 border-t border-border/70 pt-6"
+          >
+            <label htmlFor="admin-email" className="text-sm font-medium text-foreground">
+              Fă alt utilizator admin
+            </label>
+            <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+              <input
+                id="admin-email"
+                type="email"
+                value={adminEmail}
+                onChange={(e) => setAdminEmail(e.target.value)}
+                placeholder="email@exemplu.ro"
+                className="min-w-0 flex-1 rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-brand"
+              />
+              <button
+                type="submit"
+                disabled={promotingAdmin}
+                className="rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {promotingAdmin ? 'Se salvează...' : 'Fă admin'}
+              </button>
+            </div>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+              Utilizatorul trebuie să aibă deja cont creat pe site.
+            </p>
+          </form>
         </section>
-      ) : null}
 
       <section className="mt-12">
         <h2 className="font-serif text-3xl">Recenziile mele</h2>
