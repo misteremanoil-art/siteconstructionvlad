@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 import { Search, Menu, X } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { SiteLogo } from '@/components/site-logo'
 import { cn } from '@/lib/utils'
 import { createBrowserSupabaseClient } from '@/lib/supabase-browser'
 
@@ -111,7 +112,7 @@ export function SiteHeader() {
             : 'sticky border-b border-border bg-background/80 text-foreground',
       )}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         {/* Left: search + theme */}
         <div className="flex items-center gap-2">
           <ThemeToggle />
@@ -150,12 +151,16 @@ export function SiteHeader() {
         </div>
 
         {/* Center: logo */}
-        <Link
-          href="/"
-          className="font-serif text-lg font-semibold tracking-tight sm:text-xl"
-        >
-          Albert-Beniamin Cucu
-        </Link>
+        <SiteLogo
+          compact
+          className="absolute left-1/2 -translate-x-1/2"
+          markClassName={cn(
+            isTransparent
+              ? 'border-white/35 bg-white/10 text-white after:border-white/20'
+              : 'border-brand/45 bg-brand/10 text-brand',
+          )}
+          textClassName={cn(isTransparent ? 'text-white' : 'text-foreground')}
+        />
 
         {/* Right: nav */}
         <nav className="hidden items-center gap-6 md:flex">
