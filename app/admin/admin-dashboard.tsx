@@ -93,6 +93,12 @@ export function AdminDashboard() {
             Video
           </Link>
           <Link
+            href="/admin/pdf"
+            className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+          >
+            PDF în articol
+          </Link>
+          <Link
             href="/admin/articole/new"
             className="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground"
           >
