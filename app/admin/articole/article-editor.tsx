@@ -293,121 +293,208 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       ) : null}
 
       <form onSubmit={saveArticle} className="mt-8 grid gap-5">
-        <div className="grid gap-5 sm:grid-cols-2">
-          <TextField label="Titlu" value={form.title} onChange={(value) => updateField('title', value)} />
-          <TextField label="Slug" value={form.slug} onChange={(value) => updateField('slug', slugify(value))} />
+        <FormSection
+          title="Informații principale"
+          description="Acestea apar pe pagina articolului și în cardurile de pe site."
+        >
+          <div className="grid gap-5 sm:grid-cols-2">
+            <TextField
+              label="Titlul articolului"
+              value={form.title}
+              onChange={(value) => updateField('title', value)}
+              helper="Scrie titlul exact cum vrei să apară pe site."
+            />
+            <TextField
+              label="Adresa articolului"
+              value={form.slug}
+              onChange={(value) => updateField('slug', slugify(value))}
+              helper="Se completează singură din titlu. Schimbă doar dacă vrei alt link."
+            />
+            <label className="block text-sm">
+              <span className="font-medium">Categorie</span>
+              <select
+                value={categorySuggestions.includes(form.category) ? form.category : 'custom'}
+                onChange={(e) => {
+                  const value = e.target.value
+                  updateField('category', value === 'custom' ? '' : value)
+                }}
+                className="mt-2 w-full rounded-lg border border-border bg-background px-3 py-2"
+              >
+                {categorySuggestions.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+                <option value="custom">Categorie nouă</option>
+              </select>
+              <input
+                required
+                value={form.category}
+                onChange={(e) => updateField('category', e.target.value)}
+                placeholder="Scrie categoria articolului"
+                className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
+              />
+              <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
+                Pentru o categorie nouă, alege „Categorie nouă”, scrie numele și salvează articolul.
+              </span>
+            </label>
+            <TextField
+              label="Autor"
+              value={form.author}
+              onChange={(value) => updateField('author', value)}
+            />
+            <TextField
+              label="Data publicării"
+              type="date"
+              value={form.published_at}
+              onChange={(value) => updateField('published_at', value)}
+            />
+            <TextField
+              label="Data afișată pe site"
+              value={form.display_date}
+              onChange={(value) => updateField('display_date', value)}
+              helper="Opțional. Poți scrie, de exemplu, 25 iunie 2026."
+            />
+            <TextField
+              label="Timp de citire"
+              value={form.reading_time}
+              onChange={(value) => updateField('reading_time', value)}
+              helper="Exemplu: 6 min"
+            />
+            <TextField
+              label="Cuvinte cheie"
+              value={form.tags}
+              onChange={(value) => updateField('tags', value)}
+              helper="Separă-le prin virgulă: rugăciune, credință, teologie"
+            />
+          </div>
+
+          <TextArea
+            label="Descriere scurtă"
+            rows={3}
+            value={form.standfirst}
+            onChange={(value) => updateField('standfirst', value)}
+            helper="Apare sub titlu și în previzualizarea articolului."
+          />
+        </FormSection>
+
+        <FormSection
+          title="Imagine"
+          description="Imaginea principală apare sus în articol și în cardurile de pe site."
+        >
+          <TextField
+            label="Link imagine"
+            value={form.image_url}
+            onChange={(value) => updateField('image_url', value)}
+            helper="Poți lipi un link direct către imagine sau poți încărca una mai jos."
+          />
           <label className="block text-sm">
-            <span className="font-medium">Categorie</span>
-            <select
-              value={categorySuggestions.includes(form.category) ? form.category : 'custom'}
-              onChange={(e) => {
-                const value = e.target.value
-                updateField('category', value === 'custom' ? '' : value)
-              }}
-              className="mt-2 w-full rounded-lg border border-border bg-background px-3 py-2"
-            >
-              {categorySuggestions.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-              <option value="custom">Categorie nouă</option>
-            </select>
+            <span className="font-medium">Încarcă imagine principală</span>
             <input
-              required
-              value={form.category}
-              onChange={(e) => updateField('category', e.target.value)}
-              placeholder="Scrie sau ajustează categoria"
+              type="file"
+              accept="image/*"
+              disabled={uploading}
+              onChange={(e) => uploadImage(e.target.files?.[0] ?? null)}
               className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
             />
-            <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
-              Pentru o categorie nouă, alege „Categorie nouă”, scrie numele și salvează articolul.
-            </span>
+            {uploading ? (
+              <span className="mt-2 block text-sm text-muted-foreground">
+                Se încarcă imaginea...
+              </span>
+            ) : null}
           </label>
-          <TextField label="Autor" value={form.author} onChange={(value) => updateField('author', value)} />
-          <TextField label="Data publicării" type="date" value={form.published_at} onChange={(value) => updateField('published_at', value)} />
-          <TextField label="Data afișată" value={form.display_date} onChange={(value) => updateField('display_date', value)} />
-          <TextField label="Timp de lectură" value={form.reading_time} onChange={(value) => updateField('reading_time', value)} />
-          <TextField label="Taguri, separate prin virgulă" value={form.tags} onChange={(value) => updateField('tags', value)} />
-        </div>
-
-        <TextArea label="Subtitlu" rows={3} value={form.standfirst} onChange={(value) => updateField('standfirst', value)} />
-        <TextField label="URL imagine" value={form.image_url} onChange={(value) => updateField('image_url', value)} />
-        <label className="block text-sm">
-          <span className="font-medium">Încarcă imagine principală</span>
-          <input
-            type="file"
-            accept="image/*"
-            disabled={uploading}
-            onChange={(e) => uploadImage(e.target.files?.[0] ?? null)}
-            className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
+          <TextField
+            label="Descriere imagine"
+            value={form.image_alt}
+            onChange={(value) => updateField('image_alt', value)}
+            helper="Opțional. Ajută la accesibilitate și poate descrie pe scurt imaginea."
           />
-          {uploading ? (
-            <span className="mt-2 block text-sm text-muted-foreground">
-              Se încarcă imaginea...
-            </span>
-          ) : null}
-        </label>
-        <TextField label="Alt imagine" value={form.image_alt} onChange={(value) => updateField('image_alt', value)} />
+        </FormSection>
 
-        <div className="rounded-lg border border-border p-4">
-          <TextField label="URL audio articol" value={form.audio_url} onChange={(value) => updateField('audio_url', value)} />
-          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-            Lasă gol pentru citirea automată gratuită din browser. Dacă pui URL sau încarci
-            un fișier audio, articolul va folosi acel audio în locul vocii automate.
-          </p>
+        <FormSection
+          title="Audio"
+          description="Poți lăsa gol pentru citirea automată gratuită din browser."
+        >
+          <TextField
+            label="Link audio"
+            value={form.audio_url}
+            onChange={(value) => updateField('audio_url', value)}
+            helper="Dacă pui un link sau încarci un fișier, articolul va folosi acel audio."
+          />
           {form.audio_url ? (
             <button
               type="button"
               onClick={() => updateField('audio_url', '')}
-              className="mt-3 text-sm font-medium text-destructive hover:underline"
+              className="text-left text-sm font-medium text-destructive hover:underline"
             >
               Șterge audio și folosește citirea automată
             </button>
           ) : null}
-        </div>
-        <label className="block text-sm">
-          <span className="font-medium">Încarcă audio pentru articol</span>
-          <input
-            type="file"
-            accept="audio/*"
-            disabled={uploadingAudio}
-            onChange={(e) => uploadAudio(e.target.files?.[0] ?? null)}
-            className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
-          />
-          {uploadingAudio ? (
-            <span className="mt-2 block text-sm text-muted-foreground">
-              Se încarcă audio-ul...
-            </span>
-          ) : null}
-          {form.audio_url ? (
-            <audio controls src={form.audio_url} className="mt-3 w-full" />
-          ) : null}
-        </label>
-
-        <div className="grid gap-4 rounded-lg border border-border p-4 sm:grid-cols-2">
-          <label className="flex items-center gap-3 text-sm">
-            <input
-              type="checkbox"
-              checked={form.featured}
-              onChange={(e) => updateField('featured', e.target.checked)}
-            />
-            Articol principal
-          </label>
           <label className="block text-sm">
-            <span className="font-medium">Status</span>
-            <select
-              value={form.status}
-              onChange={(e) => updateField('status', e.target.value as FormState['status'])}
-              className="mt-2 w-full rounded-lg border border-border bg-background px-3 py-2"
-            >
-              <option value="draft">Draft</option>
-              <option value="published">Publicat</option>
-            </select>
+            <span className="font-medium">Încarcă fișier audio</span>
+            <input
+              type="file"
+              accept="audio/*"
+              disabled={uploadingAudio}
+              onChange={(e) => uploadAudio(e.target.files?.[0] ?? null)}
+              className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
+            />
+            {uploadingAudio ? (
+              <span className="mt-2 block text-sm text-muted-foreground">
+                Se încarcă audio-ul...
+              </span>
+            ) : null}
+            {form.audio_url ? (
+              <audio controls src={form.audio_url} className="mt-3 w-full" />
+            ) : null}
           </label>
-        </div>
+        </FormSection>
 
-        <TextArea label="Conținut MDX" rows={18} value={form.content} onChange={(value) => updateField('content', value)} />
+        <FormSection
+          title="Publicare"
+          description="Alege dacă articolul rămâne salvat ca draft sau apare public pe site."
+        >
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="flex items-center gap-3 rounded-lg border border-border p-4 text-sm">
+              <input
+                type="checkbox"
+                checked={form.featured}
+                onChange={(e) => updateField('featured', e.target.checked)}
+              />
+              <span>
+                <span className="block font-medium">Articol principal</span>
+                <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                  Îl evidențiază pe pagina de acasă.
+                </span>
+              </span>
+            </label>
+            <label className="block text-sm">
+              <span className="font-medium">Vizibilitate</span>
+              <select
+                value={form.status}
+                onChange={(e) => updateField('status', e.target.value as FormState['status'])}
+                className="mt-2 w-full rounded-lg border border-border bg-background px-3 py-2"
+              >
+                <option value="draft">Draft - nu apare public</option>
+                <option value="published">Publicat - apare pe site</option>
+              </select>
+            </label>
+          </div>
+        </FormSection>
+
+        <FormSection
+          title="Textul articolului"
+          description="Scrie articolul aici. Poți folosi paragrafe normale; formatarea avansată rămâne opțională."
+        >
+          <TextArea
+            label="Conținut"
+            rows={18}
+            value={form.content}
+            onChange={(value) => updateField('content', value)}
+            helper="Pentru titluri în interiorul articolului poți folosi ## înaintea textului."
+            monospace
+          />
+        </FormSection>
 
         {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
@@ -432,16 +519,38 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
   )
 }
 
+function FormSection({
+  title,
+  description,
+  children,
+}: {
+  title: string
+  description: string
+  children: React.ReactNode
+}) {
+  return (
+    <section className="rounded-xl border border-border bg-card/40 p-5">
+      <div className="mb-5">
+        <h2 className="font-serif text-2xl font-semibold text-foreground">{title}</h2>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+      </div>
+      <div className="grid gap-5">{children}</div>
+    </section>
+  )
+}
+
 function TextField({
   label,
   value,
   onChange,
   type = 'text',
+  helper,
 }: {
   label: string
   value: string
   onChange: (value: string) => void
   type?: string
+  helper?: string
 }) {
   return (
     <label className="block text-sm">
@@ -452,6 +561,11 @@ function TextField({
         onChange={(e) => onChange(e.target.value)}
         className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 outline-none focus:border-brand"
       />
+      {helper ? (
+        <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
+          {helper}
+        </span>
+      ) : null}
     </label>
   )
 }
@@ -461,11 +575,15 @@ function TextArea({
   value,
   onChange,
   rows,
+  helper,
+  monospace = false,
 }: {
   label: string
   value: string
   onChange: (value: string) => void
   rows: number
+  helper?: string
+  monospace?: boolean
 }) {
   return (
     <label className="block text-sm">
@@ -474,8 +592,13 @@ function TextArea({
         rows={rows}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 font-mono text-sm outline-none focus:border-brand"
+        className={`mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-brand ${monospace ? 'font-mono' : ''}`}
       />
+      {helper ? (
+        <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
+          {helper}
+        </span>
+      ) : null}
     </label>
   )
 }
