@@ -184,7 +184,15 @@ export function AccountSettings() {
     setPromotingAdmin(false)
 
     if (promoteError) {
-      setError('Nu am putut face utilizatorul admin. Verifică dacă are deja cont creat.')
+      const details = `${promoteError.message ?? ''} ${promoteError.details ?? ''}`.toLowerCase()
+
+      if (details.includes('not authorized')) {
+        setError('Doar un cont admin poate promova alt utilizator.')
+      } else if (details.includes('user not found')) {
+        setError('Nu am găsit niciun cont cu acest email. Utilizatorul trebuie să își creeze contul mai întâi.')
+      } else {
+        setError(promoteError.message || 'Nu am putut face utilizatorul admin.')
+      }
       return
     }
 
