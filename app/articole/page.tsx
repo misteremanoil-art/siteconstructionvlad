@@ -5,7 +5,7 @@ import { getAllArticles } from "@/lib/articles"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
-  title: "Toate articolele — Aeon",
+  title: "Toate articolele",
   description: "Eseuri și reflecții despre rugăciune, credință și viața interioară.",
 }
 
