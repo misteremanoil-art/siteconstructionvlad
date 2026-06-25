@@ -36,7 +36,7 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
   return (
     <Link
       href={href}
-      className={`group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}
+      className={`surface-card group flex flex-col overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
@@ -46,7 +46,7 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <span className={`absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur transition-colors ${hoverStyle.badge}`}>
+        <span className={`media-badge absolute left-3 top-3 backdrop-blur transition-colors ${hoverStyle.badge}`}>
           {article.category}
         </span>
       </div>

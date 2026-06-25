@@ -38,16 +38,16 @@ export default async function ArticolePage({ searchParams }: ArticolePageProps) 
     categories.find((category) => slugifyCategory(category) === activeCategory) ?? 'Toate'
 
   return (
-    <main className="mx-auto max-w-5xl px-5 py-16 md:py-24">
+    <main className="page-shell max-w-5xl">
       {/* Secțiunea de titlu a paginii */}
       <header className="mb-14 max-w-2xl">
-        <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+        <p className="page-kicker mb-3">
           Arhivă
         </p>
-        <h1 className="text-balance font-serif text-4xl leading-tight md:text-5xl">
+        <h1 className="page-title">
           Toate articolele
         </h1>
-        <p className="mt-4 text-pretty text-lg leading-relaxed text-muted-foreground">
+        <p className="page-intro mt-4">
           O colecție de eseuri și reflecții despre rugăciune, credință și redescoperirea
           comuniunii personale cu Dumnezeu.
         </p>
@@ -56,10 +56,10 @@ export default async function ArticolePage({ searchParams }: ArticolePageProps) 
       <section className="mb-10" aria-label="Categorii articole">
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">
+            <p className="section-kicker">
               Categorii
             </p>
-            <h2 className="mt-2 font-serif text-2xl font-semibold text-foreground">
+            <h2 className="section-title mt-2 text-2xl">
               {activeCategory ? activeCategoryLabel : 'Toate categoriile'}
             </h2>
           </div>

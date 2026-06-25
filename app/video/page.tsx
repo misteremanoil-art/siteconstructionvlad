@@ -42,15 +42,15 @@ export default async function VideoPage() {
   return (
     <main className="bg-background">
       <section className="border-b border-border">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-[0.95fr_1.05fr] md:px-6 md:py-20">
+        <div className="page-shell grid gap-10 md:grid-cols-[0.95fr_1.05fr]">
           <div className="flex flex-col justify-center">
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-brand">
+            <p className="page-kicker">
               Video
             </p>
-            <h1 className="mt-5 max-w-xl font-serif text-5xl leading-[1.05] text-foreground md:text-6xl">
+            <h1 className="page-title mt-5 max-w-xl">
               Emisiuni, interviuri și conversații.
             </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground">
+            <p className="page-intro mt-6 max-w-lg">
               Un spațiu dedicat aparițiilor video, dialogurilor publice și emisiunilor în care
               reflecția teologică se întâlnește cu întrebările comunității.
             </p>
@@ -60,14 +60,16 @@ export default async function VideoPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-14 md:px-6 md:py-20">
-        <div className="flex flex-col gap-3 border-l-2 border-brand pl-5">
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-brand">
+      <section className="page-shell">
+        <div className="section-header">
+          <div>
+          <p className="section-kicker">
             Arhivă video
           </p>
-          <h2 className="font-serif text-3xl text-foreground md:text-4xl">
+          <h2 className="section-title">
             Apariții recente
           </h2>
+          </div>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -82,7 +84,7 @@ export default async function VideoPage() {
 
 function FeaturedVideo({ video }: { video: VideoItem }) {
   return (
-    <article className="overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:border-brand/50 hover:bg-brand/5">
+    <article className="surface-card overflow-hidden transition-all hover:border-brand/50 hover:bg-brand/5">
       <VideoFrame video={video} priority />
       <div className="p-5 md:p-6">
         <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-muted-foreground">
@@ -98,7 +100,7 @@ function FeaturedVideo({ video }: { video: VideoItem }) {
         </p>
         <Link
           href={`/video/${video.slug}`}
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground transition-colors hover:bg-foreground hover:text-background"
+          className="primary-action mt-6"
         >
           Vezi pagina episodului
           <ExternalLink className="h-4 w-4" />
@@ -112,7 +114,7 @@ function VideoCard({ video }: { video: VideoItem }) {
   const hoverStyle = videoHoverStyles[stableIndex(video.slug, videoHoverStyles.length)]
 
   return (
-    <article className={`group overflow-hidden rounded-lg border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}>
+    <article className={`surface-card group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}>
       <VideoFrame video={video} playClassName={hoverStyle.play} />
       <div className="p-5">
         <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
@@ -135,7 +137,7 @@ function VideoCard({ video }: { video: VideoItem }) {
         </p>
         <Link
           href={`/video/${video.slug}`}
-          className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-brand transition-colors hover:text-foreground hover:underline"
+          className="text-action mt-5"
         >
           Vezi pagina episodului
           <ExternalLink className="h-4 w-4" />

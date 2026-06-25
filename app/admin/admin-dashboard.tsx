@@ -60,15 +60,15 @@ export function AdminDashboard() {
   }
 
   if (loading) {
-    return <main className="mx-auto max-w-5xl px-5 py-16">Se încarcă...</main>
+    return <main className="page-shell max-w-5xl">Se încarcă...</main>
   }
 
   if (!user) {
     return (
-      <main className="mx-auto max-w-2xl px-5 py-16">
-        <h1 className="font-serif text-4xl">Admin</h1>
+      <main className="page-shell max-w-2xl">
+        <h1 className="page-title">Admin</h1>
         <p className="mt-4 text-muted-foreground">Trebuie să te autentifici.</p>
-        <Link className="mt-6 inline-flex text-brand hover:underline" href="/admin/login">
+        <Link className="text-action mt-6" href="/admin/login">
           Intră în admin
         </Link>
       </main>
@@ -76,38 +76,38 @@ export function AdminDashboard() {
   }
 
   return (
-    <main className="mx-auto max-w-5xl px-5 py-16">
+    <main className="page-shell max-w-5xl">
       <div className="flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">
+          <p className="page-kicker">
             Admin
           </p>
-          <h1 className="mt-3 font-serif text-4xl">Articole</h1>
+          <h1 className="page-title mt-3 text-4xl">Articole</h1>
           <p className="mt-2 text-sm text-muted-foreground">{user.email}</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Link
             href="/admin/video"
-            className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+            className="secondary-action"
           >
             Video
           </Link>
           <Link
             href="/admin/pdf"
-            className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+            className="secondary-action"
           >
             PDF în articol
           </Link>
           <Link
             href="/admin/articole/new"
-            className="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground"
+            className="primary-action"
           >
             Articol nou
           </Link>
           <button
             type="button"
             onClick={signOut}
-            className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+            className="secondary-action"
           >
             Ieși
           </button>
@@ -116,11 +116,11 @@ export function AdminDashboard() {
 
       {error ? <p className="mt-6 text-sm text-destructive">{error}</p> : null}
 
-      <div className="mt-8 divide-y divide-border">
+      <div className="mt-8 grid gap-3">
         {articles.map((article) => (
           <div
             key={article.id}
-            className="flex flex-col gap-4 py-5 sm:flex-row sm:items-center sm:justify-between"
+            className="surface-card flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
           >
             <div>
               <p className="text-xs uppercase tracking-wide text-muted-foreground">
@@ -135,7 +135,7 @@ export function AdminDashboard() {
               {article.status === 'published' && article.slug ? (
                 <Link
                   href={`/articole/${article.slug}`}
-                  className="text-sm font-medium text-foreground hover:underline"
+                  className="text-sm font-medium text-foreground hover:text-brand hover:underline"
                 >
                   Vezi articolul
                 </Link>

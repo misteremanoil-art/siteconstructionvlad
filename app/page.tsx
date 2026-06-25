@@ -41,12 +41,12 @@ export default async function HomePage() {
   const recentConversations = getRecentConversations(3)
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+    <main className="page-shell">
       {/* Featured article */}
       {featured && (
         <Link
           href={`/articole/${featured.slug}`}
-          className="group grid overflow-hidden rounded-3xl border border-border bg-card transition-all hover:border-brand/50 hover:bg-accent/35 hover:shadow-lg md:grid-cols-2"
+          className="surface-card group grid overflow-hidden transition-all hover:border-brand/50 hover:bg-accent/35 hover:shadow-lg md:grid-cols-2"
         >
           <div className="relative aspect-[16/11] md:aspect-auto">
             <Image
@@ -60,10 +60,10 @@ export default async function HomePage() {
           </div>
           <div className="flex flex-col justify-center gap-4 p-8 sm:p-12">
             <div className="flex items-center gap-3">
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+              <span className="section-kicker">
                 Articol principal
               </span>
-              <span className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground transition-colors group-hover:border-brand/40 group-hover:text-foreground">
+              <span className="media-badge border border-border transition-colors group-hover:border-brand/40 group-hover:text-foreground">
                 {featured.category}
               </span>
             </div>
@@ -84,10 +84,13 @@ export default async function HomePage() {
 
       {/* Recent articles grid */}
       <section className="mt-16" aria-label="Articole recente">
-        <div className="mb-6">
-          <h2 className="font-serif text-2xl font-semibold text-foreground">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">Lectură</p>
+            <h2 className="section-title">
             Articole recente
-          </h2>
+            </h2>
+          </div>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {articles.map((article) => (
@@ -97,9 +100,10 @@ export default async function HomePage() {
       </section>
 
       <section className="mt-16" aria-label="Conversații recente">
-        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="section-header">
           <div>
-            <h2 className="font-serif text-2xl font-semibold text-foreground">
+            <p className="section-kicker">Audio</p>
+            <h2 className="section-title">
               Conversații recente
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
@@ -108,7 +112,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/conversatii"
-            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-brand hover:underline"
+            className="text-action w-fit"
           >
             Ascultă arhiva
             <ExternalLink className="h-4 w-4" />
@@ -119,7 +123,7 @@ export default async function HomePage() {
           {recentConversations.map((conversation) => (
             <article
               key={conversation.slug}
-              className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md"
+              className="surface-card group p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md"
             >
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-brand-foreground">
                 <Headphones className="h-5 w-5" />
@@ -143,9 +147,10 @@ export default async function HomePage() {
 
       {/* Recent videos grid */}
       <section className="mt-16" aria-label="Videoclipuri recente">
-        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="section-header">
           <div>
-            <h2 className="font-serif text-2xl font-semibold text-foreground">
+            <p className="section-kicker">Video</p>
+            <h2 className="section-title">
               Videoclipuri recente
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
@@ -154,7 +159,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/video"
-            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-brand hover:underline"
+            className="text-action w-fit"
           >
             Vezi toate
             <ExternalLink className="h-4 w-4" />
@@ -169,7 +174,7 @@ export default async function HomePage() {
               <Link
                 key={video.slug}
                 href={`/video/${video.slug}`}
-                className={`group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}
+                className={`surface-card group flex flex-col overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}
               >
               <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]">
                 {video.thumbnailUrl ? (
@@ -182,7 +187,7 @@ export default async function HomePage() {
                   />
                 ) : null}
                 <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
-                <span className={`absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur transition-colors ${hoverStyle.badge}`}>
+                <span className={`media-badge absolute left-3 top-3 backdrop-blur transition-colors ${hoverStyle.badge}`}>
                   {video.context}
                 </span>
                 <div className="absolute inset-0 flex items-center justify-center">

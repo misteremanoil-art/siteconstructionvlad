@@ -38,9 +38,9 @@ export function NewsletterCard() {
   return (
     <section
       aria-label="Newsletter"
-      className="rounded-3xl border border-border bg-card p-8 sm:p-12"
+      className="surface-card p-8 sm:p-12"
     >
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+      <p className="section-kicker">
         Newsletter
       </p>
       <h2 className="mt-3 max-w-2xl font-serif text-2xl font-semibold leading-tight text-foreground text-balance sm:text-3xl">

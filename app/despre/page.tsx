@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function DesprePage() {
   return (
-    <main className="mx-auto max-w-3xl px-5 py-16 md:py-24">
+    <main className="page-shell max-w-4xl">
       <div className="flex flex-col items-center text-center">
         <div className="relative h-44 w-44 overflow-hidden rounded-full ring-1 ring-border">
           <Image
@@ -20,12 +20,12 @@ export default function DesprePage() {
             className="object-cover object-top"
           />
         </div>
-        <p className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-brand">Despre mine</p>
-        <h1 className="mt-2 font-serif text-4xl md:text-5xl">Albert-Beniamin Cucu</h1>
+        <p className="page-kicker mt-6">Despre mine</p>
+        <h1 className="page-title mt-2">Albert-Beniamin Cucu</h1>
         <p className="mt-3 text-muted-foreground">Pastor • Teolog • Autor</p>
       </div>
 
-      <section className="mt-14 space-y-6 text-lg leading-relaxed text-foreground/90">
+      <section className="surface-card mt-14 space-y-6 p-6 text-lg leading-relaxed text-foreground/90 sm:p-8">
         <p className="first-letter:float-left first-letter:mr-3 first-letter:font-serif first-letter:text-6xl first-letter:font-semibold first-letter:leading-[0.8] first-letter:text-brand">
           Sunt absolvent al unui program de Master în Teologie Pastorală (Pastoral Ministry), cu un
           interes deosebit pentru studiile biblice, leadership-ul ecleziastic și îngrijirea
@@ -48,9 +48,9 @@ export default function DesprePage() {
 
       <hr className="my-12 border-border" />
 
-      <section className="text-lg leading-relaxed text-muted-foreground">
+      <section className="surface-card p-6 text-lg leading-relaxed text-muted-foreground sm:p-8">
         <div className="border-l-2 border-brand pl-5 md:pl-6">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">In English</p>
+          <p className="section-kicker">In English</p>
           <div className="mt-6 space-y-6">
             <p>
               I hold a Master&apos;s degree in Pastoral Ministry, focusing on biblical studies,
