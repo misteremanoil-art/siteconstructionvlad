@@ -41,6 +41,16 @@ const emptyForm: FormState = {
   content: '',
 }
 
+const categorySuggestions = [
+  'Teologie',
+  'Studii biblice',
+  'Apocalipsa',
+  'Viață spirituală',
+  'Slujire pastorală',
+  'Recenzii',
+  'Eseuri',
+]
+
 function slugify(value: string) {
   return value
     .toLowerCase()
@@ -279,7 +289,30 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
         <div className="grid gap-5 sm:grid-cols-2">
           <TextField label="Titlu" value={form.title} onChange={(value) => updateField('title', value)} />
           <TextField label="Slug" value={form.slug} onChange={(value) => updateField('slug', slugify(value))} />
-          <TextField label="Categorie" value={form.category} onChange={(value) => updateField('category', value)} />
+          <label className="block text-sm">
+            <span className="font-medium">Categorie</span>
+            <select
+              value={categorySuggestions.includes(form.category) ? form.category : 'custom'}
+              onChange={(e) => {
+                const value = e.target.value
+                if (value !== 'custom') updateField('category', value)
+              }}
+              className="mt-2 w-full rounded-lg border border-border bg-background px-3 py-2"
+            >
+              {categorySuggestions.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+              <option value="custom">Categorie nouă</option>
+            </select>
+            <input
+              value={form.category}
+              onChange={(e) => updateField('category', e.target.value)}
+              placeholder="Scrie sau ajustează categoria"
+              className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
+            />
+          </label>
           <TextField label="Autor" value={form.author} onChange={(value) => updateField('author', value)} />
           <TextField label="Data publicării" type="date" value={form.published_at} onChange={(value) => updateField('published_at', value)} />
           <TextField label="Data afișată" value={form.display_date} onChange={(value) => updateField('display_date', value)} />
