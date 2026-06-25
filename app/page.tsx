@@ -99,6 +99,15 @@ export default async function HomePage() {
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]">
+                {video.thumbnailUrl ? (
+                  <Image
+                    src={video.thumbnailUrl}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : null}
                 <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
                 <span className="absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur">
                   {video.context}

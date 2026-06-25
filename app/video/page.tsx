@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Play, ExternalLink, CalendarDays, Clock3 } from 'lucide-react'
 import { videos } from '@/lib/videos'
@@ -129,18 +130,19 @@ function VideoFrame({
   priority?: boolean
 }) {
   if (video.embedUrl) {
-    return (
-      <iframe
-        src={video.embedUrl}
-        title={video.title}
-        loading={priority ? 'eager' : 'lazy'}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-        className="aspect-video w-full bg-muted"
-      />
-    )
+    return <VideoLinkFrame video={video} priority={priority} />
   }
 
+  return <VideoLinkFrame video={video} priority={priority} />
+}
+
+function VideoLinkFrame({
+  video,
+  priority = false,
+}: {
+  video: (typeof videos)[number]
+  priority?: boolean
+}) {
   return (
     <Link
       href={video.href}
@@ -148,6 +150,16 @@ function VideoFrame({
       rel="noreferrer"
       className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]"
     >
+      {video.thumbnailUrl ? (
+        <Image
+          src={video.thumbnailUrl}
+          alt=""
+          fill
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : null}
       <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
       <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-transform group-hover:scale-105">
         <Play className="ml-1 h-7 w-7 fill-current" />
