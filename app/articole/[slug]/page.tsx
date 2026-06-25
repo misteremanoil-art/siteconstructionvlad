@@ -56,49 +56,48 @@ export default async function ArticlePage({
       <ReadingProgress />
       <main>
         <article>
-          <header className="bg-background px-5 pb-10 pt-28 text-center sm:px-6 md:pb-14 md:pt-32">
-            <div className="mx-auto max-w-5xl">
-              <p className="mx-auto w-fit border-b border-foreground pb-1 font-serif text-sm text-foreground">
+          <header className="relative isolate flex min-h-screen items-end overflow-hidden bg-primary text-primary-foreground">
+            {article.image ? (
+              <Image
+                src={article.image || "/placeholder.svg"}
+                alt={article.imageAlt}
+                fill
+                sizes="100vw"
+                priority
+                className="absolute inset-0 -z-20 object-cover"
+              />
+            ) : null}
+            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/45 to-black/20" />
+            <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/80 to-transparent" />
+
+            <div className="mx-auto flex w-full max-w-6xl flex-col px-5 pb-10 pt-24 sm:px-6 md:pb-16 lg:pb-20">
+              <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-white/80">
                 {article.category}
               </p>
-              <h1 className="mx-auto mt-10 max-w-4xl text-balance font-serif text-4xl font-normal uppercase leading-[0.95] tracking-wide text-[#b91c1c] sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="max-w-4xl text-balance font-serif text-3xl font-semibold leading-[1.05] text-white drop-shadow-sm sm:text-4xl md:text-6xl lg:text-7xl">
                 {article.title}
               </h1>
-              <p className="mx-auto mt-5 max-w-3xl text-pretty font-serif text-2xl italic leading-tight text-[#c21f2f] sm:text-3xl md:text-4xl">
+              <p className="mt-5 max-w-3xl text-pretty font-serif text-lg italic leading-relaxed text-white/85 sm:text-xl md:text-2xl">
                 {article.standfirst}
               </p>
-              {article.image ? (
-                <div className="relative mx-auto mt-8 aspect-[4/5] max-h-[880px] max-w-3xl overflow-hidden bg-muted">
-                  <Image
-                    src={article.image || "/placeholder.svg"}
-                    alt={article.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 768px"
-                    priority
-                    className="object-cover"
-                  />
-                </div>
-              ) : null}
-              <div className="mx-auto mt-7 flex max-w-3xl flex-wrap justify-center gap-x-2 gap-y-1 text-xs uppercase tracking-wide text-muted-foreground sm:gap-x-3 sm:text-sm">
-                <span className="font-medium text-foreground">{article.author}</span>
+              <ArticleAudioPlayer
+                title={article.title}
+                text={`${article.standfirst}\n\n${article.content}`}
+                audioUrl={article.audioUrl}
+              />
+              <div className="mt-7 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/75 sm:gap-x-3 sm:text-sm">
+                <span className="font-medium text-white">{article.author}</span>
                 <span aria-hidden>•</span>
                 <span>{article.displayDate}</span>
                 <span aria-hidden>•</span>
                 <span>{article.readingTime}</span>
-              </div>
-              <div className="mx-auto mt-8 max-w-3xl text-left">
-                <ArticleAudioPlayer
-                  title={article.title}
-                  text={`${article.standfirst}\n\n${article.content}`}
-                  audioUrl={article.audioUrl}
-                />
               </div>
             </div>
           </header>
 
           <div className="mx-auto max-w-5xl px-5 py-12 md:py-16">
             {article.imageAlt ? (
-              <p className="mx-auto mb-10 max-w-3xl text-center text-sm italic text-muted-foreground">
+              <p className="-mt-6 mb-10 text-sm italic text-muted-foreground md:-mt-10">
                 {article.imageAlt}
               </p>
             ) : null}
