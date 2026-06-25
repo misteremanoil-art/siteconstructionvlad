@@ -34,8 +34,8 @@ export function SiteLogo({
           textClassName,
         )}
       >
-        <span className="whitespace-nowrap font-serif text-[1.02rem] font-medium tracking-[0.02em] sm:text-[1.14rem]">
-          Albert-Beniamin Cucu
+        <span className="whitespace-nowrap font-sans text-[0.92rem] font-semibold tracking-[0.055em] sm:text-[1rem]">
+          ALBERT BENIAMIN CUCU
         </span>
       </span>
     </Link>
