@@ -19,9 +19,19 @@ export function AuthorCard() {
         <h3 className="mt-2 font-serif text-2xl font-semibold text-foreground">
           Albert-Beniamin Cucu
         </h3>
-        <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
-          Master în Teologie Pastorală. Pasionat de explorarea sensului prin
-          rigoare academică și credință vie.
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          <strong className="font-semibold text-foreground">ALBERT BENIAMIN CUCU</strong> este
+          pastor Adventist de Ziua a Șaptea în Onești, România. Deține un Master în Arte în
+          Slujire Pastorală (Pastoral Ministry) obținut la Universitatea Adventistă Friedensau
+          (Friedensau Adventist University), Germania. A publicat o carte,{' '}
+          <em className="italic">
+            Conversații cu Dumnezeu: un altfel de comentariu biblic la epistola Romani
+          </em>
+          ; a contribuit cu articole în{' '}
+          <em className="italic">Curierul Adventist, Ministry și TheoRhēma</em>, și a prezentat
+          lucrări științifice la mai multe conferințe academice, naționale și internaționale.
+          Interesele sale de cercetare includ Teologia, Studiile Biblice (Vechiul și Noul
+          Testament), Cartea Apocalipsei, Critica Textuală și Intertextualitatea.
         </p>
       </div>
     </div>
