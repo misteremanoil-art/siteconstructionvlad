@@ -14,6 +14,9 @@ export function SiteFooter() {
           <Link href="/articole" className="transition-colors hover:text-brand">
             Articole
           </Link>
+          <Link href="/video" className="transition-colors hover:text-brand">
+            Video
+          </Link>
           <Link href="/despre" className="transition-colors hover:text-brand">
             Despre
           </Link>

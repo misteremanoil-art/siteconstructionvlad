@@ -11,6 +11,7 @@ import { createBrowserSupabaseClient } from '@/lib/supabase-browser'
 const NAV = [
   { href: '/', label: 'Acasă' },
   { href: '/articole', label: 'Articole' },
+  { href: '/video', label: 'Video' },
   { href: '/despre', label: 'Despre' },
   { href: '/cont/setari', label: 'Cont' },
 ]
