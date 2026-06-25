@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createBrowserSupabaseClient } from '@/lib/supabase-browser'
 import type { DatabaseArticle } from '@/lib/supabase'
@@ -60,10 +60,45 @@ function slugify(value: string) {
     .replace(/^-+|-+$/g, '')
 }
 
+function parseArticleContent(rawContent: string) {
+  const notesMatch = rawContent.match(/\n*<div className="notes">\s*([\s\S]*?)\s*<\/div>\s*$/)
+  const contentWithoutNotes = notesMatch
+    ? rawContent.replace(/\n*<div className="notes">\s*([\s\S]*?)\s*<\/div>\s*$/, '').trim()
+    : rawContent
+
+  const footnotes = notesMatch
+    ? notesMatch[1]
+        .split(/\n+/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => line.replace(/^\d+\.\s*/, ''))
+    : []
+
+  return {
+    content: contentWithoutNotes.replace(/<sup>(\d+)<\/sup>/g, '[^$1]'),
+    footnotes,
+  }
+}
+
+function buildArticleContent(content: string, footnotes: string[]) {
+  const body = content.trim().replace(/\[\^(\d+)\]/g, '<sup>$1</sup>')
+  const cleanFootnotes = footnotes.map((note) => note.trim())
+
+  if (!cleanFootnotes.some(Boolean)) return body
+
+  const notes = cleanFootnotes
+    .map((note, index) => `${index + 1}. ${note}`)
+    .join('\n\n')
+
+  return `${body}\n\n<div className="notes">\n\n${notes}\n\n</div>`
+}
+
 export function ArticleEditor({ articleId }: { articleId?: string }) {
   const router = useRouter()
   const supabase = useMemo(() => createBrowserSupabaseClient(), [])
+  const contentTextareaRef = useRef<HTMLTextAreaElement | null>(null)
   const [form, setForm] = useState<FormState>(emptyForm)
+  const [footnotes, setFootnotes] = useState<string[]>([])
   const [loading, setLoading] = useState(Boolean(articleId))
   const [saving, setSaving] = useState(false)
   const [uploading, setUploading] = useState(false)
@@ -102,6 +137,8 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       }
 
       const article = data as DatabaseArticle
+      const parsedContent = parseArticleContent(article.content)
+      setFootnotes(parsedContent.footnotes)
       setForm({
         title: article.title,
         slug: article.slug,
@@ -117,7 +154,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
         tags: article.tags.join(', '),
         featured: article.featured,
         status: article.status,
-        content: article.content,
+        content: parsedContent.content,
       })
       setLoading(false)
     }
@@ -132,6 +169,42 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       [key]: value,
       slug: key === 'title' && !articleId ? slugify(value as string) : current.slug,
     }))
+  }
+
+  function addFootnote() {
+    const noteNumber = footnotes.length + 1
+    const marker = `[^${noteNumber}]`
+    const textarea = contentTextareaRef.current
+
+    setFootnotes((current) => [...current, ''])
+
+    if (!textarea) {
+      updateField('content', `${form.content}${form.content ? ' ' : ''}${marker}`)
+      return
+    }
+
+    const start = textarea.selectionStart
+    const end = textarea.selectionEnd
+    const nextContent = `${form.content.slice(0, start)}${marker}${form.content.slice(end)}`
+    updateField('content', nextContent)
+
+    window.requestAnimationFrame(() => {
+      textarea.focus()
+      textarea.setSelectionRange(start + marker.length, start + marker.length)
+    })
+  }
+
+  function updateFootnote(index: number, value: string) {
+    setFootnotes((current) => current.map((note, noteIndex) => (
+      noteIndex === index ? value : note
+    )))
+  }
+
+  function removeLastFootnote() {
+    if (!footnotes.length) return
+    const noteNumber = footnotes.length
+    setFootnotes((current) => current.slice(0, -1))
+    updateField('content', form.content.replace(new RegExp(`\\s?\\[\\^${noteNumber}\\]`, 'g'), ''))
   }
 
   async function saveArticle(e: React.FormEvent) {
@@ -175,6 +248,21 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       return
     }
 
+    const emptyFootnoteIndex = footnotes.findIndex((note) => !note.trim())
+    if (emptyFootnoteIndex !== -1) {
+      setError(`Completează Nota ${emptyFootnoteIndex + 1} sau șterge ultima notă înainte de salvare.`)
+      setSaving(false)
+      return
+    }
+
+    const noteMarkers = Array.from(form.content.matchAll(/\[\^(\d+)\]/g)).map((match) => Number(match[1]))
+    const missingNoteNumber = noteMarkers.find((noteNumber) => noteNumber > footnotes.length)
+    if (missingNoteNumber) {
+      setError(`Ai în text nota ${missingNoteNumber}, dar nu există câmp pentru ea. Apasă „Adaugă notă” sau șterge marcajul din text.`)
+      setSaving(false)
+      return
+    }
+
     const payload = {
       title,
       slug,
@@ -193,7 +281,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
         .filter(Boolean),
       featured: form.featured,
       status: form.status,
-      content: form.content,
+      content: buildArticleContent(form.content, footnotes),
       created_by: userData.user.id,
     }
 
@@ -484,8 +572,29 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
 
         <FormSection
           title="Textul articolului"
-          description="Scrie articolul aici. Poți folosi paragrafe normale; formatarea avansată rămâne opțională."
+          description="Scrie articolul aici. Pentru note, apasă butonul de mai jos și completează explicația separat."
         >
+          <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border bg-background/45 p-4">
+            <button
+              type="button"
+              onClick={addFootnote}
+              className="rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground"
+            >
+              Adaugă notă
+            </button>
+            {footnotes.length > 0 ? (
+              <button
+                type="button"
+                onClick={removeLastFootnote}
+                className="rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground"
+              >
+                Șterge ultima notă
+              </button>
+            ) : null}
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Butonul inserează automat numărul notei în text, exact unde ai cursorul.
+            </p>
+          </div>
           <TextArea
             label="Conținut"
             rows={18}
@@ -493,7 +602,30 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
             onChange={(value) => updateField('content', value)}
             helper="Pentru titluri în interiorul articolului poți folosi ## înaintea textului."
             monospace
+            textareaRef={contentTextareaRef}
           />
+          {footnotes.length > 0 ? (
+            <div className="grid gap-3 rounded-lg border border-border bg-background/45 p-4">
+              <div>
+                <h3 className="font-medium">Note de subsol</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  Completează explicațiile aici. La salvare, site-ul le pune automat la finalul articolului.
+                </p>
+              </div>
+              {footnotes.map((note, index) => (
+                <label key={index} className="block text-sm">
+                  <span className="font-medium">Nota {index + 1}</span>
+                  <textarea
+                    rows={3}
+                    value={note}
+                    onChange={(e) => updateFootnote(index, e.target.value)}
+                    placeholder="Scrie explicația sau sursa notei"
+                    className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-brand"
+                  />
+                </label>
+              ))}
+            </div>
+          ) : null}
         </FormSection>
 
         {error ? <p className="text-sm text-destructive">{error}</p> : null}
@@ -577,6 +709,7 @@ function TextArea({
   rows,
   helper,
   monospace = false,
+  textareaRef,
 }: {
   label: string
   value: string
@@ -584,11 +717,13 @@ function TextArea({
   rows: number
   helper?: string
   monospace?: boolean
+  textareaRef?: React.Ref<HTMLTextAreaElement>
 }) {
   return (
     <label className="block text-sm">
       <span className="font-medium">{label}</span>
       <textarea
+        ref={textareaRef}
         rows={rows}
         value={value}
         onChange={(e) => onChange(e.target.value)}
