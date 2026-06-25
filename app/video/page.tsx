@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Play, ExternalLink, CalendarDays, Clock3 } from 'lucide-react'
-import { videos } from '@/lib/videos'
+import { getAllVideos, getFeaturedVideo, type VideoItem } from '@/lib/videos'
 
 export const metadata: Metadata = {
   title: 'Video — Albert-Beniamin Cucu',
@@ -10,10 +10,13 @@ export const metadata: Metadata = {
     'Emisiuni, interviuri și apariții video cu Albert-Beniamin Cucu despre teologie, slujire pastorală și viață spirituală.',
 }
 
-const featuredVideo = videos.find((video) => video.featured) ?? videos[0]
-const secondaryVideos = videos.filter((video) => video !== featuredVideo)
+export const dynamic = 'force-dynamic'
 
-export default function VideoPage() {
+export default async function VideoPage() {
+  const allVideos = await getAllVideos()
+  const featuredVideo = (await getFeaturedVideo()) ?? allVideos[0]
+  const secondaryVideos = allVideos.filter((video) => video.slug !== featuredVideo?.slug)
+
   return (
     <main className="bg-background">
       <section className="border-b border-border">
@@ -31,7 +34,7 @@ export default function VideoPage() {
             </p>
           </div>
 
-          <FeaturedVideo />
+          {featuredVideo ? <FeaturedVideo video={featuredVideo} /> : null}
         </div>
       </section>
 
@@ -55,24 +58,24 @@ export default function VideoPage() {
   )
 }
 
-function FeaturedVideo() {
+function FeaturedVideo({ video }: { video: VideoItem }) {
   return (
     <article className="overflow-hidden rounded-lg border border-border bg-card shadow-sm">
-      <VideoFrame video={featuredVideo} priority />
+      <VideoFrame video={video} priority />
       <div className="p-5 md:p-6">
         <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-muted-foreground">
-          <span className="text-brand">{featuredVideo.context}</span>
-          <span>{featuredVideo.platform}</span>
-          <span>{featuredVideo.date}</span>
+          <span className="text-brand">{video.context}</span>
+          <span>{video.platform}</span>
+          <span>{video.date}</span>
         </div>
         <h2 className="mt-4 font-serif text-3xl leading-tight text-foreground">
-          {featuredVideo.title}
+          {video.title}
         </h2>
         <p className="mt-4 leading-relaxed text-muted-foreground">
-          {featuredVideo.description}
+          {video.description}
         </p>
         <Link
-          href={`/video/${featuredVideo.slug}`}
+          href={`/video/${video.slug}`}
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground transition-opacity hover:opacity-90"
         >
           Vezi pagina episodului
@@ -83,7 +86,7 @@ function FeaturedVideo() {
   )
 }
 
-function VideoCard({ video }: { video: (typeof videos)[number] }) {
+function VideoCard({ video }: { video: VideoItem }) {
   return (
     <article className="overflow-hidden rounded-lg border border-border bg-card">
       <VideoFrame video={video} />
@@ -122,7 +125,7 @@ function VideoFrame({
   video,
   priority = false,
 }: {
-  video: (typeof videos)[number]
+  video: VideoItem
   priority?: boolean
 }) {
   if (video.embedUrl) {
@@ -136,7 +139,7 @@ function VideoLinkFrame({
   video,
   priority = false,
 }: {
-  video: (typeof videos)[number]
+  video: VideoItem
   priority?: boolean
 }) {
   return (

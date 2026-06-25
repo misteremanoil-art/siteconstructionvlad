@@ -296,6 +296,12 @@ export function AccountSettings() {
             >
               Articol nou
             </Link>
+            <Link
+              href="/admin/video"
+              className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+            >
+              Gestionează video
+            </Link>
           </div>
 
           <form

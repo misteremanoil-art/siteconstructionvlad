@@ -1,4 +1,7 @@
+import { createSupabaseClient, type DatabaseVideo } from '@/lib/supabase'
+
 export type VideoItem = {
+  id?: string
   slug: string
   title: string
   description: string
@@ -10,9 +13,10 @@ export type VideoItem = {
   duration?: string
   featured?: boolean
   context: string
+  status?: 'draft' | 'published'
 }
 
-export const videos: VideoItem[] = [
+export const fallbackVideos: VideoItem[] = [
   {
     slug: 'frustrarea-credinciosului',
     title: 'Frustrarea credinciosului. Este normal să fii supărat pe Dumnezeu?',
@@ -94,6 +98,63 @@ export const videos: VideoItem[] = [
   },
 ]
 
-export function getVideoBySlug(slug: string) {
-  return videos.find((video) => video.slug === slug)
+function fromDatabaseVideo(video: DatabaseVideo): VideoItem {
+  return {
+    id: video.id,
+    slug: video.slug,
+    title: video.title,
+    description: video.description,
+    platform: video.platform,
+    href: video.href,
+    embedUrl: video.embed_url,
+    thumbnailUrl: video.thumbnail_url,
+    date: video.published_at,
+    duration: video.duration,
+    featured: video.featured,
+    context: video.context,
+    status: video.status,
+  }
+}
+
+async function getDatabaseVideos() {
+  const supabase = createSupabaseClient()
+  if (!supabase) return null
+
+  const { data, error } = await supabase
+    .from('videos')
+    .select('*')
+    .eq('status', 'published')
+    .order('published_at', { ascending: false })
+
+  if (error || !data?.length) return null
+
+  return (data as DatabaseVideo[]).map(fromDatabaseVideo)
+}
+
+export async function getAllVideos(): Promise<VideoItem[]> {
+  return (await getDatabaseVideos()) ?? fallbackVideos
+}
+
+export async function getFeaturedVideo(): Promise<VideoItem | null> {
+  const all = await getAllVideos()
+  return all.find((video) => video.featured) ?? all[0] ?? null
+}
+
+export async function getVideoBySlug(slug: string): Promise<VideoItem | null> {
+  const supabase = createSupabaseClient()
+
+  if (supabase) {
+    const { data, error } = await supabase
+      .from('videos')
+      .select('*')
+      .eq('slug', slug)
+      .eq('status', 'published')
+      .maybeSingle()
+
+    if (!error && data) {
+      return fromDatabaseVideo(data as DatabaseVideo)
+    }
+  }
+
+  return fallbackVideos.find((video) => video.slug === slug) ?? null
 }

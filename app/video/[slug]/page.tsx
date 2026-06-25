@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, CalendarDays, Clock3, ExternalLink } from 'lucide-react'
 import { VideoReviews } from '@/components/video-reviews'
-import { getVideoBySlug, videos } from '@/lib/videos'
+import { getVideoBySlug } from '@/lib/videos'
 
 type VideoDetailPageProps = {
   params: Promise<{
@@ -11,17 +11,13 @@ type VideoDetailPageProps = {
   }>
 }
 
-export function generateStaticParams() {
-  return videos.map((video) => ({
-    slug: video.slug,
-  }))
-}
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
   params,
 }: VideoDetailPageProps): Promise<Metadata> {
   const { slug } = await params
-  const video = getVideoBySlug(slug)
+  const video = await getVideoBySlug(slug)
 
   if (!video) {
     return {
@@ -37,7 +33,7 @@ export async function generateMetadata({
 
 export default async function VideoDetailPage({ params }: VideoDetailPageProps) {
   const { slug } = await params
-  const video = getVideoBySlug(slug)
+  const video = await getVideoBySlug(slug)
 
   if (!video) notFound()
 

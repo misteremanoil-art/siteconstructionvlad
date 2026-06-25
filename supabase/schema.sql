@@ -98,6 +98,30 @@ create index if not exists articles_slug_idx
 alter table public.articles
 add column if not exists audio_url text not null default '';
 
+create table if not exists public.videos (
+  id uuid primary key default gen_random_uuid(),
+  slug text not null unique,
+  title text not null,
+  description text not null default '',
+  platform text not null default 'YouTube' check (platform in ('YouTube', 'Facebook', 'TV')),
+  href text not null default '',
+  embed_url text not null default '',
+  thumbnail_url text not null default '',
+  published_at date not null default current_date,
+  duration text not null default '',
+  context text not null default '',
+  featured boolean not null default false,
+  status article_status not null default 'draft',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists videos_status_published_at_idx
+  on public.videos (status, published_at desc);
+
+create index if not exists videos_slug_idx
+  on public.videos (slug);
+
 create or replace function public.search_published_articles(search_query text)
 returns setof public.articles
 language sql
@@ -161,8 +185,14 @@ create trigger articles_set_updated_at
 before update on public.articles
 for each row execute function public.set_updated_at();
 
+drop trigger if exists videos_set_updated_at on public.videos;
+create trigger videos_set_updated_at
+before update on public.videos
+for each row execute function public.set_updated_at();
+
 alter table public.admin_users enable row level security;
 alter table public.articles enable row level security;
+alter table public.videos enable row level security;
 alter table public.newsletter_subscribers enable row level security;
 alter table public.contact_messages enable row level security;
 
@@ -193,6 +223,30 @@ with check (public.is_admin());
 drop policy if exists "Only admins can delete articles" on public.articles;
 create policy "Only admins can delete articles"
 on public.articles for delete
+to authenticated
+using (public.is_admin());
+
+drop policy if exists "Published videos are readable by everyone" on public.videos;
+create policy "Published videos are readable by everyone"
+on public.videos for select
+using (status = 'published' or public.is_admin());
+
+drop policy if exists "Only admins can insert videos" on public.videos;
+create policy "Only admins can insert videos"
+on public.videos for insert
+to authenticated
+with check (public.is_admin());
+
+drop policy if exists "Only admins can update videos" on public.videos;
+create policy "Only admins can update videos"
+on public.videos for update
+to authenticated
+using (public.is_admin())
+with check (public.is_admin());
+
+drop policy if exists "Only admins can delete videos" on public.videos;
+create policy "Only admins can delete videos"
+on public.videos for delete
 to authenticated
 using (public.is_admin());
 

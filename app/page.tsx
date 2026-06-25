@@ -4,14 +4,14 @@ import { ExternalLink, Play } from 'lucide-react'
 import { getAllArticles, getFeaturedArticle } from '@/lib/articles'
 import { ArticleCard } from '@/components/article-card'
 import { NewsletterCard } from '@/components/newsletter-card'
-import { videos } from '@/lib/videos'
+import { getAllVideos } from '@/lib/videos'
 
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
   const featured = await getFeaturedArticle()
   const articles = (await getAllArticles()).filter((a) => a.slug !== featured?.slug)
-  const recentVideos = videos.slice(0, 3)
+  const recentVideos = (await getAllVideos()).slice(0, 3)
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">

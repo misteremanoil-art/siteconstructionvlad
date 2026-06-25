@@ -19,6 +19,24 @@ export type DatabaseArticle = {
   status: 'draft' | 'published'
 }
 
+export type DatabaseVideo = {
+  id: string
+  slug: string
+  title: string
+  description: string
+  platform: 'YouTube' | 'Facebook' | 'TV'
+  href: string
+  embed_url: string
+  thumbnail_url: string
+  published_at: string
+  duration: string
+  featured: boolean
+  context: string
+  status: 'draft' | 'published'
+  created_at: string
+  updated_at: string
+}
+
 export function createSupabaseClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY

@@ -85,7 +85,13 @@ export function AdminDashboard() {
           <h1 className="mt-3 font-serif text-4xl">Articole</h1>
           <p className="mt-2 text-sm text-muted-foreground">{user.email}</p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/admin/video"
+            className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+          >
+            Video
+          </Link>
           <Link
             href="/admin/articole/new"
             className="rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground"
