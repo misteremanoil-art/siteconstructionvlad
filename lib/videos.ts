@@ -1,4 +1,5 @@
 export type VideoItem = {
+  slug: string
   title: string
   description: string
   platform: 'YouTube' | 'Facebook' | 'TV'
@@ -13,6 +14,7 @@ export type VideoItem = {
 
 export const videos: VideoItem[] = [
   {
+    slug: 'frustrarea-credinciosului',
     title: 'Frustrarea credinciosului. Este normal să fii supărat pe Dumnezeu?',
     description:
       'Reflecții biblice despre tensiunea sinceră dintre credință, suferință și întrebările adresate lui Dumnezeu.',
@@ -26,6 +28,7 @@ export const videos: VideoItem[] = [
     context: 'Speranța TV',
   },
   {
+    slug: 'ispita-succesului',
     title: 'Ispita succesului',
     description:
       'Un episod despre felul în care succesul poate deveni o presiune spirituală și morală atunci când își pierde locul firesc.',
@@ -38,6 +41,7 @@ export const videos: VideoItem[] = [
     context: 'Speranța TV',
   },
   {
+    slug: 'lumea-si-influenta-ei-1',
     title: 'Lumea și influența ei (I). Cum te schimbă lumea fără să-ți dai seama?',
     description:
       'O conversație despre influențele subtile care modelează gândirea, valorile și viața spirituală.',
@@ -50,6 +54,7 @@ export const videos: VideoItem[] = [
     context: 'Speranța TV',
   },
   {
+    slug: 'lumea-si-influenta-ei-2',
     title: 'Lumea și influența ei (II)',
     description:
       'Continuarea discuției despre influența lumii asupra identității, alegerilor și sensibilității spirituale.',
@@ -62,6 +67,7 @@ export const videos: VideoItem[] = [
     context: 'Proiect M',
   },
   {
+    slug: 'de-ce-ne-am-pierdut-rabdarea',
     title: 'De ce ne-am pierdut răbdarea?',
     description:
       'Un dialog despre ritmul vieții moderne, nerăbdare și felul în care se poate trăi mai așezat.',
@@ -74,6 +80,7 @@ export const videos: VideoItem[] = [
     context: 'Proiect M',
   },
   {
+    slug: 'dumnezeu-bun-potop-global',
     title: 'De ce un Dumnezeu bun trimite un potop global',
     description:
       'O discuție biblică despre judecată, bunătatea lui Dumnezeu și întrebările dificile ridicate de textul Scripturii.',
@@ -86,3 +93,7 @@ export const videos: VideoItem[] = [
     context: 'Proiect M',
   },
 ]
+
+export function getVideoBySlug(slug: string) {
+  return videos.find((video) => video.slug === slug)
+}

@@ -47,7 +47,7 @@ export default function VideoPage() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {secondaryVideos.map((video) => (
-            <VideoCard key={video.title} video={video} />
+            <VideoCard key={video.slug} video={video} />
           ))}
         </div>
       </section>
@@ -72,12 +72,10 @@ function FeaturedVideo() {
           {featuredVideo.description}
         </p>
         <Link
-          href={featuredVideo.href}
-          target="_blank"
-          rel="noreferrer"
+          href={`/video/${featuredVideo.slug}`}
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground transition-opacity hover:opacity-90"
         >
-          Urmărește clipul
+          Vezi pagina episodului
           <ExternalLink className="h-4 w-4" />
         </Link>
       </div>
@@ -109,12 +107,10 @@ function VideoCard({ video }: { video: (typeof videos)[number] }) {
           {video.description}
         </p>
         <Link
-          href={video.href}
-          target="_blank"
-          rel="noreferrer"
+          href={`/video/${video.slug}`}
           className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline"
         >
-          Deschide video
+          Vezi pagina episodului
           <ExternalLink className="h-4 w-4" />
         </Link>
       </div>
@@ -145,9 +141,7 @@ function VideoLinkFrame({
 }) {
   return (
     <Link
-      href={video.href}
-      target="_blank"
-      rel="noreferrer"
+      href={`/video/${video.slug}`}
       className="group relative flex aspect-video w-full items-center justify-center overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]"
     >
       {video.thumbnailUrl ? (

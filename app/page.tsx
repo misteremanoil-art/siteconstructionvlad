@@ -92,10 +92,8 @@ export default async function HomePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {recentVideos.map((video) => (
             <Link
-              key={video.title}
-              href={video.href}
-              target="_blank"
-              rel="noreferrer"
+              key={video.slug}
+              href={`/video/${video.slug}`}
               className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]">
