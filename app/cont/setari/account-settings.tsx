@@ -48,7 +48,7 @@ export function AccountSettings() {
       await Promise.all([
         loadProfile(userData.user.id),
         loadReviews(userData.user.id),
-        loadAdminStatus(userData.user.id),
+        loadAdminStatus(),
       ])
       setLoading(false)
     }
@@ -70,21 +70,9 @@ export function AccountSettings() {
     setUsername((data?.username as string | null) ?? '')
   }
 
-  async function loadAdminStatus(userId: string) {
+  async function loadAdminStatus() {
     const { data: rpcAdmin } = await supabase.rpc('is_admin')
-
-    if (rpcAdmin) {
-      setIsAdmin(true)
-      return
-    }
-
-    const { data } = await supabase
-      .from('admin_users')
-      .select('user_id')
-      .eq('user_id', userId)
-      .maybeSingle()
-
-    setIsAdmin(Boolean(data))
+    setIsAdmin(Boolean(rpcAdmin))
   }
 
   async function loadReviews(userId: string) {
@@ -277,15 +265,15 @@ export function AccountSettings() {
         </form>
       </section>
 
-      <section className="mt-10 rounded-lg border border-brand/30 bg-accent/40 p-5">
+      {isAdmin ? (
+        <section className="mt-10 rounded-lg border border-brand/30 bg-accent/40 p-5">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">
             Admin
           </p>
           <h2 className="mt-2 font-serif text-2xl">Panou admin</h2>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            {isAdmin
-              ? 'Contul tău are acces de admin. Poți edita articolele, crea articole noi și administra conținutul publicat.'
-              : 'Dacă acest cont are drepturi de admin în Supabase, poți intra aici în zona de administrare.'}
+            Contul tău are acces de admin. Poți edita articolele, crea articole noi și administra
+            conținutul publicat.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
@@ -331,6 +319,7 @@ export function AccountSettings() {
             </p>
           </form>
         </section>
+      ) : null}
 
       <section className="mt-12">
         <h2 className="font-serif text-3xl">Recenziile mele</h2>
