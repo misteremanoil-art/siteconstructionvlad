@@ -112,23 +112,54 @@ export function SiteHeader() {
             : 'sticky border-b border-border bg-background/80 text-foreground',
       )}
     >
-      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        {/* Left: search + theme */}
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+        <SiteLogo
+          className="shrink-0"
+          textClassName={cn(isTransparent ? 'text-white' : 'text-foreground')}
+        />
+
+        <nav
+          className={cn(
+            'hidden items-center gap-1 rounded-full border p-1 lg:flex',
+            isTransparent
+              ? 'border-white/15 bg-black/15'
+              : 'border-border bg-muted/45',
+          )}
+        >
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
+                isTransparent
+                  ? isActive(item.href)
+                    ? 'bg-white text-foreground'
+                    : 'text-white/75 hover:bg-white/10 hover:text-white'
+                  : isActive(item.href)
+                    ? 'bg-background text-brand shadow-sm'
+                    : 'text-foreground/70 hover:bg-background/70 hover:text-foreground',
+              )}
+            >
+              {item.href === '/cont/setari' ? accountLabel : item.label}
+            </Link>
+          ))}
+        </nav>
+
         <div className="flex items-center gap-2">
-          <ThemeToggle />
           <form
             action="/cautare"
             onSubmit={onSearch}
             className={cn(
-              'hidden items-center gap-2 rounded-full border px-3 py-1.5 sm:flex',
-              isTransparent ? 'border-white/20 bg-black/10' : 'border-border bg-background/30',
+              'hidden items-center gap-2 rounded-full border px-3 py-1.5 md:flex',
+              isTransparent ? 'border-white/20 bg-black/10' : 'border-border bg-background/45',
             )}
           >
             <button type="submit" aria-label="Caută">
               <Search
                 className={cn(
-                  'h-4 w-4 transition-colors hover:text-brand',
-                  isTransparent ? 'text-white/75 hover:text-white' : 'text-muted-foreground',
+                  'h-4 w-4 transition-colors',
+                  isTransparent ? 'text-white/75 hover:text-white' : 'text-muted-foreground hover:text-brand',
                 )}
               />
             </button>
@@ -138,66 +169,37 @@ export function SiteHeader() {
               value={query}
               onChange={onSearchChange}
               onKeyDown={onSearchKeyDown}
-              placeholder="Caută..."
+              placeholder="Caută"
               aria-label="Caută articole"
               className={cn(
-                'w-28 bg-transparent text-sm outline-none focus:w-40 transition-[width]',
+                'w-20 bg-transparent text-sm outline-none transition-[width] focus:w-32',
                 isTransparent
                   ? 'text-white placeholder:text-white/65'
                   : 'text-foreground placeholder:text-muted-foreground',
               )}
             />
           </form>
+          <ThemeToggle />
+          <button
+            type="button"
+            className={cn(
+              'inline-flex h-9 w-9 items-center justify-center rounded-full border lg:hidden',
+              isTransparent ? 'border-white/20 text-white' : 'border-border text-foreground/80',
+            )}
+            aria-label="Meniu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
-
-        {/* Center: logo */}
-        <SiteLogo
-          compact
-          className="absolute left-1/2 -translate-x-1/2"
-          textClassName={cn(isTransparent ? 'text-white' : 'text-foreground')}
-        />
-
-        {/* Right: nav */}
-        <nav className="hidden items-center gap-6 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'text-sm font-medium transition-colors',
-                isTransparent
-                  ? isActive(item.href)
-                    ? 'text-white'
-                    : 'text-white/75 hover:text-white'
-                  : isActive(item.href)
-                    ? 'text-brand'
-                    : 'text-foreground/70 hover:text-brand',
-              )}
-            >
-              {item.href === '/cont/setari' ? accountLabel : item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <button
-          type="button"
-          className={cn(
-            'inline-flex h-9 w-9 items-center justify-center rounded-full border md:hidden',
-            isTransparent ? 'border-white/20 text-white' : 'border-border text-foreground/80',
-          )}
-          aria-label="Meniu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
         <div
           className={cn(
-            'border-t md:hidden',
+            'border-t lg:hidden',
             isArticlePage
               ? 'border-white/10 bg-black/80 text-white'
               : 'border-border bg-background',
