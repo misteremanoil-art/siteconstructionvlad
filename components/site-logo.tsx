@@ -3,12 +3,10 @@ import { cn } from '@/lib/utils'
 
 export function SiteLogo({
   className,
-  markClassName,
   textClassName,
   compact = false,
 }: {
   className?: string
-  markClassName?: string
   textClassName?: string
   compact?: boolean
 }) {
@@ -17,33 +15,30 @@ export function SiteLogo({
       href="/"
       aria-label="Albert-Beniamin Cucu"
       className={cn(
-        'group inline-flex items-center gap-3 text-current transition-opacity hover:opacity-90',
+        'group inline-flex items-center text-current transition-colors hover:text-brand',
         className,
       )}
     >
       <span
         className={cn(
-          'relative flex h-9 w-9 shrink-0 items-center justify-center border border-brand/45 bg-brand/10 font-serif text-[0.72rem] font-semibold text-brand shadow-sm',
-          'after:absolute after:inset-1 after:border after:border-current/10',
-          markClassName,
-        )}
-      >
-        AC
-      </span>
-      <span
-        className={cn(
-          'flex min-w-0 flex-col leading-none',
+          'flex min-w-0 items-baseline gap-2 leading-none',
           compact ? 'hidden sm:flex' : 'flex',
           textClassName,
         )}
       >
-        <span className="font-serif text-[1.05rem] font-semibold tracking-[0.01em]">
-          Albert-Beniamin
+        <span className="font-serif text-[1.08rem] font-semibold tracking-[0.01em] sm:text-[1.16rem]">
+          Albert
         </span>
-        <span className="mt-1 font-mono text-[0.62rem] uppercase tracking-[0.2em] opacity-70">
-          Cucu
+        <span className="h-px w-5 bg-brand/70" aria-hidden="true" />
+        <span className="font-serif text-[1.08rem] font-semibold tracking-[0.01em] sm:text-[1.16rem]">
+          B. Cucu
         </span>
       </span>
+      {compact ? (
+        <span className="font-serif text-xl font-semibold tracking-[0.01em] sm:hidden">
+          ABC
+        </span>
+      ) : null}
     </Link>
   )
 }

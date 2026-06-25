@@ -154,11 +154,6 @@ export function SiteHeader() {
         <SiteLogo
           compact
           className="absolute left-1/2 -translate-x-1/2"
-          markClassName={cn(
-            isTransparent
-              ? 'border-white/35 bg-white/10 text-white after:border-white/20'
-              : 'border-brand/45 bg-brand/10 text-brand',
-          )}
           textClassName={cn(isTransparent ? 'text-white' : 'text-foreground')}
         />
 
