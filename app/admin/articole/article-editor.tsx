@@ -168,11 +168,18 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
       return
     }
 
+    const category = form.category.trim()
+    if (!category) {
+      setError('Categoria este obligatorie. Alege una existentă sau scrie o categorie nouă.')
+      setSaving(false)
+      return
+    }
+
     const payload = {
       title,
       slug,
       standfirst: form.standfirst.trim(),
-      category: form.category.trim() || 'Teologie',
+      category,
       author: form.author.trim() || 'Albert-Beniamin Cucu',
       published_at: form.published_at,
       display_date: form.display_date.trim(),
@@ -295,7 +302,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
               value={categorySuggestions.includes(form.category) ? form.category : 'custom'}
               onChange={(e) => {
                 const value = e.target.value
-                if (value !== 'custom') updateField('category', value)
+                updateField('category', value === 'custom' ? '' : value)
               }}
               className="mt-2 w-full rounded-lg border border-border bg-background px-3 py-2"
             >
@@ -307,11 +314,15 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
               <option value="custom">Categorie nouă</option>
             </select>
             <input
+              required
               value={form.category}
               onChange={(e) => updateField('category', e.target.value)}
               placeholder="Scrie sau ajustează categoria"
               className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm"
             />
+            <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
+              Pentru o categorie nouă, alege „Categorie nouă”, scrie numele și salvează articolul.
+            </span>
           </label>
           <TextField label="Autor" value={form.author} onChange={(value) => updateField('author', value)} />
           <TextField label="Data publicării" type="date" value={form.published_at} onChange={(value) => updateField('published_at', value)} />
