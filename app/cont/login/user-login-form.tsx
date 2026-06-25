@@ -3,16 +3,18 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createBrowserSupabaseClient } from '@/lib/supabase-browser'
 
 export function UserLoginForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const supabase = useMemo(() => createBrowserSupabaseClient(), [])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const accountCreated = searchParams.get('created') === '1'
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -80,6 +82,11 @@ export function UserLoginForm() {
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             Continuă cu emailul și parola contului tău.
           </p>
+          {accountCreated ? (
+            <p className="mt-5 rounded-lg border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-foreground">
+              Contul a fost creat. Intră în cont cu emailul și parola alese.
+            </p>
+          ) : null}
 
           <form onSubmit={onSubmit} className="mt-8 space-y-5">
             <TextInput label="Email" type="email" value={email} onChange={setEmail} />

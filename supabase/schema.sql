@@ -284,11 +284,8 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, username)
-  values (
-    new.id,
-    nullif(regexp_replace(coalesce(new.raw_user_meta_data ->> 'username', ''), '[^a-zA-Z0-9_]', '', 'g'), '')
-  )
+  insert into public.profiles (id)
+  values (new.id)
   on conflict (id) do nothing;
 
   return new;
