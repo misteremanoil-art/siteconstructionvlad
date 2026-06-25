@@ -23,12 +23,8 @@ export function SiteLogo({
           textClassName,
         )}
       >
-        <span className="whitespace-nowrap font-serif text-[1rem] font-medium tracking-[0.01em] sm:text-[1.14rem]">
-          Albert-Beniamin
-        </span>
-        <span className="mx-2 h-1 w-1 rounded-full bg-brand/80" aria-hidden="true" />
-        <span className="whitespace-nowrap font-serif text-[1rem] font-semibold tracking-[0.01em] text-brand sm:text-[1.14rem]">
-          Cucu
+        <span className="whitespace-nowrap font-sans text-[0.98rem] font-semibold tracking-[0.08em] sm:text-[1.05rem]">
+          ALBERT-BENIAMIN CUCU
         </span>
       </span>
     </Link>
