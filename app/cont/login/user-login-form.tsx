@@ -13,28 +13,66 @@ export function UserLoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [resending, setResending] = useState(false)
   const accountCreated = searchParams.get('created') === '1'
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setError('')
+    setMessage('')
 
     const { error: signInError } = await supabase.auth.signInWithPassword({
-      email,
+      email: email.trim().toLowerCase(),
       password,
     })
 
     setLoading(false)
 
     if (signInError) {
-      setError('Emailul sau parola nu sunt corecte.')
+      const errorMessage = signInError.message.toLowerCase()
+
+      if (errorMessage.includes('email not confirmed')) {
+        setError('Contul există, dar emailul nu este confirmat încă. Verifică inboxul sau retrimite emailul de confirmare.')
+      } else if (errorMessage.includes('invalid login credentials')) {
+        setError('Emailul sau parola nu sunt corecte. Dacă tocmai ai creat contul, verifică întâi emailul de confirmare.')
+      } else {
+        setError(signInError.message || 'Nu am putut intra în cont.')
+      }
       return
     }
 
     router.push('/cont/setari')
     router.refresh()
+  }
+
+  async function resendConfirmation() {
+    const cleanEmail = email.trim().toLowerCase()
+
+    if (!cleanEmail) {
+      setError('Scrie emailul contului, apoi retrimite confirmarea.')
+      return
+    }
+
+    setResending(true)
+    setError('')
+    setMessage('')
+
+    const { error: resendError } = await supabase.auth.resend({
+      type: 'signup',
+      email: cleanEmail,
+    })
+
+    setResending(false)
+
+    if (resendError) {
+      setError('Nu am putut retrimite emailul de confirmare. Verifică emailul introdus.')
+      return
+    }
+
+    setMessage('Am retrimis emailul de confirmare. Verifică inboxul și folderul Spam.')
   }
 
   return (
@@ -84,7 +122,7 @@ export function UserLoginForm() {
           </p>
           {accountCreated ? (
             <p className="mt-5 rounded-lg border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-foreground">
-              Contul a fost creat. Intră în cont cu emailul și parola alese.
+              Contul a fost creat. Dacă Supabase cere confirmare, verifică emailul înainte să intri în cont.
             </p>
           ) : null}
 
@@ -96,12 +134,25 @@ export function UserLoginForm() {
                 {error}
               </p>
             ) : null}
+            {message ? (
+              <p className="rounded-lg border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-foreground">
+                {message}
+              </p>
+            ) : null}
             <button
               type="submit"
               disabled={loading}
               className="w-full rounded-full bg-brand px-5 py-3 text-sm font-medium text-brand-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? 'Se verifică...' : 'Intră în cont'}
+            </button>
+            <button
+              type="button"
+              onClick={resendConfirmation}
+              disabled={resending}
+              className="w-full rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-brand disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {resending ? 'Se retrimite...' : 'Retrimite emailul de confirmare'}
             </button>
           </form>
           <p className="mt-6 text-center text-sm text-muted-foreground">
