@@ -14,7 +14,7 @@ export function AuthorCard() {
       </div>
       <div>
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">
-          Autor
+          Despre autor
         </p>
         <h3 className="mt-2 font-serif text-2xl font-semibold text-foreground">
           Albert-Beniamin Cucu
@@ -26,8 +26,8 @@ export function AuthorCard() {
           (Friedensau Adventist University), Germania. A publicat o carte,{' '}
           <em className="italic">
             Conversații cu Dumnezeu: un altfel de comentariu biblic la epistola Romani
-          </em>
-          ; a contribuit cu articole în{' '}
+          </em>{'; '}
+          a contribuit cu articole în{' '}
           <em className="italic">Curierul Adventist, Ministry și TheoRhēma</em>, și a prezentat
           lucrări științifice la mai multe conferințe academice, naționale și internaționale.
           Interesele sale de cercetare includ Teologia, Studiile Biblice (Vechiul și Noul

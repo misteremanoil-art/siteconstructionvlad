@@ -117,9 +117,9 @@ export default async function ArticlePage({
               ))}
             </div>
 
+            <AuthorCard />
             <ShareRow title={article.title} />
             <ArticleReviews articleSlug={article.slug} />
-            <AuthorCard />
           </div>
         </article>
 
