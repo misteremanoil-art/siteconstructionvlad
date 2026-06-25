@@ -21,22 +21,25 @@ export function SiteLogo({
     >
       <span
         className={cn(
-          'flex min-w-0 items-baseline gap-2 leading-none',
+          'flex min-w-0 flex-col items-center leading-none',
           compact ? 'hidden sm:flex' : 'flex',
           textClassName,
         )}
       >
-        <span className="font-serif text-[1.08rem] font-semibold tracking-[0.01em] sm:text-[1.16rem]">
-          Albert
+        <span className="font-serif text-[1.08rem] font-semibold tracking-[0.01em] sm:text-[1.18rem]">
+          Albert-Beniamin Cucu
         </span>
-        <span className="h-px w-5 bg-brand/70" aria-hidden="true" />
-        <span className="font-serif text-[1.08rem] font-semibold tracking-[0.01em] sm:text-[1.16rem]">
-          B. Cucu
+        <span className="mt-1 h-px w-16 bg-brand/70 transition-all group-hover:w-20" aria-hidden="true" />
+        <span className="mt-1 font-mono text-[0.55rem] uppercase tracking-[0.22em] opacity-65">
+          eseuri & reflecții
         </span>
       </span>
       {compact ? (
-        <span className="font-serif text-xl font-semibold tracking-[0.01em] sm:hidden">
-          ABC
+        <span className="flex flex-col items-center sm:hidden">
+          <span className="font-serif text-base font-semibold tracking-[0.01em]">
+            A-B Cucu
+          </span>
+          <span className="mt-1 h-px w-10 bg-brand/70" aria-hidden="true" />
         </span>
       ) : null}
     </Link>
