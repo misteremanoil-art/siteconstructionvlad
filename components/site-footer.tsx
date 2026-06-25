@@ -24,6 +24,9 @@ export function SiteFooter() {
           <Link href="/video" className="transition-colors hover:text-brand">
             Video
           </Link>
+          <Link href="/conversatii" className="transition-colors hover:text-brand">
+            Conversații
+          </Link>
           <Link href="/despre" className="transition-colors hover:text-brand">
             Despre
           </Link>

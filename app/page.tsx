@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ExternalLink, Play } from 'lucide-react'
+import { ExternalLink, Headphones, Play } from 'lucide-react'
 import { getAllArticles, getFeaturedArticle } from '@/lib/articles'
 import { ArticleCard } from '@/components/article-card'
 import { NewsletterCard } from '@/components/newsletter-card'
 import { getAllVideos } from '@/lib/videos'
+import { getRecentConversations } from '@/lib/conversations'
 
 export const dynamic = 'force-dynamic'
 
@@ -37,6 +38,7 @@ export default async function HomePage() {
   const featured = await getFeaturedArticle()
   const articles = (await getAllArticles()).filter((a) => a.slug !== featured?.slug)
   const recentVideos = (await getAllVideos()).slice(0, 3)
+  const recentConversations = getRecentConversations(3)
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
@@ -90,6 +92,51 @@ export default async function HomePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {articles.map((article) => (
             <ArticleCard key={article.slug} article={article} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-16" aria-label="Conversații recente">
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="font-serif text-2xl font-semibold text-foreground">
+              Conversații recente
+            </h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              Reflecții audio și dialoguri biblice din emisiunea Cuvinte cu har.
+            </p>
+          </div>
+          <Link
+            href="/conversatii"
+            className="inline-flex w-fit items-center gap-2 text-sm font-medium text-brand hover:underline"
+          >
+            Ascultă arhiva
+            <ExternalLink className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-3">
+          {recentConversations.map((conversation) => (
+            <article
+              key={conversation.slug}
+              className="group rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md"
+            >
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-brand-foreground">
+                <Headphones className="h-5 w-5" />
+              </div>
+              <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                {conversation.show} • {conversation.date}
+              </p>
+              <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-foreground transition-colors group-hover:text-brand">
+                {conversation.title}
+              </h3>
+              <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                {conversation.description}
+              </p>
+              <audio controls preload="none" className="mt-5 w-full">
+                <source src={conversation.audioUrl} type="audio/mpeg" />
+              </audio>
+            </article>
           ))}
         </div>
       </section>
