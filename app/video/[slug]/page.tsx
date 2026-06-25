@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, CalendarDays, Clock3, ExternalLink, Play } from 'lucide-react'
+import { ArrowLeft, CalendarDays, Clock3, ExternalLink } from 'lucide-react'
 import { VideoReviews } from '@/components/video-reviews'
 import { getVideoBySlug, videos } from '@/lib/videos'
 
@@ -83,33 +82,24 @@ export default async function VideoDetailPage({ params }: VideoDetailPageProps) 
         </section>
 
         <section className="mx-auto max-w-5xl px-5 py-10 md:px-6 md:py-14">
-          <Link
-            href={video.href}
-            target="_blank"
-            rel="noreferrer"
-            className="group relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border border-border bg-[linear-gradient(135deg,var(--foreground),var(--brand))] shadow-sm"
-          >
-            {video.thumbnailUrl ? (
-              <Image
-                src={video.thumbnailUrl}
-                alt=""
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 1024px"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            ) : null}
-            <div className="absolute inset-0 bg-black/35 transition-colors group-hover:bg-black/25" />
-            <div className="relative flex flex-col items-center gap-4 text-center">
-              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-transform group-hover:scale-105">
-                <Play className="ml-1 h-9 w-9 fill-current" />
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-background/95 px-5 py-2.5 text-sm font-medium text-foreground shadow-sm">
-                Deschide clipul într-un tab nou
-                <ExternalLink className="h-4 w-4" />
-              </span>
-            </div>
-          </Link>
+          {video.embedUrl ? (
+            <iframe
+              src={video.embedUrl}
+              title={video.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="aspect-video w-full rounded-lg border border-border bg-muted shadow-sm"
+            />
+          ) : (
+            <Link
+              href={video.href}
+              target="_blank"
+              rel="noreferrer"
+              className="flex aspect-video w-full items-center justify-center rounded-lg border border-border bg-muted text-sm font-medium text-brand"
+            >
+              Deschide clipul
+            </Link>
+          )}
 
           <div className="mt-8 grid gap-6 border-y border-border py-6 text-sm text-muted-foreground md:grid-cols-3">
             <div>
