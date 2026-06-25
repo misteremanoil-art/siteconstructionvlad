@@ -17,31 +17,31 @@ export function ShareRow({ title }: { title: string }) {
       label: 'Facebook',
       shortLabel: 'f',
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      className: 'bg-[#1877f2] text-white border-[#1877f2]',
+      className: 'hover:border-brand hover:bg-brand hover:text-brand-foreground',
     },
     {
       label: 'X',
       shortLabel: 'X',
       href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      className: 'bg-foreground text-background border-foreground',
+      className: 'hover:border-foreground hover:bg-foreground hover:text-background',
     },
     {
       label: 'Pinterest',
       shortLabel: 'P',
       href: `https://pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedTitle}`,
-      className: 'bg-[#bd081c] text-white border-[#bd081c]',
+      className: 'hover:border-brand/70 hover:bg-brand/15 hover:text-brand',
     },
     {
       label: 'WhatsApp',
       shortLabel: 'W',
       href: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
-      className: 'bg-[#25d366] text-white border-[#25d366]',
+      className: 'hover:border-foreground/50 hover:bg-accent hover:text-foreground',
     },
     {
       label: 'LinkedIn',
       shortLabel: 'in',
       href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`,
-      className: 'bg-[#0a66c2] text-white border-[#0a66c2]',
+      className: 'hover:border-brand hover:bg-background hover:text-brand',
     },
   ]
 
@@ -105,9 +105,9 @@ export function ShareRow({ title }: { title: string }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Distribuie pe ${link.label}`}
-              className={`inline-flex h-11 items-center justify-center gap-2 rounded-md border px-3 text-sm font-semibold transition-opacity hover:opacity-90 ${link.className}`}
+              className={`inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-semibold text-foreground/75 transition-colors ${link.className}`}
             >
-              <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-white/20 px-1 text-[0.7rem] font-bold leading-none">
+              <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-current/20 bg-current/5 px-1 text-[0.7rem] font-bold leading-none">
                 {link.shortLabel}
               </span>
               {link.label}

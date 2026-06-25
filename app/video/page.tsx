@@ -60,7 +60,7 @@ export default async function VideoPage() {
 
 function FeaturedVideo({ video }: { video: VideoItem }) {
   return (
-    <article className="overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+    <article className="overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:border-brand/50 hover:bg-brand/5">
       <VideoFrame video={video} priority />
       <div className="p-5 md:p-6">
         <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-muted-foreground">
@@ -76,7 +76,7 @@ function FeaturedVideo({ video }: { video: VideoItem }) {
         </p>
         <Link
           href={`/video/${video.slug}`}
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground transition-opacity hover:opacity-90"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground transition-colors hover:bg-foreground hover:text-background"
         >
           Vezi pagina episodului
           <ExternalLink className="h-4 w-4" />
@@ -88,7 +88,7 @@ function FeaturedVideo({ video }: { video: VideoItem }) {
 
 function VideoCard({ video }: { video: VideoItem }) {
   return (
-    <article className="overflow-hidden rounded-lg border border-border bg-card">
+    <article className="group overflow-hidden rounded-lg border border-border bg-card transition-all hover:-translate-y-1 hover:border-foreground/30 hover:bg-accent/30 hover:shadow-lg">
       <VideoFrame video={video} />
       <div className="p-5">
         <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
@@ -111,7 +111,7 @@ function VideoCard({ video }: { video: VideoItem }) {
         </p>
         <Link
           href={`/video/${video.slug}`}
-          className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline"
+          className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-brand transition-colors hover:text-foreground hover:underline"
         >
           Vezi pagina episodului
           <ExternalLink className="h-4 w-4" />
@@ -158,7 +158,7 @@ function VideoLinkFrame({
         />
       ) : null}
       <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
-      <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-transform group-hover:scale-105">
+      <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 group-hover:bg-brand group-hover:text-brand-foreground">
         <Play className="ml-1 h-7 w-7 fill-current" />
       </div>
     </Link>

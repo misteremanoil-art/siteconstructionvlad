@@ -19,7 +19,7 @@ export default async function HomePage() {
       {featured && (
         <Link
           href={`/articole/${featured.slug}`}
-          className="group grid overflow-hidden rounded-3xl border border-border bg-card md:grid-cols-2"
+          className="group grid overflow-hidden rounded-3xl border border-border bg-card transition-all hover:border-brand/50 hover:bg-accent/35 hover:shadow-lg md:grid-cols-2"
         >
           <div className="relative aspect-[16/11] md:aspect-auto">
             <Image
@@ -36,7 +36,7 @@ export default async function HomePage() {
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
                 Articol principal
               </span>
-              <span className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
+              <span className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground transition-colors group-hover:border-brand/40 group-hover:text-foreground">
                 {featured.category}
               </span>
             </div>
@@ -94,7 +94,7 @@ export default async function HomePage() {
             <Link
               key={video.slug}
               href={`/video/${video.slug}`}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-foreground/30 hover:bg-brand/5 hover:shadow-lg"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]">
                 {video.thumbnailUrl ? (
@@ -107,11 +107,11 @@ export default async function HomePage() {
                   />
                 ) : null}
                 <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
-                <span className="absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur">
+                <span className="absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur transition-colors group-hover:bg-foreground group-hover:text-background">
                   {video.context}
                 </span>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-transform group-hover:scale-105">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 group-hover:bg-brand group-hover:text-brand-foreground">
                     <Play className="ml-1 h-6 w-6 fill-current" />
                   </span>
                 </div>

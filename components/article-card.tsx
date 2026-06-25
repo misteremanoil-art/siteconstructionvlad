@@ -8,7 +8,7 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
   return (
     <Link
       href={href}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-brand/50 hover:bg-accent/35 hover:shadow-lg"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
@@ -18,7 +18,7 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
           sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <span className="absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur">
+        <span className="absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur transition-colors group-hover:bg-brand group-hover:text-brand-foreground">
           {article.category}
         </span>
       </div>
@@ -36,7 +36,7 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
           {article.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
+              className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground transition-colors group-hover:border-brand/40 group-hover:text-foreground"
             >
               {tag}
             </span>
