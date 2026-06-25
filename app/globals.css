@@ -105,26 +105,37 @@
 /* Editorial long-form typography for MDX content */
 .prose-essay {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
-  line-height: 1.75;
+  font-size: 1.06rem;
+  line-height: 1.58;
   color: var(--foreground);
+  text-align: left;
 }
 .prose-essay p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   text-wrap: pretty;
+  text-align: justify;
+  hyphens: auto;
 }
-.prose-essay h2 {
-  font-family: var(--font-serif);
-  font-size: 1.9rem;
-  font-weight: 600;
-  margin: 2.5rem 0 1rem;
-  line-height: 1.2;
+.prose-essay .article-section-title {
+  break-after: avoid;
+  color: #c21f2f;
+  font-family: var(--font-sans);
+  font-size: 1.12rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 0.65rem;
+  padding-top: 0.35rem;
 }
-.prose-essay h3 {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 2rem 0 0.75rem;
+.prose-essay .article-section-title-small {
+  font-size: 1rem;
+}
+.prose-essay ul,
+.prose-essay ol {
+  margin: 0 0 1rem 1.2rem;
+  padding: 0;
+}
+.prose-essay li {
+  margin-bottom: 0.45rem;
 }
 .prose-essay em {
   font-style: italic;
@@ -132,20 +143,118 @@
 .prose-essay strong {
   font-weight: 600;
 }
-.prose-essay blockquote {
-  border-left: 3px solid var(--brand);
-  padding-left: 1.25rem;
-  font-style: italic;
-  color: var(--muted-foreground);
+.prose-essay a {
+  color: #b91c1c;
+  text-decoration: none;
+}
+.prose-essay a:hover {
+  text-decoration: underline;
+}
+.prose-essay hr {
+  border: 0;
+  border-top: 1px solid var(--border);
   margin: 2rem 0;
+}
+.prose-essay .article-pullquote {
+  border: 0;
+  break-inside: avoid;
+  color: #c21f2f;
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.22;
+  margin: 2rem auto;
+  max-width: 24rem;
+  padding: 0;
+  text-align: center;
+}
+.prose-essay .article-pullquote p {
+  margin: 0;
+  text-align: center;
+}
+.prose-essay sup {
+  color: #b91c1c;
+  font-family: var(--font-sans);
+  font-size: 0.65em;
+  font-weight: 600;
+  line-height: 0;
+  margin-left: 0.05rem;
+}
+.prose-essay sup a {
+  color: inherit;
+}
+.prose-essay .footnotes,
+.prose-essay section[data-footnotes],
+.prose-essay .notes {
+  border-top: 1px solid var(--border);
+  break-before: column;
+  column-span: all;
+  column-count: 1;
+  column-gap: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  margin-top: 3rem;
+  padding-top: 1rem;
+}
+.prose-essay .footnotes::before,
+.prose-essay section[data-footnotes]::before,
+.prose-essay .notes::before {
+  content: "NOTE";
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+.prose-essay .footnotes ol,
+.prose-essay section[data-footnotes] ol,
+.prose-essay .notes ol {
+  margin-left: 1rem;
+}
+.prose-essay .footnotes p,
+.prose-essay section[data-footnotes] p,
+.prose-essay .notes p,
+.prose-essay .footnotes li,
+.prose-essay section[data-footnotes] li,
+.prose-essay .notes li {
+  margin-bottom: 0.45rem;
+  text-align: left;
 }
 /* Drop cap on the first paragraph */
 .prose-essay > p:first-of-type::first-letter {
   font-family: var(--font-serif);
   float: left;
-  font-size: 4.2rem;
-  line-height: 0.78;
+  font-size: 3.4rem;
+  line-height: 0.82;
   font-weight: 600;
-  padding: 0.1rem 0.6rem 0 0;
-  color: var(--brand);
+  padding: 0.08rem 0.45rem 0 0;
+  color: #b91c1c;
+}
+
+@media (min-width: 900px) {
+  .prose-essay {
+    column-count: 2;
+    column-gap: 4rem;
+  }
+  .prose-essay .article-pullquote {
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+  }
+  .prose-essay .footnotes,
+  .prose-essay section[data-footnotes],
+  .prose-essay .notes {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 899px) {
+  .prose-essay {
+    font-size: 1.12rem;
+    line-height: 1.7;
+  }
+  .prose-essay p {
+    text-align: left;
+  }
 }
