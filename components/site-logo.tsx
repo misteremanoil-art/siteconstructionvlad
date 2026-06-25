@@ -16,12 +16,12 @@ export function SiteLogo({
         className,
       )}
     >
-      <span className="relative h-12 w-14 shrink-0 sm:h-14 sm:w-16" aria-hidden="true">
+      <span className="relative h-16 w-20 shrink-0 sm:h-[72px] sm:w-[88px]" aria-hidden="true">
         <Image
           src="/images/site-logo-gold.png"
           alt=""
           fill
-          sizes="64px"
+          sizes="88px"
           className="object-contain"
           priority
         />

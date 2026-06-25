@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
-import { Search, Menu, X } from 'lucide-react'
+import { Menu, Search, UserRound, X } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { SiteLogo } from '@/components/site-logo'
 import { cn } from '@/lib/utils'
@@ -15,7 +15,6 @@ const NAV = [
   { href: '/video', label: 'Video' },
   { href: '/conversatii', label: 'Conversații' },
   { href: '/despre', label: 'Despre' },
-  { href: '/cont/setari', label: 'Cont' },
 ]
 
 function formatAccountLabel(value: string) {
@@ -31,6 +30,7 @@ export function SiteHeader() {
   const supabase = useMemo(() => createBrowserSupabaseClient(), [])
   const [query, setQuery] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [accountLabel, setAccountLabel] = useState('Cont')
 
@@ -78,6 +78,7 @@ export function SiteHeader() {
     const q = value.trim()
     router.push(q ? `/cautare?q=${encodeURIComponent(q)}` : '/cautare')
     setMenuOpen(false)
+    setSearchOpen(false)
   }
 
   function onSearch(e: React.FormEvent<HTMLFormElement>) {
@@ -113,14 +114,14 @@ export function SiteHeader() {
             : 'sticky border-b border-border bg-background/80 text-foreground',
       )}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <SiteLogo
           className="shrink-0"
         />
 
         <nav
           className={cn(
-            'hidden items-center gap-1 rounded-full border p-1 lg:flex',
+            'hidden items-center gap-1 rounded-full border px-1 py-1 lg:flex',
             isTransparent
               ? 'border-white/15 bg-black/15'
               : 'border-border bg-muted/45',
@@ -147,15 +148,20 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <form
-            action="/cautare"
-            onSubmit={onSearch}
+          <div
             className={cn(
-              'hidden items-center gap-2 rounded-full border px-3 py-1.5 md:flex',
+              'hidden items-center rounded-full border md:flex',
+              searchOpen
+                ? 'gap-2 px-3 py-1.5'
+                : 'h-10 w-10 justify-center',
               isTransparent ? 'border-white/20 bg-black/10' : 'border-border bg-background/45',
             )}
           >
-            <button type="submit" aria-label="Caută">
+            <button
+              type="button"
+              aria-label="Caută"
+              onClick={() => setSearchOpen((value) => !value)}
+            >
               <Search
                 className={cn(
                   'h-4 w-4 transition-colors',
@@ -163,27 +169,44 @@ export function SiteHeader() {
                 )}
               />
             </button>
-            <input
-              type="search"
-              name="q"
-              value={query}
-              onChange={onSearchChange}
-              onKeyDown={onSearchKeyDown}
-              placeholder="Caută"
-              aria-label="Caută articole"
-              className={cn(
-                'w-20 bg-transparent text-sm outline-none transition-[width] focus:w-32',
-                isTransparent
-                  ? 'text-white placeholder:text-white/65'
-                  : 'text-foreground placeholder:text-muted-foreground',
-              )}
-            />
-          </form>
+            {searchOpen ? (
+              <form action="/cautare" onSubmit={onSearch} className="flex items-center">
+                <input
+                  type="search"
+                  name="q"
+                  value={query}
+                  onChange={onSearchChange}
+                  onKeyDown={onSearchKeyDown}
+                  placeholder="Caută"
+                  aria-label="Caută articole"
+                  autoFocus
+                  className={cn(
+                    'w-32 bg-transparent text-sm outline-none',
+                    isTransparent
+                      ? 'text-white placeholder:text-white/65'
+                      : 'text-foreground placeholder:text-muted-foreground',
+                  )}
+                />
+              </form>
+            ) : null}
+          </div>
           <ThemeToggle />
+          <Link
+            href="/cont/setari"
+            className={cn(
+              'hidden h-10 max-w-36 items-center gap-2 rounded-full border px-3 text-sm font-medium transition-colors sm:inline-flex',
+              isTransparent
+                ? 'border-white/20 bg-black/10 text-white/85 hover:bg-white/10 hover:text-white'
+                : 'border-border bg-background/45 text-foreground/75 hover:border-brand/35 hover:text-brand',
+            )}
+          >
+            <UserRound className="h-4 w-4 shrink-0" />
+            <span className="truncate">{accountLabel}</span>
+          </Link>
           <button
             type="button"
             className={cn(
-              'inline-flex h-9 w-9 items-center justify-center rounded-full border lg:hidden',
+              'inline-flex h-10 w-10 items-center justify-center rounded-full border lg:hidden',
               isTransparent ? 'border-white/20 text-white' : 'border-border text-foreground/80',
             )}
             aria-label="Meniu"
@@ -258,6 +281,18 @@ export function SiteHeader() {
                   {item.href === '/cont/setari' ? accountLabel : item.label}
                 </Link>
               ))}
+              <Link
+                href="/cont/setari"
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  'mt-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors',
+                  isArticlePage
+                    ? 'border-white/15 text-white/85 hover:bg-white/10'
+                    : 'border-border text-foreground/80 hover:bg-muted',
+                )}
+              >
+                {accountLabel}
+              </Link>
             </nav>
           </div>
         </div>
