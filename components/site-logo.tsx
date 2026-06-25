@@ -4,10 +4,8 @@ import { cn } from '@/lib/utils'
 
 export function SiteLogo({
   className,
-  textClassName,
 }: {
   className?: string
-  textClassName?: string
 }) {
   return (
     <Link
@@ -18,25 +16,15 @@ export function SiteLogo({
         className,
       )}
     >
-      <span className="relative h-9 w-11 shrink-0 sm:h-10 sm:w-12" aria-hidden="true">
+      <span className="relative h-12 w-14 shrink-0 sm:h-14 sm:w-16" aria-hidden="true">
         <Image
-          src="/images/site-logo-mark-gold.png"
+          src="/images/site-logo-gold.png"
           alt=""
           fill
-          sizes="48px"
+          sizes="64px"
           className="object-contain"
           priority
         />
-      </span>
-      <span
-        className={cn(
-          'flex min-w-0 items-center leading-none',
-          textClassName,
-        )}
-      >
-        <span className="whitespace-nowrap font-sans text-[0.92rem] font-semibold tracking-[0.055em] sm:text-[1rem]">
-          ALBERT BENIAMIN CUCU
-        </span>
       </span>
     </Link>
   )

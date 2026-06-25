@@ -115,7 +115,6 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <SiteLogo
           className="shrink-0"
-          textClassName={cn(isTransparent ? 'text-white' : 'text-foreground')}
         />
 
         <nav

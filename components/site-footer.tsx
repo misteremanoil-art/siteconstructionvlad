@@ -5,9 +5,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-20 border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-10 text-sm text-muted-foreground sm:flex-row sm:px-6">
-        <SiteLogo
-          textClassName="text-foreground"
-        />
+        <SiteLogo />
         <nav className="flex items-center gap-6">
           <Link href="/" className="transition-colors hover:text-brand">
             Acasă
