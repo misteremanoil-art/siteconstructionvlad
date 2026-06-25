@@ -12,6 +12,28 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
+const videoHoverStyles = [
+  {
+    card: 'hover:border-brand/60 hover:bg-brand/10',
+    play: 'group-hover:bg-brand group-hover:text-brand-foreground',
+    title: 'group-hover:text-brand',
+  },
+  {
+    card: 'hover:border-foreground/30 hover:bg-foreground/[0.04]',
+    play: 'group-hover:bg-foreground group-hover:text-background',
+    title: 'group-hover:text-foreground',
+  },
+  {
+    card: 'hover:border-muted-foreground/35 hover:bg-muted/70',
+    play: 'group-hover:bg-muted-foreground group-hover:text-background',
+    title: 'group-hover:text-muted-foreground',
+  },
+]
+
+function stableIndex(value: string, length: number) {
+  return [...value].reduce((sum, char) => sum + char.charCodeAt(0), 0) % length
+}
+
 export default async function VideoPage() {
   const allVideos = await getAllVideos()
   const featuredVideo = (await getFeaturedVideo()) ?? allVideos[0]
@@ -87,9 +109,11 @@ function FeaturedVideo({ video }: { video: VideoItem }) {
 }
 
 function VideoCard({ video }: { video: VideoItem }) {
+  const hoverStyle = videoHoverStyles[stableIndex(video.slug, videoHoverStyles.length)]
+
   return (
-    <article className="group overflow-hidden rounded-lg border border-border bg-card transition-all hover:-translate-y-1 hover:border-foreground/30 hover:bg-accent/30 hover:shadow-lg">
-      <VideoFrame video={video} />
+    <article className={`group overflow-hidden rounded-lg border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}>
+      <VideoFrame video={video} playClassName={hoverStyle.play} />
       <div className="p-5">
         <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">
@@ -103,7 +127,7 @@ function VideoCard({ video }: { video: VideoItem }) {
             </span>
           ) : null}
         </div>
-        <h3 className="mt-4 font-serif text-2xl leading-tight text-foreground">
+        <h3 className={`mt-4 font-serif text-2xl leading-tight text-foreground transition-colors ${hoverStyle.title}`}>
           {video.title}
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -123,23 +147,27 @@ function VideoCard({ video }: { video: VideoItem }) {
 
 function VideoFrame({
   video,
+  playClassName,
   priority = false,
 }: {
   video: VideoItem
+  playClassName?: string
   priority?: boolean
 }) {
   if (video.embedUrl) {
-    return <VideoLinkFrame video={video} priority={priority} />
+    return <VideoLinkFrame video={video} playClassName={playClassName} priority={priority} />
   }
 
-  return <VideoLinkFrame video={video} priority={priority} />
+  return <VideoLinkFrame video={video} playClassName={playClassName} priority={priority} />
 }
 
 function VideoLinkFrame({
   video,
+  playClassName,
   priority = false,
 }: {
   video: VideoItem
+  playClassName?: string
   priority?: boolean
 }) {
   return (
@@ -158,7 +186,7 @@ function VideoLinkFrame({
         />
       ) : null}
       <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
-      <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 group-hover:bg-brand group-hover:text-brand-foreground">
+      <div className={`relative flex h-16 w-16 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 ${playClassName ?? 'group-hover:bg-brand group-hover:text-brand-foreground'}`}>
         <Play className="ml-1 h-7 w-7 fill-current" />
       </div>
     </Link>

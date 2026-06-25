@@ -8,6 +8,31 @@ import { getAllVideos } from '@/lib/videos'
 
 export const dynamic = 'force-dynamic'
 
+const videoHoverStyles = [
+  {
+    card: 'hover:border-brand/60 hover:bg-brand/10',
+    badge: 'group-hover:bg-brand group-hover:text-brand-foreground',
+    play: 'group-hover:bg-brand group-hover:text-brand-foreground',
+    title: 'group-hover:text-brand',
+  },
+  {
+    card: 'hover:border-foreground/30 hover:bg-foreground/[0.04]',
+    badge: 'group-hover:bg-foreground group-hover:text-background',
+    play: 'group-hover:bg-foreground group-hover:text-background',
+    title: 'group-hover:text-foreground',
+  },
+  {
+    card: 'hover:border-muted-foreground/35 hover:bg-muted/70',
+    badge: 'group-hover:bg-muted-foreground group-hover:text-background',
+    play: 'group-hover:bg-muted-foreground group-hover:text-background',
+    title: 'group-hover:text-muted-foreground',
+  },
+]
+
+function stableIndex(value: string, length: number) {
+  return [...value].reduce((sum, char) => sum + char.charCodeAt(0), 0) % length
+}
+
 export default async function HomePage() {
   const featured = await getFeaturedArticle()
   const articles = (await getAllArticles()).filter((a) => a.slug !== featured?.slug)
@@ -90,12 +115,15 @@ export default async function HomePage() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {recentVideos.map((video) => (
-            <Link
-              key={video.slug}
-              href={`/video/${video.slug}`}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-foreground/30 hover:bg-brand/5 hover:shadow-lg"
-            >
+          {recentVideos.map((video) => {
+            const hoverStyle = videoHoverStyles[stableIndex(video.slug, videoHoverStyles.length)]
+
+            return (
+              <Link
+                key={video.slug}
+                href={`/video/${video.slug}`}
+                className={`group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}
+              >
               <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]">
                 {video.thumbnailUrl ? (
                   <Image
@@ -107,11 +135,11 @@ export default async function HomePage() {
                   />
                 ) : null}
                 <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
-                <span className="absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur transition-colors group-hover:bg-foreground group-hover:text-background">
+                <span className={`absolute left-3 top-3 rounded-full bg-background/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur transition-colors ${hoverStyle.badge}`}>
                   {video.context}
                 </span>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 group-hover:bg-brand group-hover:text-brand-foreground">
+                  <span className={`flex h-14 w-14 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 ${hoverStyle.play}`}>
                     <Play className="ml-1 h-6 w-6 fill-current" />
                   </span>
                 </div>
@@ -120,15 +148,16 @@ export default async function HomePage() {
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">
                   {video.platform} • {video.date} {video.duration ? `• ${video.duration}` : ''}
                 </p>
-                <h3 className="font-serif text-xl font-semibold leading-snug text-foreground text-balance group-hover:text-brand">
+                <h3 className={`font-serif text-xl font-semibold leading-snug text-foreground text-balance transition-colors ${hoverStyle.title}`}>
                   {video.title}
                 </h3>
                 <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                   {video.description}
                 </p>
               </div>
-            </Link>
-          ))}
+              </Link>
+            )
+          })}
         </div>
       </section>
 
