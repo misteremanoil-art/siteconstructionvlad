@@ -452,14 +452,29 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
   },
   {
     title: 'Footer',
-    description: 'Textul de drepturi de autor din subsolul site-ului.',
+    description: 'Textele de identitate și drepturi de autor din subsolul site-ului.',
     texts: [
       {
-        key: 'footer.copyright',
-        label: 'Copyright',
+        key: 'footer.tagline',
+        label: 'Descriere scurtă footer',
         group: 'Footer',
         defaultValue:
-          '© 2026 Albert-Beniamin Cucu. Toate articolele, eseurile și materialele publicate pe acest site sunt texte personale și sunt protejate prin drepturi de autor. Reproducerea lor se poate face doar cu menționarea autorului și a sursei.',
+          'Eseuri, reflecții biblice și materiale editoriale semnate de Albert-Beniamin Cucu.',
+        multiline: true,
+      },
+      {
+        key: 'footer.copyright',
+        label: 'Rând copyright',
+        group: 'Footer',
+        defaultValue:
+          '© 2026 Albert-Beniamin Cucu. Toate drepturile rezervate.',
+      },
+      {
+        key: 'footer.rights_notice',
+        label: 'Notă drepturi de autor',
+        group: 'Footer',
+        defaultValue:
+          'Articolele, eseurile și materialele publicate pe acest site sunt texte personale. Reproducerea, distribuirea sau republicarea lor se poate face doar cu menționarea autorului și a sursei, iar folosirea comercială necesită acord scris.',
         multiline: true,
       },
     ],
