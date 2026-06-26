@@ -194,6 +194,39 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
     })
   }
 
+  function addQuote() {
+    const textarea = contentTextareaRef.current
+    const fallbackQuote = 'Scrie citatul aici.'
+
+    if (!textarea) {
+      updateField('content', `${form.content}${form.content ? '\n\n' : ''}> ${fallbackQuote}`)
+      return
+    }
+
+    const start = textarea.selectionStart
+    const end = textarea.selectionEnd
+    const selectedText = form.content.slice(start, end).trim()
+    const quoteText = selectedText || fallbackQuote
+    const quoteBlock = quoteText
+      .split('\n')
+      .map((line) => `> ${line.trim()}`)
+      .join('\n')
+    const before = form.content.slice(0, start)
+    const after = form.content.slice(end)
+    const prefix = before && !before.endsWith('\n\n') ? '\n\n' : ''
+    const suffix = after && !after.startsWith('\n\n') ? '\n\n' : ''
+    const nextContent = `${before}${prefix}${quoteBlock}${suffix}${after}`
+
+    updateField('content', nextContent)
+
+    window.requestAnimationFrame(() => {
+      textarea.focus()
+      const quoteStart = start + prefix.length
+      const quoteEnd = quoteStart + quoteBlock.length
+      textarea.setSelectionRange(quoteStart, quoteEnd)
+    })
+  }
+
   function updateFootnote(index: number, value: string) {
     setFootnotes((current) => current.map((note, noteIndex) => (
       noteIndex === index ? value : note
@@ -572,7 +605,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
 
         <FormSection
           title="Textul articolului"
-          description="Scrie articolul aici. Pentru note, apasă butonul de mai jos și completează explicația separat."
+          description="Scrie articolul aici. Poți adăuga note de subsol și citate formatate automat."
         >
           <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border bg-background/45 p-4">
             <button
@@ -581,6 +614,13 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
               className="rounded-full bg-brand px-4 py-2 text-sm font-medium text-brand-foreground"
             >
               Adaugă notă
+            </button>
+            <button
+              type="button"
+              onClick={addQuote}
+              className="rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand hover:text-brand"
+            >
+              Adaugă citat
             </button>
             {footnotes.length > 0 ? (
               <button
@@ -592,7 +632,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
               </button>
             ) : null}
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Butonul inserează automat numărul notei în text, exact unde ai cursorul.
+              Selectează textul și apasă „Adaugă citat” sau pune cursorul unde vrei să apară citatul.
             </p>
           </div>
           <TextArea
@@ -600,7 +640,7 @@ export function ArticleEditor({ articleId }: { articleId?: string }) {
             rows={18}
             value={form.content}
             onChange={(value) => updateField('content', value)}
-            helper="Pentru titluri în interiorul articolului poți folosi ## înaintea textului."
+            helper="Pentru titluri poți folosi ## înaintea textului. Citatele se salvează cu > înaintea rândului."
             monospace
             textareaRef={contentTextareaRef}
           />
