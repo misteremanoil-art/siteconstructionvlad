@@ -11,6 +11,7 @@ import { ContentRecommendations } from "@/components/content-recommendations"
 import { DonationInline } from "@/components/donation-inline"
 import { mdxComponents } from "@/components/mdx-components"
 import { getArticle, getArticleSlugs } from "@/lib/articles"
+import { absoluteUrl, siteName } from "@/lib/seo"
 
 export const dynamic = 'force-dynamic'
 
@@ -30,11 +31,22 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.standfirst,
+    alternates: {
+      canonical: `/articole/${article.slug}`,
+    },
     openGraph: {
       title: article.title,
       description: article.standfirst,
       images: article.image ? [{ url: article.image }] : undefined,
       type: "article",
+      publishedTime: article.date,
+      authors: [article.author],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.standfirst,
+      images: article.image ? [article.image] : undefined,
     },
   }
 }
@@ -47,10 +59,38 @@ export default async function ArticlePage({
   const { slug } = await params
   const article = await getArticle(slug)
   if (!article) notFound()
+  const articleUrl = absoluteUrl(`/articole/${article.slug}`)
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.standfirst,
+    image: article.image ? [absoluteUrl(article.image)] : undefined,
+    datePublished: article.date,
+    dateModified: article.date,
+    inLanguage: 'ro-RO',
+    mainEntityOfPage: articleUrl,
+    author: {
+      '@type': 'Person',
+      name: article.author,
+      url: absoluteUrl('/despre'),
+    },
+    publisher: {
+      '@type': 'Person',
+      name: siteName,
+      url: absoluteUrl('/'),
+      image: absoluteUrl('/images/author.jpg'),
+    },
+    keywords: article.tags.join(', '),
+  }
 
   return (
     <>
       <ReadingProgress />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <main>
         <article>
           <header className="relative isolate flex min-h-screen items-end overflow-hidden bg-primary text-primary-foreground">

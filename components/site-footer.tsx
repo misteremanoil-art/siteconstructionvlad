@@ -51,6 +51,17 @@ export async function SiteFooter() {
             <p className="mt-2 max-w-4xl text-xs leading-relaxed text-muted-foreground">
               {texts['footer.rights_notice']}
             </p>
+            <nav className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
+              <Link href="/termeni" className="transition-colors hover:text-brand">
+                Termeni
+              </Link>
+              <Link href="/confidentialitate" className="transition-colors hover:text-brand">
+                Confidențialitate
+              </Link>
+              <Link href="/politica-cookie" className="transition-colors hover:text-brand">
+                Politică cookie
+              </Link>
+            </nav>
           </div>
         </div>
       </div>

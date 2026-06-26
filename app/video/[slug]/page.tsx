@@ -5,6 +5,7 @@ import { ArrowLeft, CalendarDays, Clock3, ExternalLink } from 'lucide-react'
 import { ContentRecommendations } from '@/components/content-recommendations'
 import { DonationInline } from '@/components/donation-inline'
 import { VideoReviews } from '@/components/video-reviews'
+import { absoluteUrl, siteName } from '@/lib/seo'
 import { getVideoBySlug } from '@/lib/videos'
 
 type VideoDetailPageProps = {
@@ -30,6 +31,22 @@ export async function generateMetadata({
   return {
     title: `${video.title} — Video`,
     description: video.description,
+    alternates: {
+      canonical: `/video/${video.slug}`,
+    },
+    openGraph: {
+      title: video.title,
+      description: video.description,
+      type: 'video.other',
+      url: `/video/${video.slug}`,
+      images: video.thumbnailUrl ? [{ url: video.thumbnailUrl }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: video.title,
+      description: video.description,
+      images: video.thumbnailUrl ? [video.thumbnailUrl] : undefined,
+    },
   }
 }
 
@@ -38,9 +55,31 @@ export default async function VideoDetailPage({ params }: VideoDetailPageProps) 
   const video = await getVideoBySlug(slug)
 
   if (!video) notFound()
+  const videoJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: video.thumbnailUrl ? [absoluteUrl(video.thumbnailUrl)] : undefined,
+    uploadDate: video.date,
+    embedUrl: video.embedUrl || undefined,
+    contentUrl: video.href,
+    url: absoluteUrl(`/video/${video.slug}`),
+    inLanguage: 'ro-RO',
+    publisher: {
+      '@type': 'Person',
+      name: siteName,
+      url: absoluteUrl('/'),
+      image: absoluteUrl('/images/author.jpg'),
+    },
+  }
 
   return (
     <main className="bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+      />
       <article>
         <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-5 py-10 md:px-6 md:py-14">
