@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { SiteLogo } from '@/components/site-logo'
-import { getSiteText } from '@/lib/site-texts'
+import { getSiteTexts } from '@/lib/site-texts'
 
 export async function SiteFooter() {
-  const copyright = await getSiteText('footer.copyright')
+  const texts = await getSiteTexts(['footer.copyright', 'donations.nav_label'])
 
   return (
     <footer className="mt-20 border-t border-border">
@@ -11,7 +11,7 @@ export async function SiteFooter() {
         <div className="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
           <SiteLogo />
           <p className="max-w-xl leading-relaxed">
-            {copyright}
+            {texts['footer.copyright']}
           </p>
         </div>
 
@@ -30,6 +30,9 @@ export async function SiteFooter() {
           </Link>
           <Link href="/despre" className="transition-colors hover:text-brand">
             Despre
+          </Link>
+          <Link href="/donatii" className="transition-colors hover:text-brand">
+            {texts['donations.nav_label']}
           </Link>
         </nav>
       </div>

@@ -344,6 +344,113 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
     ],
   },
   {
+    title: 'Donații',
+    description: 'Textele pentru pagina de donații și pop-up-ul discret.',
+    texts: [
+      {
+        key: 'donations.nav_label',
+        label: 'Link footer',
+        group: 'Donații',
+        defaultValue: 'Donații',
+      },
+      {
+        key: 'donations.kicker',
+        label: 'Etichetă pagină',
+        group: 'Donații',
+        defaultValue: 'Susține proiectul',
+      },
+      {
+        key: 'donations.title',
+        label: 'Titlu pagină',
+        group: 'Donații',
+        defaultValue: 'Ajută-mă să păstrez acest spațiu viu.',
+        multiline: true,
+      },
+      {
+        key: 'donations.description',
+        label: 'Descriere pagină',
+        group: 'Donații',
+        defaultValue:
+          'Dacă articolele, conversațiile sau materialele publicate aici ți-au fost de folos, poți susține munca din spatele lor printr-o donație. Fiecare contribuție ajută la documentare, editare, publicare și menținerea site-ului.',
+        multiline: true,
+      },
+      {
+        key: 'donations.primary_button',
+        label: 'Buton principal',
+        group: 'Donații',
+        defaultValue: 'Donează',
+      },
+      {
+        key: 'donations.secondary_button',
+        label: 'Buton secundar',
+        group: 'Donații',
+        defaultValue: 'Află mai multe',
+      },
+      {
+        key: 'donations.url',
+        label: 'Link donație',
+        group: 'Donații',
+        defaultValue: '#modalitati',
+      },
+      {
+        key: 'donations.methods_title',
+        label: 'Titlu modalități',
+        group: 'Donații',
+        defaultValue: 'Modalități de susținere',
+      },
+      {
+        key: 'donations.methods_description',
+        label: 'Descriere modalități',
+        group: 'Donații',
+        defaultValue:
+          'Poți folosi un link extern de plată sau poți completa aici detalii pentru transfer bancar/Revolut. Recomandarea practică: creează un link de plată și pune-l în câmpul „Link donație”.',
+        multiline: true,
+      },
+      {
+        key: 'donations.details',
+        label: 'Detalii donație',
+        group: 'Donații',
+        defaultValue:
+          'Completează din panoul de admin detaliile pe care vrei să le afișezi aici: Revolut, PayPal, transfer bancar sau un alt link sigur de plată.',
+        multiline: true,
+      },
+      {
+        key: 'donations.note',
+        label: 'Notă de transparență',
+        group: 'Donații',
+        defaultValue:
+          'Donațiile sunt voluntare și susțin activitatea editorială, tehnică și de documentare a acestui site.',
+        multiline: true,
+      },
+      {
+        key: 'donations.popup_title',
+        label: 'Titlu pop-up',
+        group: 'Donații',
+        defaultValue: 'Susții acest proiect?',
+      },
+      {
+        key: 'donations.popup_description',
+        label: 'Descriere pop-up',
+        group: 'Donații',
+        defaultValue:
+          'Dacă materialele de aici ți-au fost de folos, o donație ajută ca acest spațiu să rămână viu și bine îngrijit.',
+        multiline: true,
+      },
+      {
+        key: 'donations.popup_button',
+        label: 'Buton pop-up',
+        group: 'Donații',
+        defaultValue: 'Susțin',
+      },
+      {
+        key: 'donations.popup_later',
+        label: 'Buton închidere pop-up',
+        group: 'Donații',
+        defaultValue: 'Poate mai târziu',
+      },
+    ],
+  },
+  {
     title: 'Footer',
     description: 'Textul de drepturi de autor din subsolul site-ului.',
     texts: [

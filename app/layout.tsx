@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { BackToTop } from '@/components/back-to-top'
+import { DonationPromptSlot } from '@/components/donation-prompt-slot'
 import './globals.css'
 
 export const dynamic = 'force-dynamic'
@@ -50,6 +51,7 @@ export default function RootLayout({
             <SiteFooter />
           </div>
           <BackToTop />
+          <DonationPromptSlot />
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
