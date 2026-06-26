@@ -120,11 +120,22 @@ async function getDatabaseVideos() {
   const supabase = createSupabaseClient()
   if (!supabase) return null
 
-  const { data, error } = await supabase
+  const orderedQuery = await supabase
     .from('videos')
     .select('*')
     .eq('status', 'published')
+    .order('display_order', { ascending: true, nullsFirst: false })
     .order('published_at', { ascending: false })
+
+  const fallbackQuery = orderedQuery.error
+    ? await supabase
+        .from('videos')
+        .select('*')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false })
+    : orderedQuery
+
+  const { data, error } = fallbackQuery
 
   if (error || !data?.length) return null
 

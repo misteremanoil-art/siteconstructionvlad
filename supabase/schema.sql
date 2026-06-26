@@ -84,6 +84,7 @@ create table if not exists public.articles (
   featured boolean not null default false,
   content text not null default '',
   status article_status not null default 'draft',
+  display_order integer,
   created_by uuid references auth.users(id) on delete set null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -92,11 +93,17 @@ create table if not exists public.articles (
 create index if not exists articles_status_published_at_idx
   on public.articles (status, published_at desc);
 
+create index if not exists articles_status_display_order_idx
+  on public.articles (status, display_order, published_at desc);
+
 create index if not exists articles_slug_idx
   on public.articles (slug);
 
 alter table public.articles
 add column if not exists audio_url text not null default '';
+
+alter table public.articles
+add column if not exists display_order integer;
 
 create table if not exists public.videos (
   id uuid primary key default gen_random_uuid(),
@@ -112,12 +119,16 @@ create table if not exists public.videos (
   context text not null default '',
   featured boolean not null default false,
   status article_status not null default 'draft',
+  display_order integer,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
 create index if not exists videos_status_published_at_idx
   on public.videos (status, published_at desc);
+
+create index if not exists videos_status_display_order_idx
+  on public.videos (status, display_order, published_at desc);
 
 create index if not exists videos_slug_idx
   on public.videos (slug);

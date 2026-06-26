@@ -12,12 +12,19 @@ create table if not exists public.videos (
   context text not null default '',
   featured boolean not null default false,
   status article_status not null default 'draft',
+  display_order integer,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
 
 create index if not exists videos_status_published_at_idx
   on public.videos (status, published_at desc);
+
+alter table public.videos
+add column if not exists display_order integer;
+
+create index if not exists videos_status_display_order_idx
+  on public.videos (status, display_order, published_at desc);
 
 create index if not exists videos_slug_idx
   on public.videos (slug);

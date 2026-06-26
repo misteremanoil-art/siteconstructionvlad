@@ -87,6 +87,12 @@ export function AdminDashboard() {
         </div>
         <div className="flex flex-wrap gap-3">
           <Link
+            href="/admin/organizator"
+            className="secondary-action"
+          >
+            Organizator
+          </Link>
+          <Link
             href="/admin/video"
             className="secondary-action"
           >

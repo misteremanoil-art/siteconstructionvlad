@@ -17,6 +17,7 @@ export type DatabaseArticle = {
   featured: boolean
   content: string
   status: 'draft' | 'published'
+  display_order: number | null
 }
 
 export type DatabaseVideo = {
@@ -33,6 +34,7 @@ export type DatabaseVideo = {
   featured: boolean
   context: string
   status: 'draft' | 'published'
+  display_order: number | null
   created_at: string
   updated_at: string
 }
