@@ -17,6 +17,7 @@ export function UserLoginForm() {
   const [loading, setLoading] = useState(false)
   const [resending, setResending] = useState(false)
   const accountCreated = searchParams.get('created') === '1'
+  const passwordChanged = searchParams.get('passwordChanged') === '1'
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -125,6 +126,11 @@ export function UserLoginForm() {
               Contul a fost creat. Dacă Supabase cere confirmare, verifică emailul înainte să intri în cont.
             </p>
           ) : null}
+          {passwordChanged ? (
+            <p className="mt-5 rounded-lg border border-brand/30 bg-brand/10 px-4 py-3 text-sm text-foreground">
+              Parola a fost schimbată. Intră în cont cu parola nouă.
+            </p>
+          ) : null}
 
           <form onSubmit={onSubmit} className="mt-8 space-y-5">
             <TextInput label="Email" type="email" value={email} onChange={setEmail} />
@@ -155,6 +161,11 @@ export function UserLoginForm() {
               {resending ? 'Se retrimite...' : 'Retrimite emailul de confirmare'}
             </button>
           </form>
+          <p className="mt-4 text-center text-sm">
+            <Link href="/cont/resetare-parola" className="font-medium text-brand hover:underline">
+              Ai uitat parola?
+            </Link>
+          </p>
           <p className="mt-6 text-center text-sm text-muted-foreground">
             Nu ai cont?{' '}
             <Link href="/cont/inregistrare" className="font-medium text-brand hover:underline">

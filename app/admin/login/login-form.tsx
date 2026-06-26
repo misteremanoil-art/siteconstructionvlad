@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createBrowserSupabaseClient } from '@/lib/supabase-browser'
@@ -18,7 +19,7 @@ export function LoginForm() {
     setError('')
 
     const { error: signInError } = await supabase.auth.signInWithPassword({
-      email,
+      email: email.trim().toLowerCase(),
       password,
     })
 
@@ -69,6 +70,9 @@ export function LoginForm() {
           {loading ? 'Se verifică...' : 'Intră în admin'}
         </button>
       </form>
+      <Link href="/cont/resetare-parola" className="mt-5 text-center text-sm font-medium text-brand hover:underline">
+        Ai uitat parola?
+      </Link>
     </main>
   )
 }
