@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Play, ExternalLink, CalendarDays, Clock3 } from 'lucide-react'
 import { getAllVideos, getFeaturedVideo, type VideoItem } from '@/lib/videos'
 import { getSiteTexts } from '@/lib/site-texts'
+import { getContentHoverStyle } from '@/lib/hover-styles'
 
 export const metadata: Metadata = {
   title: 'Video — Albert-Beniamin Cucu',
@@ -12,28 +13,6 @@ export const metadata: Metadata = {
 }
 
 export const dynamic = 'force-dynamic'
-
-const videoHoverStyles = [
-  {
-    card: 'hover:border-brand/60 hover:bg-brand/10',
-    play: 'group-hover:bg-brand group-hover:text-brand-foreground',
-    title: 'group-hover:text-brand',
-  },
-  {
-    card: 'hover:border-foreground/30 hover:bg-foreground/[0.04]',
-    play: 'group-hover:bg-foreground group-hover:text-background',
-    title: 'group-hover:text-foreground',
-  },
-  {
-    card: 'hover:border-muted-foreground/35 hover:bg-muted/70',
-    play: 'group-hover:bg-muted-foreground group-hover:text-background',
-    title: 'group-hover:text-muted-foreground',
-  },
-]
-
-function stableIndex(value: string, length: number) {
-  return [...value].reduce((sum, char) => sum + char.charCodeAt(0), 0) % length
-}
 
 export default async function VideoPage() {
   const allVideos = await getAllVideos()
@@ -122,11 +101,11 @@ function FeaturedVideo({ video, buttonLabel }: { video: VideoItem; buttonLabel: 
 }
 
 function VideoCard({ video, buttonLabel }: { video: VideoItem; buttonLabel: string }) {
-  const hoverStyle = videoHoverStyles[stableIndex(video.slug, videoHoverStyles.length)]
+  const hoverStyle = getContentHoverStyle(video.slug)
 
   return (
     <article className={`surface-card group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg ${hoverStyle.card}`}>
-      <VideoFrame video={video} playClassName={hoverStyle.play} />
+      <VideoFrame video={video} playClassName={hoverStyle.icon} />
       <div className="p-5">
         <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
           <span className="inline-flex items-center gap-1.5">

@@ -7,33 +7,9 @@ import { NewsletterCard } from '@/components/newsletter-card'
 import { getAllVideos } from '@/lib/videos'
 import { getRecentConversations } from '@/lib/conversations'
 import { getSiteTexts } from '@/lib/site-texts'
+import { getContentHoverStyle } from '@/lib/hover-styles'
 
 export const dynamic = 'force-dynamic'
-
-const videoHoverStyles = [
-  {
-    card: 'hover:border-brand/60 hover:bg-brand/10',
-    badge: 'group-hover:bg-brand group-hover:text-brand-foreground',
-    play: 'group-hover:bg-brand group-hover:text-brand-foreground',
-    title: 'group-hover:text-brand',
-  },
-  {
-    card: 'hover:border-foreground/30 hover:bg-foreground/[0.04]',
-    badge: 'group-hover:bg-foreground group-hover:text-background',
-    play: 'group-hover:bg-foreground group-hover:text-background',
-    title: 'group-hover:text-foreground',
-  },
-  {
-    card: 'hover:border-muted-foreground/35 hover:bg-muted/70',
-    badge: 'group-hover:bg-muted-foreground group-hover:text-background',
-    play: 'group-hover:bg-muted-foreground group-hover:text-background',
-    title: 'group-hover:text-muted-foreground',
-  },
-]
-
-function stableIndex(value: string, length: number) {
-  return [...value].reduce((sum, char) => sum + char.charCodeAt(0), 0) % length
-}
 
 export default async function HomePage() {
   const featured = await getFeaturedArticle()
@@ -140,18 +116,21 @@ export default async function HomePage() {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-3">
-          {recentConversations.map((conversation) => (
-            <article
-              key={conversation.slug}
-              className="surface-card group p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md"
-            >
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors group-hover:bg-brand group-hover:text-brand-foreground">
+          {recentConversations.map((conversation) => {
+            const hoverStyle = getContentHoverStyle(conversation.slug)
+
+            return (
+              <article
+                key={conversation.slug}
+                className={`surface-card group p-5 transition-all hover:-translate-y-1 hover:shadow-md ${hoverStyle.card}`}
+              >
+              <div className={`mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-brand/10 text-brand transition-colors ${hoverStyle.icon}`}>
                 <Headphones className="h-5 w-5" />
               </div>
               <p className="text-xs uppercase tracking-wide text-muted-foreground">
                 {conversation.show} • {conversation.date}
               </p>
-              <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-foreground transition-colors group-hover:text-brand">
+              <h3 className={`mt-3 font-serif text-xl font-semibold leading-snug text-foreground transition-colors ${hoverStyle.title}`}>
                 {conversation.title}
               </h3>
               <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
@@ -161,7 +140,8 @@ export default async function HomePage() {
                 <source src={conversation.audioUrl} type="audio/mpeg" />
               </audio>
             </article>
-          ))}
+            )
+          })}
         </div>
       </section>
 
@@ -188,7 +168,7 @@ export default async function HomePage() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {recentVideos.map((video) => {
-            const hoverStyle = videoHoverStyles[stableIndex(video.slug, videoHoverStyles.length)]
+            const hoverStyle = getContentHoverStyle(video.slug)
 
             return (
               <Link
@@ -211,7 +191,7 @@ export default async function HomePage() {
                   {video.context || texts['home.video_badge_fallback']}
                 </span>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className={`flex h-14 w-14 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 ${hoverStyle.play}`}>
+                  <span className={`flex h-14 w-14 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 ${hoverStyle.icon}`}>
                     <Play className="ml-1 h-6 w-6 fill-current" />
                   </span>
                 </div>

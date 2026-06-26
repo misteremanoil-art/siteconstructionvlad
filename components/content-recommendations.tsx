@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { BookOpen, Headphones, PlayCircle } from 'lucide-react'
 import { getAllArticles } from '@/lib/articles'
 import { conversations } from '@/lib/conversations'
+import { getContentHoverStyle } from '@/lib/hover-styles'
 import { getAllVideos } from '@/lib/videos'
 
 type RecommendationKind = 'article' | 'video' | 'audio'
@@ -96,11 +97,12 @@ export async function ContentRecommendations({
 
 function RecommendationCard({ item }: { item: ContentRecommendation }) {
   const Icon = kindIcons[item.kind]
+  const hoverStyle = getContentHoverStyle(`${item.kind}-${item.slug}`)
 
   return (
     <Link
       href={item.href}
-      className="surface-card group flex h-full flex-col overflow-hidden transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md"
+      className={`surface-card group flex h-full flex-col overflow-hidden transition-all hover:-translate-y-1 hover:shadow-md ${hoverStyle.card}`}
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]">
         {item.image ? (
@@ -113,13 +115,13 @@ function RecommendationCard({ item }: { item: ContentRecommendation }) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-background/90 text-brand shadow-lg">
+            <div className={`flex h-16 w-16 items-center justify-center rounded-full bg-background/90 text-brand shadow-lg transition-colors ${hoverStyle.icon}`}>
               <Icon className="h-8 w-8" />
             </div>
           </div>
         )}
         <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
-        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground shadow-sm">
+        <div className={`absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground shadow-sm transition-colors ${hoverStyle.badge}`}>
           <Icon className="h-3.5 w-3.5 text-brand" />
           {kindLabels[item.kind]}
         </div>
@@ -128,7 +130,7 @@ function RecommendationCard({ item }: { item: ContentRecommendation }) {
         <p className="text-xs uppercase tracking-wide text-muted-foreground">
           {item.meta}
         </p>
-        <h3 className="mt-3 font-serif text-2xl font-semibold leading-snug text-foreground transition-colors group-hover:text-brand">
+        <h3 className={`mt-3 font-serif text-2xl font-semibold leading-snug text-foreground transition-colors ${hoverStyle.title}`}>
           {item.title}
         </h3>
         <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">

@@ -1,37 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ArticleMeta } from '@/lib/articles'
-
-const articleHoverStyles = [
-  {
-    card: 'hover:border-brand/60 hover:bg-brand/10',
-    badge: 'group-hover:bg-brand group-hover:text-brand-foreground',
-    title: 'group-hover:text-brand',
-  },
-  {
-    card: 'hover:border-foreground/30 hover:bg-foreground/[0.04]',
-    badge: 'group-hover:bg-foreground group-hover:text-background',
-    title: 'group-hover:text-foreground',
-  },
-  {
-    card: 'hover:border-brand/40 hover:bg-accent/60',
-    badge: 'group-hover:bg-accent group-hover:text-foreground',
-    title: 'group-hover:text-brand',
-  },
-  {
-    card: 'hover:border-muted-foreground/35 hover:bg-muted/70',
-    badge: 'group-hover:bg-muted-foreground group-hover:text-background',
-    title: 'group-hover:text-muted-foreground',
-  },
-]
-
-function stableIndex(value: string, length: number) {
-  return [...value].reduce((sum, char) => sum + char.charCodeAt(0), 0) % length
-}
+import { getContentHoverStyle } from '@/lib/hover-styles'
 
 export function ArticleCard({ article }: { article: ArticleMeta }) {
   const href = article.slug ? `/articole/${article.slug}` : '/articole'
-  const hoverStyle = articleHoverStyles[stableIndex(article.slug || article.title, articleHoverStyles.length)]
+  const hoverStyle = getContentHoverStyle(article.slug || article.title)
 
   return (
     <Link

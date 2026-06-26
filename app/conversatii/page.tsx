@@ -4,6 +4,7 @@ import { ExternalLink, Radio } from 'lucide-react'
 import { ContentRecommendations } from '@/components/content-recommendations'
 import { DonationInline } from '@/components/donation-inline'
 import { conversations, type ConversationItem } from '@/lib/conversations'
+import { getContentHoverStyle } from '@/lib/hover-styles'
 import { getSiteTexts } from '@/lib/site-texts'
 
 export const metadata: Metadata = {
@@ -122,13 +123,15 @@ function ConversationCard({
   conversation: ConversationItem
   sourceLabel: string
 }) {
+  const hoverStyle = getContentHoverStyle(conversation.slug)
+
   return (
-    <article id={conversation.slug} className="surface-card group scroll-mt-28 p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md">
+    <article id={conversation.slug} className={`surface-card group scroll-mt-28 p-5 transition-all hover:-translate-y-1 hover:shadow-md ${hoverStyle.card}`}>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-wide text-muted-foreground">
         <span className="text-brand">{conversation.show}</span>
         <span>{conversation.date}</span>
       </div>
-      <h3 className="mt-3 font-serif text-2xl font-semibold leading-snug text-foreground transition-colors group-hover:text-brand">
+      <h3 className={`mt-3 font-serif text-2xl font-semibold leading-snug text-foreground transition-colors ${hoverStyle.title}`}>
         {conversation.title}
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
