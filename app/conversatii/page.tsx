@@ -20,6 +20,9 @@ export default async function ConversatiiPage() {
     'conversations.title',
     'conversations.description',
     'conversations.archive_title',
+    'conversations.archive_kicker',
+    'conversations.source_featured',
+    'conversations.source_card',
   ])
 
   return (
@@ -37,13 +40,18 @@ export default async function ConversatiiPage() {
           </p>
         </div>
 
-        {featured ? <FeaturedConversation conversation={featured} /> : null}
+        {featured ? (
+          <FeaturedConversation
+            conversation={featured}
+            sourceLabel={texts['conversations.source_featured']}
+          />
+        ) : null}
       </section>
 
       <section className="mt-14" aria-label="Arhivă conversații">
         <div className="section-header">
           <div>
-          <p className="section-kicker">Ascultă</p>
+          <p className="section-kicker">{texts['conversations.archive_kicker']}</p>
           <h2 className="section-title">
             {texts['conversations.archive_title']}
           </h2>
@@ -52,7 +60,11 @@ export default async function ConversatiiPage() {
 
         <div className="grid gap-5 md:grid-cols-2">
           {rest.map((conversation) => (
-            <ConversationCard key={conversation.slug} conversation={conversation} />
+            <ConversationCard
+              key={conversation.slug}
+              conversation={conversation}
+              sourceLabel={texts['conversations.source_card']}
+            />
           ))}
         </div>
       </section>
@@ -60,7 +72,13 @@ export default async function ConversatiiPage() {
   )
 }
 
-function FeaturedConversation({ conversation }: { conversation: ConversationItem }) {
+function FeaturedConversation({
+  conversation,
+  sourceLabel,
+}: {
+  conversation: ConversationItem
+  sourceLabel: string
+}) {
   return (
     <article className="surface-card overflow-hidden border-brand/25">
       <div className="bg-[linear-gradient(135deg,var(--foreground),var(--brand))] px-6 py-7 text-white sm:px-8">
@@ -84,7 +102,7 @@ function FeaturedConversation({ conversation }: { conversation: ConversationItem
           rel="noreferrer"
           className="text-action mt-5"
         >
-          Deschide sursa RVS
+          {sourceLabel}
           <ExternalLink className="h-4 w-4" />
         </Link>
       </div>
@@ -92,7 +110,13 @@ function FeaturedConversation({ conversation }: { conversation: ConversationItem
   )
 }
 
-function ConversationCard({ conversation }: { conversation: ConversationItem }) {
+function ConversationCard({
+  conversation,
+  sourceLabel,
+}: {
+  conversation: ConversationItem
+  sourceLabel: string
+}) {
   return (
     <article className="surface-card group p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-wide text-muted-foreground">
@@ -114,7 +138,7 @@ function ConversationCard({ conversation }: { conversation: ConversationItem }) 
         rel="noreferrer"
         className="text-action mt-4"
       >
-        Sursa RVS
+        {sourceLabel}
         <ExternalLink className="h-4 w-4" />
       </Link>
     </article>

@@ -45,8 +45,19 @@ export default async function HomePage() {
     'home.articles_title',
     'home.conversations_title',
     'home.conversations_description',
+    'home.conversations_link',
     'home.videos_title',
     'home.videos_description',
+    'home.videos_link',
+    'home.video_badge_fallback',
+    'newsletter.kicker',
+    'newsletter.title',
+    'newsletter.description',
+    'newsletter.placeholder',
+    'newsletter.button',
+    'newsletter.loading',
+    'newsletter.success',
+    'newsletter.error',
   ])
 
   return (
@@ -123,7 +134,7 @@ export default async function HomePage() {
             href="/conversatii"
             className="text-action w-fit"
           >
-            Ascultă arhiva
+            {texts['home.conversations_link']}
             <ExternalLink className="h-4 w-4" />
           </Link>
         </div>
@@ -170,7 +181,7 @@ export default async function HomePage() {
             href="/video"
             className="text-action w-fit"
           >
-            Vezi toate
+            {texts['home.videos_link']}
             <ExternalLink className="h-4 w-4" />
           </Link>
         </div>
@@ -197,7 +208,7 @@ export default async function HomePage() {
                 ) : null}
                 <div className="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/15" />
                 <span className={`media-badge absolute left-3 top-3 backdrop-blur transition-colors ${hoverStyle.badge}`}>
-                  {video.context}
+                  {video.context || texts['home.video_badge_fallback']}
                 </span>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className={`flex h-14 w-14 items-center justify-center rounded-full bg-background/95 text-brand shadow-lg transition-all group-hover:scale-105 ${hoverStyle.play}`}>
@@ -224,7 +235,18 @@ export default async function HomePage() {
 
       {/* Newsletter */}
       <div className="mt-16">
-        <NewsletterCard />
+        <NewsletterCard
+          texts={{
+            kicker: texts['newsletter.kicker'],
+            title: texts['newsletter.title'],
+            description: texts['newsletter.description'],
+            placeholder: texts['newsletter.placeholder'],
+            button: texts['newsletter.button'],
+            loading: texts['newsletter.loading'],
+            success: texts['newsletter.success'],
+            error: texts['newsletter.error'],
+          }}
+        />
       </div>
     </main>
   )

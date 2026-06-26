@@ -2,7 +2,30 @@
 
 import { useState } from 'react'
 
-export function NewsletterCard() {
+type NewsletterTexts = {
+  kicker: string
+  title: string
+  description: string
+  placeholder: string
+  button: string
+  loading: string
+  success: string
+  error: string
+}
+
+const defaultTexts: NewsletterTexts = {
+  kicker: 'Newsletter',
+  title: 'Primești texte noi, în ritmul potrivit pentru tine.',
+  description:
+    'Dacă îți place să citești cu atenție și să te oprești asupra lucrurilor care contează, îți voi trimite doar texte simple, sincere și rare.',
+  placeholder: 'Adresă de email',
+  button: 'Mă înscriu',
+  loading: 'Se trimite...',
+  success: 'Mulțumesc! Te-ai înscris cu succes.',
+  error: 'Nu am putut salva abonarea.',
+}
+
+export function NewsletterCard({ texts = defaultTexts }: { texts?: NewsletterTexts }) {
   const [email, setEmail] = useState('')
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
@@ -27,7 +50,7 @@ export function NewsletterCard() {
     setLoading(false)
 
     if (!response.ok) {
-      setError(data?.error ?? 'Nu am putut salva abonarea.')
+      setError(data?.error ?? texts.error)
       return
     }
 
@@ -41,19 +64,18 @@ export function NewsletterCard() {
       className="surface-card p-8 sm:p-12"
     >
       <p className="section-kicker">
-        Newsletter
+        {texts.kicker}
       </p>
       <h2 className="mt-3 max-w-2xl font-serif text-2xl font-semibold leading-tight text-foreground text-balance sm:text-3xl">
-        Primești texte noi, în ritmul potrivit pentru tine.
+        {texts.title}
       </h2>
       <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-        Dacă îți place să citești cu atenție și să te oprești asupra lucrurilor
-        care contează, îți voi trimite doar texte simple, sincere și rare.
+        {texts.description}
       </p>
 
       {done ? (
         <p className="mt-6 font-serif text-lg text-brand">
-          Mulțumesc! Te-ai înscris cu succes.
+          {texts.success}
         </p>
       ) : (
         <form
@@ -65,8 +87,8 @@ export function NewsletterCard() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Adresă de email"
-            aria-label="Adresă de email"
+            placeholder={texts.placeholder}
+            aria-label={texts.placeholder}
             className="flex-1 rounded-full border border-border bg-background px-5 py-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-brand"
           />
           <button
@@ -74,7 +96,7 @@ export function NewsletterCard() {
             disabled={loading}
             className="rounded-full bg-brand px-6 py-3 text-sm font-medium text-brand-foreground transition-opacity hover:opacity-90"
           >
-            {loading ? 'Se trimite...' : 'Mă înscriu'}
+            {loading ? texts.loading : texts.button}
           </button>
         </form>
       )}

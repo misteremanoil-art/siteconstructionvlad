@@ -17,6 +17,9 @@ export default async function DesprePage() {
     'about.paragraph_1',
     'about.paragraph_2',
     'about.paragraph_3',
+    'about.english_kicker',
+    'about.english_paragraph_1',
+    'about.english_paragraph_2',
   ])
 
   return (
@@ -52,23 +55,13 @@ export default async function DesprePage() {
 
       <section className="surface-card p-6 text-lg leading-relaxed text-muted-foreground sm:p-8">
         <div className="border-l-2 border-brand pl-5 md:pl-6">
-          <p className="section-kicker">In English</p>
+          <p className="section-kicker">{texts['about.english_kicker']}</p>
           <div className="mt-6 space-y-6">
             <p>
-              I hold a Master&apos;s degree in Pastoral Ministry, focusing on biblical studies,
-              ecclesiastical leadership, and pastoral care. My research engages contemporary issues
-              in ministry, biblical exegesis, and the practical integration of theology into
-              pastoral contexts. Currently, I serve as a pastor in the Adventist Church in Romania,
-              where I seek to unite academic reflection with pastoral practice to foster spiritual
-              growth and contribute to theological discourse.
+              {texts['about.english_paragraph_1']}
             </p>
             <p>
-              I am a Seventh-day Adventist pastor in Onești, Romania, and I hold an M.A. from
-              Friedensau Adventist University, Germany. I have published a book, contributed
-              articles to <em className="italic">Curierul Adventist</em>,{" "}
-              <em className="italic">Ministry</em>, and <em className="italic">TheoRhēma</em>, and
-              presented at several academic conferences. My research interests include Theology,
-              Biblical Studies, The Book of Revelation, Textual Criticism, and Intertextuality.
+              {texts['about.english_paragraph_2']}
             </p>
           </div>
         </div>

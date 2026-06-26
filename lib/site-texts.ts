@@ -39,6 +39,12 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
         multiline: true,
       },
       {
+        key: 'home.conversations_link',
+        label: 'Buton conversații',
+        group: 'Acasă',
+        defaultValue: 'Ascultă arhiva',
+      },
+      {
         key: 'home.videos_title',
         label: 'Titlu videoclipuri recente',
         group: 'Acasă',
@@ -50,6 +56,18 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
         group: 'Acasă',
         defaultValue: 'Emisiuni, interviuri și conversații publice despre credință, teologie și slujire.',
         multiline: true,
+      },
+      {
+        key: 'home.videos_link',
+        label: 'Buton videoclipuri',
+        group: 'Acasă',
+        defaultValue: 'Vezi toate',
+      },
+      {
+        key: 'home.video_badge_fallback',
+        label: 'Etichetă video fără context',
+        group: 'Acasă',
+        defaultValue: 'Video',
       },
     ],
   },
@@ -109,6 +127,24 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
         group: 'Video',
         defaultValue: 'Apariții recente',
       },
+      {
+        key: 'video.archive_kicker',
+        label: 'Etichetă arhivă',
+        group: 'Video',
+        defaultValue: 'Arhivă video',
+      },
+      {
+        key: 'video.featured_button',
+        label: 'Buton video principal',
+        group: 'Video',
+        defaultValue: 'Vezi pagina episodului',
+      },
+      {
+        key: 'video.card_button',
+        label: 'Buton card video',
+        group: 'Video',
+        defaultValue: 'Vezi pagina episodului',
+      },
     ],
   },
   {
@@ -139,6 +175,24 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
         label: 'Titlu arhivă',
         group: 'Conversații',
         defaultValue: 'Arhivă audio',
+      },
+      {
+        key: 'conversations.archive_kicker',
+        label: 'Etichetă arhivă',
+        group: 'Conversații',
+        defaultValue: 'Ascultă',
+      },
+      {
+        key: 'conversations.source_featured',
+        label: 'Buton sursă episod principal',
+        group: 'Conversații',
+        defaultValue: 'Deschide sursa RVS',
+      },
+      {
+        key: 'conversations.source_card',
+        label: 'Buton sursă card',
+        group: 'Conversații',
+        defaultValue: 'Sursa RVS',
       },
     ],
   },
@@ -180,6 +234,111 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
         group: 'Despre',
         defaultValue:
           'Am publicat o carte și am contribuit cu articole în publicații precum Curierul Adventist, Ministry și TheoRhēma, prezentând totodată lucrări la diverse conferințe academice. Interesele mele de cercetare includ Teologia, Studiile Biblice (Vechiul și Noul Testament), Cartea Apocalipsei, Critica Textuală și Intertextualitatea.',
+        multiline: true,
+      },
+      {
+        key: 'about.english_kicker',
+        label: 'Etichetă engleză',
+        group: 'Despre',
+        defaultValue: 'In English',
+      },
+      {
+        key: 'about.english_paragraph_1',
+        label: 'Paragraf engleză 1',
+        group: 'Despre',
+        defaultValue:
+          'I hold a Master’s degree in Pastoral Ministry, focusing on biblical studies, ecclesiastical leadership, and pastoral care. My research engages contemporary issues in ministry, biblical exegesis, and the practical integration of theology into pastoral contexts. Currently, I serve as a pastor in the Adventist Church in Romania, where I seek to unite academic reflection with pastoral practice to foster spiritual growth and contribute to theological discourse.',
+        multiline: true,
+      },
+      {
+        key: 'about.english_paragraph_2',
+        label: 'Paragraf engleză 2',
+        group: 'Despre',
+        defaultValue:
+          'I am a Seventh-day Adventist pastor in Onești, Romania, and I hold an M.A. from Friedensau Adventist University, Germany. I have published a book, contributed articles to Curierul Adventist, Ministry, and TheoRhēma, and presented at several academic conferences. My research interests include Theology, Biblical Studies, The Book of Revelation, Textual Criticism, and Intertextuality.',
+        multiline: true,
+      },
+    ],
+  },
+  {
+    title: 'Newsletter',
+    description: 'Textele din formularul de abonare.',
+    texts: [
+      {
+        key: 'newsletter.kicker',
+        label: 'Etichetă',
+        group: 'Newsletter',
+        defaultValue: 'Newsletter',
+      },
+      {
+        key: 'newsletter.title',
+        label: 'Titlu',
+        group: 'Newsletter',
+        defaultValue: 'Primești texte noi, în ritmul potrivit pentru tine.',
+        multiline: true,
+      },
+      {
+        key: 'newsletter.description',
+        label: 'Descriere',
+        group: 'Newsletter',
+        defaultValue:
+          'Dacă îți place să citești cu atenție și să te oprești asupra lucrurilor care contează, îți voi trimite doar texte simple, sincere și rare.',
+        multiline: true,
+      },
+      {
+        key: 'newsletter.placeholder',
+        label: 'Placeholder email',
+        group: 'Newsletter',
+        defaultValue: 'Adresă de email',
+      },
+      {
+        key: 'newsletter.button',
+        label: 'Buton',
+        group: 'Newsletter',
+        defaultValue: 'Mă înscriu',
+      },
+      {
+        key: 'newsletter.loading',
+        label: 'Text trimitere',
+        group: 'Newsletter',
+        defaultValue: 'Se trimite...',
+      },
+      {
+        key: 'newsletter.success',
+        label: 'Mesaj succes',
+        group: 'Newsletter',
+        defaultValue: 'Mulțumesc! Te-ai înscris cu succes.',
+      },
+      {
+        key: 'newsletter.error',
+        label: 'Mesaj eroare',
+        group: 'Newsletter',
+        defaultValue: 'Nu am putut salva abonarea.',
+      },
+    ],
+  },
+  {
+    title: 'Autor',
+    description: 'Textele din cardul Despre autor de sub articole.',
+    texts: [
+      {
+        key: 'author.kicker',
+        label: 'Etichetă card autor',
+        group: 'Autor',
+        defaultValue: 'Despre autor',
+      },
+      {
+        key: 'author.name',
+        label: 'Nume afișat',
+        group: 'Autor',
+        defaultValue: 'Albert-Beniamin Cucu',
+      },
+      {
+        key: 'author.bio',
+        label: 'Biografie sub articole',
+        group: 'Autor',
+        defaultValue:
+          'ALBERT BENIAMIN CUCU este pastor Adventist de Ziua a Șaptea în Onești, România. Deține un Master în Arte în Slujire Pastorală (Pastoral Ministry) obținut la Universitatea Adventistă Friedensau (Friedensau Adventist University), Germania. A publicat o carte, Conversații cu Dumnezeu: un altfel de comentariu biblic la epistola Romani; a contribuit cu articole în Curierul Adventist, Ministry și TheoRhēma, și a prezentat lucrări științifice la mai multe conferințe academice, naționale și internaționale. Interesele sale de cercetare includ Teologia, Studiile Biblice (Vechiul și Noul Testament), Cartea Apocalipsei, Critica Textuală și Intertextualitatea.',
         multiline: true,
       },
     ],

@@ -44,6 +44,9 @@ export default async function VideoPage() {
     'video.title',
     'video.description',
     'video.archive_title',
+    'video.archive_kicker',
+    'video.featured_button',
+    'video.card_button',
   ])
 
   return (
@@ -62,25 +65,27 @@ export default async function VideoPage() {
             </p>
           </div>
 
-          {featuredVideo ? <FeaturedVideo video={featuredVideo} /> : null}
+          {featuredVideo ? (
+            <FeaturedVideo video={featuredVideo} buttonLabel={texts['video.featured_button']} />
+          ) : null}
         </div>
       </section>
 
       <section className="page-shell">
         <div className="section-header">
           <div>
-          <p className="section-kicker">
-            Arhivă video
-          </p>
-          <h2 className="section-title">
-            {texts['video.archive_title']}
-          </h2>
+            <p className="section-kicker">
+              {texts['video.archive_kicker']}
+            </p>
+            <h2 className="section-title">
+              {texts['video.archive_title']}
+            </h2>
           </div>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {secondaryVideos.map((video) => (
-            <VideoCard key={video.slug} video={video} />
+            <VideoCard key={video.slug} video={video} buttonLabel={texts['video.card_button']} />
           ))}
         </div>
       </section>
@@ -88,7 +93,7 @@ export default async function VideoPage() {
   )
 }
 
-function FeaturedVideo({ video }: { video: VideoItem }) {
+function FeaturedVideo({ video, buttonLabel }: { video: VideoItem; buttonLabel: string }) {
   return (
     <article className="surface-card overflow-hidden transition-all hover:border-brand/50 hover:bg-brand/5">
       <VideoFrame video={video} priority />
@@ -108,7 +113,7 @@ function FeaturedVideo({ video }: { video: VideoItem }) {
           href={`/video/${video.slug}`}
           className="primary-action mt-6"
         >
-          Vezi pagina episodului
+          {buttonLabel}
           <ExternalLink className="h-4 w-4" />
         </Link>
       </div>
@@ -116,7 +121,7 @@ function FeaturedVideo({ video }: { video: VideoItem }) {
   )
 }
 
-function VideoCard({ video }: { video: VideoItem }) {
+function VideoCard({ video, buttonLabel }: { video: VideoItem; buttonLabel: string }) {
   const hoverStyle = videoHoverStyles[stableIndex(video.slug, videoHoverStyles.length)]
 
   return (
@@ -145,7 +150,7 @@ function VideoCard({ video }: { video: VideoItem }) {
           href={`/video/${video.slug}`}
           className="text-action mt-5"
         >
-          Vezi pagina episodului
+          {buttonLabel}
           <ExternalLink className="h-4 w-4" />
         </Link>
       </div>
