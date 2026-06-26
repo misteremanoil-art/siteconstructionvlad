@@ -17,11 +17,14 @@ type UserReview = {
   } | null
 }
 
+const usernamePattern = /^[a-zA-Z0-9_]{3,32}$/
+
 export function AccountSettings() {
   const router = useRouter()
   const supabase = useMemo(() => createBrowserSupabaseClient(), [])
   const [user, setUser] = useState<User | null>(null)
   const [username, setUsername] = useState('')
+  const [savedUsername, setSavedUsername] = useState('')
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -69,7 +72,9 @@ export function AccountSettings() {
       .eq('id', userId)
       .maybeSingle()
 
-    setUsername((data?.username as string | null) ?? '')
+    const profileUsername = ((data?.username as string | null) ?? '').trim()
+    setUsername(profileUsername)
+    setSavedUsername(profileUsername)
   }
 
   async function loadAdminStatus() {
@@ -93,15 +98,50 @@ export function AccountSettings() {
     setMessage('')
     setError('')
 
-    const { data, error: updateError } = await supabase
-      .rpc('set_my_username', { new_username: username.trim() || null })
+    const cleanUsername = username.trim()
 
-    if (updateError) {
-      setError('Nu am putut salva username-ul. Folosește 3-32 caractere: litere, cifre sau _.')
+    if (!cleanUsername) {
+      setError('Username-ul nu poate fi gol.')
       return
     }
 
-    setUsername(((data as { username?: string | null } | null)?.username ?? '').trim())
+    if (!usernamePattern.test(cleanUsername)) {
+      setError('Username-ul trebuie să aibă 3-32 caractere: litere, cifre sau _.')
+      return
+    }
+
+    if (cleanUsername === savedUsername) {
+      setMessage('Username-ul este deja salvat.')
+      return
+    }
+
+    const { data, error: rpcError } = await supabase
+      .rpc('set_my_username', { new_username: cleanUsername })
+
+    if (rpcError) {
+      const { error: upsertError } = await supabase
+        .from('profiles')
+        .upsert({
+          id: user.id,
+          username: cleanUsername,
+          updated_at: new Date().toISOString(),
+        })
+
+      if (upsertError) {
+        setError('Nu am putut salva username-ul. Rulează SQL-ul pentru profiles/set_my_username în Supabase.')
+        return
+      }
+
+      setUsername(cleanUsername)
+      setSavedUsername(cleanUsername)
+      setMessage('Username salvat.')
+      router.refresh()
+      return
+    }
+
+    const savedValue = ((data as { username?: string | null } | null)?.username ?? cleanUsername).trim()
+    setUsername(savedValue)
+    setSavedUsername(savedValue)
     setMessage('Username salvat.')
     router.refresh()
   }
@@ -277,12 +317,27 @@ export function AccountSettings() {
       <section className="mt-10 grid gap-8 md:grid-cols-2">
         <form onSubmit={saveUsername} className="rounded-lg border border-border p-5">
           <h2 className="font-serif text-2xl">Username</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Username-ul apare în cont și lângă recenziile tale. Folosește doar litere, cifre sau _.
+          </p>
           <input
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.replace(/\s+/g, ''))}
             placeholder="username"
+            autoComplete="username"
+            minLength={3}
+            maxLength={32}
+            pattern="[A-Za-z0-9_]{3,32}"
             className="mt-4 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-brand"
           />
+          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+            3-32 caractere. Exemplu: albert_cucu
+          </p>
+          {savedUsername ? (
+            <p className="mt-2 text-xs text-brand">
+              Username actual: {savedUsername}
+            </p>
+          ) : null}
           <button className="mt-4 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground">
             Salvează username
           </button>
