@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { BookOpen, Headphones, PlayCircle } from 'lucide-react'
 import { getAllArticles } from '@/lib/articles'
@@ -13,6 +14,8 @@ type ContentRecommendation = {
   href: string
   meta: string
   slug: string
+  image?: string
+  imageAlt?: string
 }
 
 const kindLabels: Record<RecommendationKind, string> = {
@@ -44,6 +47,8 @@ export async function ContentRecommendations({
       href: `/articole/${article.slug}`,
       meta: article.displayDate || article.category,
       slug: article.slug,
+      image: article.image,
+      imageAlt: article.imageAlt || article.title,
     })),
     ...videos.map((video) => ({
       kind: 'video' as const,
@@ -52,6 +57,8 @@ export async function ContentRecommendations({
       href: `/video/${video.slug}`,
       meta: video.context || video.platform,
       slug: video.slug,
+      image: video.thumbnailUrl,
+      imageAlt: video.title,
     })),
     ...conversations.map((conversation) => ({
       kind: 'audio' as const,
@@ -93,23 +100,44 @@ function RecommendationCard({ item }: { item: ContentRecommendation }) {
   return (
     <Link
       href={item.href}
-      className="surface-card group flex h-full flex-col p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md"
+      className="surface-card group flex h-full flex-col overflow-hidden transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md"
     >
-      <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
-        <Icon className="h-4 w-4 text-brand" />
-        <span>{kindLabels[item.kind]}</span>
-        <span aria-hidden>•</span>
-        <span>{item.meta}</span>
+      <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,var(--foreground),var(--brand))]">
+        {item.image ? (
+          <Image
+            src={item.image}
+            alt={item.imageAlt ?? ''}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-background/90 text-brand shadow-lg">
+              <Icon className="h-8 w-8" />
+            </div>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10" />
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground shadow-sm">
+          <Icon className="h-3.5 w-3.5 text-brand" />
+          {kindLabels[item.kind]}
+        </div>
       </div>
-      <h3 className="mt-4 font-serif text-2xl font-semibold leading-snug text-foreground transition-colors group-hover:text-brand">
-        {item.title}
-      </h3>
-      <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-        {item.description}
-      </p>
-      <span className="mt-5 text-sm font-medium text-brand">
-        Deschide materialul
-      </span>
+      <div className="flex flex-1 flex-col p-5">
+        <p className="text-xs uppercase tracking-wide text-muted-foreground">
+          {item.meta}
+        </p>
+        <h3 className="mt-3 font-serif text-2xl font-semibold leading-snug text-foreground transition-colors group-hover:text-brand">
+          {item.title}
+        </h3>
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+          {item.description}
+        </p>
+        <span className="mt-auto pt-5 text-sm font-medium text-brand">
+          Deschide materialul
+        </span>
+      </div>
     </Link>
   )
 }
