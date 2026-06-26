@@ -22,7 +22,9 @@ export function AccountSettings() {
   const supabase = useMemo(() => createBrowserSupabaseClient(), [])
   const [user, setUser] = useState<User | null>(null)
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [reviews, setReviews] = useState<UserReview[]>([])
   const [editingId, setEditingId] = useState('')
   const [editingBody, setEditingBody] = useState('')
@@ -106,23 +108,51 @@ export function AccountSettings() {
 
   async function changePassword(e: React.FormEvent) {
     e.preventDefault()
+    if (!user?.email) return
     setMessage('')
     setError('')
 
-    if (password.length < 6) {
-      setError('Parola trebuie să aibă cel puțin 6 caractere.')
+    if (!currentPassword) {
+      setError('Scrie parola actuală.')
       return
     }
 
-    const { error: updateError } = await supabase.auth.updateUser({ password })
+    if (newPassword.length < 6) {
+      setError('Parola nouă trebuie să aibă cel puțin 6 caractere.')
+      return
+    }
+
+    if (newPassword !== confirmPassword) {
+      setError('Parola nouă și confirmarea nu coincid.')
+      return
+    }
+
+    if (currentPassword === newPassword) {
+      setError('Parola nouă trebuie să fie diferită de parola actuală.')
+      return
+    }
+
+    const { error: verifyError } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: currentPassword,
+    })
+
+    if (verifyError) {
+      setError('Parola actuală nu este corectă.')
+      return
+    }
+
+    const { error: updateError } = await supabase.auth.updateUser({ password: newPassword })
 
     if (updateError) {
-      setError('Nu am putut schimba parola.')
+      setError('Nu am putut schimba parola. Încearcă din nou.')
       return
     }
 
-    setPassword('')
-    setMessage('Parola a fost schimbată.')
+    setCurrentPassword('')
+    setNewPassword('')
+    setConfirmPassword('')
+    setMessage('Parola a fost schimbată cu succes.')
   }
 
   function startEdit(review: UserReview) {
@@ -260,12 +290,26 @@ export function AccountSettings() {
 
         <form onSubmit={changePassword} className="rounded-lg border border-border p-5">
           <h2 className="font-serif text-2xl">Parolă</h2>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Parolă nouă"
-            className="mt-4 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-brand"
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Pentru siguranță, confirmă parola actuală înainte să setezi una nouă.
+          </p>
+          <PasswordField
+            label="Parola actuală"
+            value={currentPassword}
+            onChange={setCurrentPassword}
+            autoComplete="current-password"
+          />
+          <PasswordField
+            label="Parola nouă"
+            value={newPassword}
+            onChange={setNewPassword}
+            autoComplete="new-password"
+          />
+          <PasswordField
+            label="Confirmă parola nouă"
+            value={confirmPassword}
+            onChange={setConfirmPassword}
+            autoComplete="new-password"
           />
           <button className="mt-4 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground">
             Schimbă parola
@@ -400,6 +444,32 @@ export function AccountSettings() {
         </div>
       </section>
     </main>
+  )
+}
+
+function PasswordField({
+  label,
+  value,
+  onChange,
+  autoComplete,
+}: {
+  label: string
+  value: string
+  onChange: (value: string) => void
+  autoComplete: string
+}) {
+  return (
+    <label className="mt-4 block">
+      <span className="text-sm font-medium text-foreground">{label}</span>
+      <input
+        type="password"
+        required
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        autoComplete={autoComplete}
+        className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none focus:border-brand"
+      />
+    </label>
   )
 }
 
