@@ -6,6 +6,7 @@ import { ArticleCard } from '@/components/article-card'
 import { NewsletterCard } from '@/components/newsletter-card'
 import { getAllVideos } from '@/lib/videos'
 import { getRecentConversations } from '@/lib/conversations'
+import { getSiteTexts } from '@/lib/site-texts'
 
 export const dynamic = 'force-dynamic'
 
@@ -39,6 +40,14 @@ export default async function HomePage() {
   const articles = (await getAllArticles()).filter((a) => a.slug !== featured?.slug)
   const recentVideos = (await getAllVideos()).slice(0, 3)
   const recentConversations = getRecentConversations(3)
+  const texts = await getSiteTexts([
+    'home.featured_label',
+    'home.articles_title',
+    'home.conversations_title',
+    'home.conversations_description',
+    'home.videos_title',
+    'home.videos_description',
+  ])
 
   return (
     <main className="page-shell">
@@ -61,7 +70,7 @@ export default async function HomePage() {
           <div className="flex flex-col justify-center gap-4 p-8 sm:p-12">
             <div className="flex items-center gap-3">
               <span className="section-kicker">
-                Articol principal
+                {texts['home.featured_label']}
               </span>
               <span className="media-badge border border-border transition-colors group-hover:border-brand/40 group-hover:text-foreground">
                 {featured.category}
@@ -88,7 +97,7 @@ export default async function HomePage() {
           <div>
             <p className="section-kicker">Lectură</p>
             <h2 className="section-title">
-            Articole recente
+            {texts['home.articles_title']}
             </h2>
           </div>
         </div>
@@ -104,10 +113,10 @@ export default async function HomePage() {
           <div>
             <p className="section-kicker">Audio</p>
             <h2 className="section-title">
-              Conversații recente
+              {texts['home.conversations_title']}
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Reflecții audio și dialoguri biblice din emisiunea Cuvinte cu har.
+              {texts['home.conversations_description']}
             </p>
           </div>
           <Link
@@ -151,10 +160,10 @@ export default async function HomePage() {
           <div>
             <p className="section-kicker">Video</p>
             <h2 className="section-title">
-              Videoclipuri recente
+              {texts['home.videos_title']}
             </h2>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Emisiuni, interviuri și conversații publice despre credință, teologie și slujire.
+              {texts['home.videos_description']}
             </p>
           </div>
           <Link

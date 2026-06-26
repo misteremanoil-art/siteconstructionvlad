@@ -170,6 +170,15 @@ create table if not exists public.contact_messages (
   read_at timestamptz
 );
 
+create table if not exists public.site_texts (
+  key text primary key,
+  value text not null default '',
+  group_label text not null default 'General',
+  description text not null default '',
+  updated_by uuid references auth.users(id) on delete set null,
+  updated_at timestamptz not null default now()
+);
+
 create or replace function public.set_updated_at()
 returns trigger
 language plpgsql
@@ -190,11 +199,17 @@ create trigger videos_set_updated_at
 before update on public.videos
 for each row execute function public.set_updated_at();
 
+drop trigger if exists site_texts_set_updated_at on public.site_texts;
+create trigger site_texts_set_updated_at
+before update on public.site_texts
+for each row execute function public.set_updated_at();
+
 alter table public.admin_users enable row level security;
 alter table public.articles enable row level security;
 alter table public.videos enable row level security;
 alter table public.newsletter_subscribers enable row level security;
 alter table public.contact_messages enable row level security;
+alter table public.site_texts enable row level security;
 
 drop policy if exists "Admins can read admin list" on public.admin_users;
 create policy "Admins can read admin list"
@@ -271,6 +286,30 @@ with check (name <> '' and email <> '' and message <> '');
 drop policy if exists "Only admins can read contact messages" on public.contact_messages;
 create policy "Only admins can read contact messages"
 on public.contact_messages for select
+to authenticated
+using (public.is_admin());
+
+drop policy if exists "Site texts are readable by everyone" on public.site_texts;
+create policy "Site texts are readable by everyone"
+on public.site_texts for select
+using (true);
+
+drop policy if exists "Only admins can insert site texts" on public.site_texts;
+create policy "Only admins can insert site texts"
+on public.site_texts for insert
+to authenticated
+with check (public.is_admin());
+
+drop policy if exists "Only admins can update site texts" on public.site_texts;
+create policy "Only admins can update site texts"
+on public.site_texts for update
+to authenticated
+using (public.is_admin())
+with check (public.is_admin());
+
+drop policy if exists "Only admins can delete site texts" on public.site_texts;
+create policy "Only admins can delete site texts"
+on public.site_texts for delete
 to authenticated
 using (public.is_admin());
 

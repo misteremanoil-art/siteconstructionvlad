@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArticleCard } from "@/components/article-card"
 import { getAllArticles } from "@/lib/articles"
 import { cn } from "@/lib/utils"
+import { getSiteTexts } from "@/lib/site-texts"
 
 export const metadata: Metadata = {
   title: "Toate articolele",
@@ -29,6 +30,7 @@ function slugifyCategory(value: string) {
 export default async function ArticolePage({ searchParams }: ArticolePageProps) {
   const params = await searchParams
   const articles = await getAllArticles()
+  const texts = await getSiteTexts(['articles.kicker', 'articles.title', 'articles.description'])
   const categories = Array.from(new Set(articles.map((article) => article.category).filter(Boolean)))
   const activeCategory = params.categorie ?? ''
   const filteredArticles = activeCategory
@@ -42,14 +44,13 @@ export default async function ArticolePage({ searchParams }: ArticolePageProps) 
       {/* Secțiunea de titlu a paginii */}
       <header className="mb-14 max-w-2xl">
         <p className="page-kicker mb-3">
-          Arhivă
+          {texts['articles.kicker']}
         </p>
         <h1 className="page-title">
-          Toate articolele
+          {texts['articles.title']}
         </h1>
         <p className="page-intro mt-4">
-          O colecție de eseuri și reflecții despre rugăciune, credință și redescoperirea
-          comuniunii personale cu Dumnezeu.
+          {texts['articles.description']}
         </p>
       </header>
 

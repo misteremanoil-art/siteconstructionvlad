@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ExternalLink, Radio } from 'lucide-react'
 import { conversations, type ConversationItem } from '@/lib/conversations'
+import { getSiteTexts } from '@/lib/site-texts'
 
 export const metadata: Metadata = {
   title: 'Conversații — Albert-Beniamin Cucu',
@@ -9,23 +10,30 @@ export const metadata: Metadata = {
     'Emisiuni audio, dialoguri și reflecții biblice cu Albert-Beniamin Cucu.',
 }
 
-export default function ConversatiiPage() {
+export const dynamic = 'force-dynamic'
+
+export default async function ConversatiiPage() {
   const featured = conversations[0]
   const rest = conversations.slice(1)
+  const texts = await getSiteTexts([
+    'conversations.kicker',
+    'conversations.title',
+    'conversations.description',
+    'conversations.archive_title',
+  ])
 
   return (
     <main className="page-shell">
       <section className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <div>
           <p className="page-kicker">
-            Audio
+            {texts['conversations.kicker']}
           </p>
           <h1 className="page-title mt-4">
-            Conversații
+            {texts['conversations.title']}
           </h1>
           <p className="page-intro mt-5 max-w-2xl">
-            Emisiuni audio, reflecții biblice și dialoguri despre credință, Scriptură și viața
-            spirituală.
+            {texts['conversations.description']}
           </p>
         </div>
 
@@ -37,7 +45,7 @@ export default function ConversatiiPage() {
           <div>
           <p className="section-kicker">Ascultă</p>
           <h2 className="section-title">
-            Arhivă audio
+            {texts['conversations.archive_title']}
           </h2>
           </div>
         </div>

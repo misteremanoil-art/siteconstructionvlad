@@ -99,6 +99,12 @@ export function AdminDashboard() {
             PDF în articol
           </Link>
           <Link
+            href="/admin/texte"
+            className="secondary-action"
+          >
+            Texte site
+          </Link>
+          <Link
             href="/admin/articole/new"
             className="primary-action"
           >

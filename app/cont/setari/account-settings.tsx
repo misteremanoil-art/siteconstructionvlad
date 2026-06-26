@@ -302,6 +302,12 @@ export function AccountSettings() {
             >
               Gestionează video
             </Link>
+            <Link
+              href="/admin/texte"
+              className="rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground"
+            >
+              Texte site
+            </Link>
           </div>
 
           <form

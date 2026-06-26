@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Play, ExternalLink, CalendarDays, Clock3 } from 'lucide-react'
 import { getAllVideos, getFeaturedVideo, type VideoItem } from '@/lib/videos'
+import { getSiteTexts } from '@/lib/site-texts'
 
 export const metadata: Metadata = {
   title: 'Video — Albert-Beniamin Cucu',
@@ -38,6 +39,12 @@ export default async function VideoPage() {
   const allVideos = await getAllVideos()
   const featuredVideo = (await getFeaturedVideo()) ?? allVideos[0]
   const secondaryVideos = allVideos.filter((video) => video.slug !== featuredVideo?.slug)
+  const texts = await getSiteTexts([
+    'video.kicker',
+    'video.title',
+    'video.description',
+    'video.archive_title',
+  ])
 
   return (
     <main className="bg-background">
@@ -45,14 +52,13 @@ export default async function VideoPage() {
         <div className="page-shell grid gap-10 md:grid-cols-[0.95fr_1.05fr]">
           <div className="flex flex-col justify-center">
             <p className="page-kicker">
-              Video
+              {texts['video.kicker']}
             </p>
             <h1 className="page-title mt-5 max-w-xl">
-              Emisiuni, interviuri și conversații.
+              {texts['video.title']}
             </h1>
             <p className="page-intro mt-6 max-w-lg">
-              Un spațiu dedicat aparițiilor video, dialogurilor publice și emisiunilor în care
-              reflecția teologică se întâlnește cu întrebările comunității.
+              {texts['video.description']}
             </p>
           </div>
 
@@ -67,7 +73,7 @@ export default async function VideoPage() {
             Arhivă video
           </p>
           <h2 className="section-title">
-            Apariții recente
+            {texts['video.archive_title']}
           </h2>
           </div>
         </div>
