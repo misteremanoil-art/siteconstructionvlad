@@ -423,6 +423,26 @@ export const siteTextGroups: { title: string; description: string; texts: SiteTe
         multiline: true,
       },
       {
+        key: 'donations.inline_title',
+        label: 'Titlu donație în conținut',
+        group: 'Donații',
+        defaultValue: 'Susține materialele viitoare',
+      },
+      {
+        key: 'donations.inline_description',
+        label: 'Descriere donație în conținut',
+        group: 'Donații',
+        defaultValue:
+          'Dacă acest material ți-a fost de folos, o contribuție voluntară ajută la documentare, editare și publicarea unor texte, audio-uri și videoclipuri noi.',
+        multiline: true,
+      },
+      {
+        key: 'donations.inline_button',
+        label: 'Buton donație în conținut',
+        group: 'Donații',
+        defaultValue: 'Susține proiectul',
+      },
+      {
         key: 'donations.popup_title',
         label: 'Titlu pop-up',
         group: 'Donații',

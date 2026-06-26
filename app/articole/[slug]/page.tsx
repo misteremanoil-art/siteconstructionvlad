@@ -6,10 +6,11 @@ import { ReadingProgress } from "@/components/reading-progress"
 import { ShareRow } from "@/components/share-row"
 import { ArticleReviews } from "@/components/article-reviews"
 import { AuthorCard } from "@/components/author-card"
-import { ArticleCard } from "@/components/article-card"
 import { ArticleAudioPlayer } from "@/components/article-audio-player"
+import { ContentRecommendations } from "@/components/content-recommendations"
+import { DonationInline } from "@/components/donation-inline"
 import { mdxComponents } from "@/components/mdx-components"
-import { getArticle, getArticleSlugs, getAllArticles } from "@/lib/articles"
+import { getArticle, getArticleSlugs } from "@/lib/articles"
 
 export const dynamic = 'force-dynamic'
 
@@ -46,10 +47,6 @@ export default async function ArticlePage({
   const { slug } = await params
   const article = await getArticle(slug)
   if (!article) notFound()
-
-  const related = (await getAllArticles())
-    .filter((a) => a.slug !== article.slug)
-    .slice(0, 3)
 
   return (
     <>
@@ -120,21 +117,11 @@ export default async function ArticlePage({
             <AuthorCard />
             <ShareRow title={article.title} />
             <ArticleReviews articleSlug={article.slug} />
+            <DonationInline />
           </div>
         </article>
 
-        {related.length > 0 ? (
-          <section className="border-t border-border bg-accent/40">
-            <div className="mx-auto max-w-5xl px-5 py-16">
-              <h2 className="mb-8 font-serif text-3xl">Continuă lectura</h2>
-              <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-                {related.map((a) => (
-                  <ArticleCard key={a.slug} article={a} />
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : null}
+        <ContentRecommendations currentType="article" currentSlug={article.slug} />
       </main>
     </>
   )

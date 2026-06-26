@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ExternalLink, Radio } from 'lucide-react'
+import { ContentRecommendations } from '@/components/content-recommendations'
+import { DonationInline } from '@/components/donation-inline'
 import { conversations, type ConversationItem } from '@/lib/conversations'
 import { getSiteTexts } from '@/lib/site-texts'
 
@@ -68,6 +70,9 @@ export default async function ConversatiiPage() {
           ))}
         </div>
       </section>
+
+      <DonationInline />
+      <ContentRecommendations currentType="audio" currentSlug={featured?.slug} />
     </main>
   )
 }
@@ -80,7 +85,7 @@ function FeaturedConversation({
   sourceLabel: string
 }) {
   return (
-    <article className="surface-card overflow-hidden border-brand/25">
+    <article id={conversation.slug} className="surface-card scroll-mt-28 overflow-hidden border-brand/25">
       <div className="bg-[linear-gradient(135deg,var(--foreground),var(--brand))] px-6 py-7 text-white sm:px-8">
         <div className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/75">
           <Radio className="h-4 w-4" />
@@ -118,7 +123,7 @@ function ConversationCard({
   sourceLabel: string
 }) {
   return (
-    <article className="surface-card group p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md">
+    <article id={conversation.slug} className="surface-card group scroll-mt-28 p-5 transition-all hover:-translate-y-1 hover:border-brand/40 hover:bg-brand/5 hover:shadow-md">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-wide text-muted-foreground">
         <span className="text-brand">{conversation.show}</span>
         <span>{conversation.date}</span>

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, CalendarDays, Clock3, ExternalLink } from 'lucide-react'
+import { ContentRecommendations } from '@/components/content-recommendations'
+import { DonationInline } from '@/components/donation-inline'
 import { VideoReviews } from '@/components/video-reviews'
 import { getVideoBySlug } from '@/lib/videos'
 
@@ -127,8 +129,10 @@ export default async function VideoDetailPage({ params }: VideoDetailPageProps) 
           </div>
 
           <VideoReviews videoSlug={video.slug} />
+          <DonationInline />
         </section>
       </article>
+      <ContentRecommendations currentType="video" currentSlug={video.slug} />
     </main>
   )
 }
