@@ -250,7 +250,7 @@
 }
 .prose-essay .article-section-title {
   break-after: avoid;
-  color: #c21f2f;
+  color: var(--brand);
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 600;
@@ -276,7 +276,7 @@
   font-weight: 600;
 }
 .prose-essay a {
-  color: #b91c1c;
+  color: var(--brand);
   text-decoration: none;
 }
 .prose-essay a:hover {
@@ -290,7 +290,7 @@
 .prose-essay .article-pullquote {
   border: 0;
   break-inside: avoid;
-  color: #c21f2f;
+  color: var(--brand);
   font-family: var(--font-heading);
   font-size: clamp(1.45rem, 3vw, 1.95rem);
   font-style: italic;
@@ -306,7 +306,7 @@
   text-align: center;
 }
 .prose-essay sup {
-  color: #b91c1c;
+  color: var(--brand);
   font-family: var(--font-sans);
   font-size: 0.65em;
   font-weight: 600;
@@ -362,7 +362,7 @@
   line-height: 0.82;
   font-weight: 600;
   padding: 0.08rem 0.45rem 0 0;
-  color: #b91c1c;
+  color: var(--brand);
 }
 
 @media (min-width: 900px) {
