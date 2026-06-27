@@ -131,6 +131,58 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
+    transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+
+  .surface-card:hover {
+    border-color: color-mix(in srgb, var(--gold) 46%, var(--border));
+    box-shadow: 0 22px 70px rgba(20, 33, 30, 0.12);
+    transform: translateY(-3px);
+  }
+
+  .site-logo {
+    transform-origin: left center;
+  }
+
+  .site-logo,
+  .site-logo img,
+  .header-action,
+  .nav-link {
+    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .site-logo:hover {
+    transform: translateY(-1px);
+  }
+
+  .site-logo:hover img {
+    transform: scale(1.05);
+  }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    background: linear-gradient(90deg, var(--brand), var(--gold));
+    bottom: -0.55rem;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease;
+    width: 100%;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .header-action:hover {
+    box-shadow: 0 14px 32px rgba(20, 33, 30, 0.14);
+    transform: translateY(-1px);
   }
 
   .section-header {
@@ -171,7 +223,8 @@
     justify-content: center;
     min-height: 3.7rem;
     padding: 0.95rem 1.55rem;
-    transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    position: relative;
+    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
   }
 
   .primary-action {
@@ -182,7 +235,11 @@
 
   .primary-action:hover,
   .secondary-action:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+  }
+
+  .primary-action:hover {
+    box-shadow: 0 24px 60px rgba(197, 157, 84, 0.36);
   }
 
   .secondary-action {
@@ -192,6 +249,7 @@
 
   .secondary-action:hover {
     border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.08);
     color: var(--gold);
   }
 
@@ -238,6 +296,13 @@
     letter-spacing: 0.16em;
     padding: 0.75rem 1rem;
     text-transform: uppercase;
+    transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+  }
+
+  .hero-pill:hover {
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(246, 223, 159, 0.42);
+    transform: translateY(-1px);
   }
 
   .hero-title {
@@ -280,6 +345,12 @@
   .hero-stats div {
     border-top: 1px solid rgba(255, 255, 255, 0.22);
     padding-top: 1rem;
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  .hero-stats div:hover {
+    border-color: rgba(246, 223, 159, 0.65);
+    transform: translateY(-2px);
   }
 
   .hero-stats strong {
@@ -361,6 +432,29 @@
     background: #151c19;
     min-height: 18rem;
     padding: 2rem;
+    position: relative;
+    transition: background-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+
+  .service-card::before {
+    background: linear-gradient(135deg, rgba(197, 157, 84, 0.2), rgba(159, 190, 168, 0.08));
+    content: "";
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 220ms ease;
+  }
+
+  .service-card:hover {
+    background: #18231f;
+    box-shadow: inset 0 0 0 1px rgba(197, 157, 84, 0.2), 0 24px 60px rgba(0, 0, 0, 0.22);
+    transform: translateY(-4px);
+    z-index: 1;
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
   }
 
   .service-icon {
@@ -370,7 +464,15 @@
     display: inline-flex;
     height: 3.4rem;
     justify-content: center;
+    position: relative;
+    transition: background-color 220ms ease, color 220ms ease, transform 220ms ease;
     width: 3.4rem;
+  }
+
+  .service-card:hover .service-icon {
+    background: rgba(197, 157, 84, 0.24);
+    color: #f6df9f;
+    transform: rotate(-3deg) scale(1.06);
   }
 
   .service-card h3 {
@@ -379,6 +481,7 @@
     font-size: 1.7rem;
     line-height: 1.05;
     margin-top: 1.5rem;
+    position: relative;
   }
 
   .service-card p {
@@ -386,6 +489,7 @@
     font-size: 0.98rem;
     line-height: 1.7;
     margin-top: 1rem;
+    position: relative;
   }
 
   .gallery-grid {
@@ -402,8 +506,25 @@
   .project-card {
     aspect-ratio: 4 / 3;
     border-radius: var(--radius-lg);
+    box-shadow: 0 18px 54px rgba(20, 33, 30, 0.1);
     overflow: hidden;
     position: relative;
+    transform: translateZ(0);
+    transition: box-shadow 240ms ease, transform 240ms ease;
+  }
+
+  .project-card img {
+    transition: transform 550ms ease, filter 240ms ease;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 28px 80px rgba(20, 33, 30, 0.18);
+    transform: translateY(-5px);
+  }
+
+  .project-card:hover img {
+    filter: saturate(1.05) contrast(1.04);
+    transform: scale(1.055);
   }
 
   .project-card-overlay {
@@ -415,6 +536,11 @@
     justify-content: end;
     padding: 1.6rem;
     position: absolute;
+    transition: background 240ms ease;
+  }
+
+  .project-card:hover .project-card-overlay {
+    background: linear-gradient(180deg, rgba(10, 13, 12, 0.02) 8%, rgba(10, 13, 12, 0.9));
   }
 
   .project-card-overlay span {
@@ -467,6 +593,12 @@
     gap: 0.9rem;
     min-height: 4.25rem;
     padding: 1rem 1.2rem;
+    transition: background-color 180ms ease, color 180ms ease, padding-left 180ms ease;
+  }
+
+  .reason-row:hover {
+    background: color-mix(in srgb, var(--brand) 8%, transparent);
+    padding-left: 1.45rem;
   }
 
   .reason-row + .reason-row {
@@ -476,6 +608,12 @@
   .reason-row svg {
     color: var(--brand);
     flex: 0 0 auto;
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .reason-row:hover svg {
+    color: var(--gold);
+    transform: scale(1.08);
   }
 
   .area-contact-grid {
@@ -495,6 +633,14 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: clamp(1.5rem, 4vw, 2.5rem);
+    transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+
+  .area-panel:hover,
+  .contact-panel:hover {
+    border-color: color-mix(in srgb, var(--gold) 42%, var(--border));
+    box-shadow: 0 24px 70px rgba(20, 33, 30, 0.12);
+    transform: translateY(-3px);
   }
 
   .area-panel p {
@@ -517,6 +663,14 @@
     font-size: 0.85rem;
     font-weight: 700;
     padding: 0.62rem 0.95rem;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .area-chip:hover {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--brand-foreground);
+    transform: translateY(-2px);
   }
 
   .contact-panel {
@@ -560,10 +714,72 @@
     gap: 0.75rem;
     min-height: 3.55rem;
     padding: 0.85rem 1rem;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .contact-row:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(197, 157, 84, 0.58);
+    color: var(--gold);
+    transform: translateY(-2px);
   }
 
   .contact-row svg {
     color: var(--gold);
     flex: 0 0 auto;
+    transition: transform 180ms ease;
+  }
+
+  .contact-row:hover svg {
+    transform: scale(1.08);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-logo,
+    .site-logo img,
+    .header-action,
+    .nav-link,
+    .primary-action,
+    .secondary-action,
+    .hero-pill,
+    .hero-stats div,
+    .service-card,
+    .service-card::before,
+    .service-icon,
+    .project-card,
+    .project-card img,
+    .project-card-overlay,
+    .reason-row,
+    .reason-row svg,
+    .area-panel,
+    .contact-panel,
+    .area-chip,
+    .contact-row,
+    .contact-row svg,
+    .surface-card {
+      transition: none;
+    }
+
+    .site-logo:hover,
+    .site-logo:hover img,
+    .header-action:hover,
+    .primary-action:hover,
+    .secondary-action:hover,
+    .hero-pill:hover,
+    .hero-stats div:hover,
+    .service-card:hover,
+    .service-card:hover .service-icon,
+    .project-card:hover,
+    .project-card:hover img,
+    .reason-row:hover,
+    .reason-row:hover svg,
+    .area-panel:hover,
+    .contact-panel:hover,
+    .area-chip:hover,
+    .contact-row:hover,
+    .contact-row:hover svg,
+    .surface-card:hover {
+      transform: none;
+    }
   }
 }

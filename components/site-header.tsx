@@ -27,7 +27,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-base font-medium text-foreground/78 transition-colors hover:text-brand"
+              className="nav-link text-base font-medium text-foreground/78 transition-colors hover:text-brand"
             >
               {item.label}
             </Link>
@@ -37,14 +37,14 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="tel:07466206758"
-            className="hidden h-11 items-center gap-2 rounded-sm bg-brand px-4 text-sm font-bold text-brand-foreground transition-colors hover:bg-foreground sm:inline-flex"
+            className="header-action hidden h-11 items-center gap-2 rounded-sm bg-brand px-4 text-sm font-bold text-brand-foreground transition-colors hover:bg-foreground sm:inline-flex"
           >
             <Phone className="h-4 w-4 shrink-0" />
             <span className="truncate">07466 206758</span>
           </Link>
           <Link
             href="https://wa.me/447466206758"
-            className="hidden h-11 items-center gap-2 rounded-sm border border-border px-4 text-sm font-bold text-foreground transition-colors hover:border-brand hover:text-brand md:inline-flex"
+            className="header-action hidden h-11 items-center gap-2 rounded-sm border border-border px-4 text-sm font-bold text-foreground transition-colors hover:border-brand hover:text-brand md:inline-flex"
           >
             <MessageCircle className="h-4 w-4 shrink-0" />
             <span className="truncate">WhatsApp</span>

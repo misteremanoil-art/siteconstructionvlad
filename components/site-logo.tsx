@@ -11,7 +11,7 @@ export function SiteLogo({
       href="/"
       aria-label="VPPCONSTRUCT LTD"
       className={[
-        'group inline-flex items-center gap-3 text-current transition-colors hover:text-brand',
+        'site-logo group inline-flex items-center gap-3 text-current transition-colors hover:text-brand',
         className,
       ]
         .filter(Boolean)
