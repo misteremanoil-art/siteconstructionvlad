@@ -15,11 +15,11 @@ export async function SiteFooter() {
             <div className="grid gap-2 text-sm text-muted-foreground">
               <p className="inline-flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                Phone number to be added
+                Numar de telefon de adaugat
               </p>
               <p className="inline-flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                Email address to be added
+                Adresa de email de adaugat
               </p>
               <p className="inline-flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
@@ -53,7 +53,7 @@ export async function SiteFooter() {
               © 2026 VPPCONSTRUCT LTD
             </p>
             <p className="mt-2 max-w-4xl text-xs leading-relaxed text-muted-foreground">
-              Current version personalised for VPPCONSTRUCT LTD, based around an all-round building offer for Edgware and surrounding London areas.
+              Site de prezentare pentru servicii de constructii, renovari si amenajari in Edgware si zonele apropiate din Londra.
             </p>
             <nav className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
               <Link href="/termeni" className="transition-colors hover:text-brand">

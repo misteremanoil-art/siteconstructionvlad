@@ -273,10 +273,10 @@ export default function HomePage() {
             <div className="surface-card contact-highlight p-7 sm:p-8" id="contact">
               <p className="section-kicker">Contact</p>
               <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">
-                Make it easy for local clients to get in touch.
+                Contact rapid pentru lucrari in Edgware si zonele apropiate.
               </h2>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                I removed the made-up phone number and email so the page stays clean and truthful until you send the real contact details.
+                Trimite datele reale de telefon si email cand le ai, iar sectiunea poate fi actualizata imediat.
               </p>
               <div className="mt-7 grid gap-3">
                 <div className="contact-row">
@@ -289,7 +289,7 @@ export default function HomePage() {
                 </div>
                 <div className="contact-row">
                   <Phone className="h-4 w-4" />
-                  <span>Phone number to be added</span>
+                  <span>Numar de telefon de adaugat</span>
                 </div>
               </div>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">

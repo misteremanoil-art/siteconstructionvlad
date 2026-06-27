@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 export const metadata: Metadata = {
   title: 'Politica de cookie',
   description:
-    'Informații despre cookie-uri și tehnologii similare folosite pe site-ul Albert-Beniamin Cucu.',
+    'Informații despre cookie-uri și tehnologii similare folosite pe site-ul VPPCONSTRUCT LTD.',
   alternates: {
     canonical: '/politica-cookie',
   },
@@ -26,9 +26,8 @@ export default function CookiePolicyPage() {
         </LegalSection>
 
         <LegalSection title="2. Cookie-uri necesare">
-          Site-ul poate folosi cookie-uri sau stocare locală necesare pentru autentificare, sesiuni,
-          preferința de temă, închiderea pop-up-ului de donații și funcții similare. Acestea ajută
-          site-ul să funcționeze corect și să nu afișeze repetat aceleași mesaje.
+          Site-ul poate folosi cookie-uri sau stocare locală pentru funcționare, preferința de temă
+          și setări tehnice similare. Acestea ajută site-ul să funcționeze corect.
         </LegalSection>
 
         <LegalSection title="3. Analitice și servicii externe">
@@ -37,16 +36,14 @@ export default function CookiePolicyPage() {
           informații despre performanță. Aceste date ajută la înțelegerea funcționării site-ului.
         </LegalSection>
 
-        <LegalSection title="4. Conținut embed">
-          Materialele video sau audio pot proveni de pe platforme externe. Când interacționezi cu
-          aceste materiale, platformele respective pot folosi propriile cookie-uri și politici de
-          confidențialitate.
+        <LegalSection title="4. Servicii externe">
+          Dacă site-ul include hărți, imagini, fonturi sau alte resurse încărcate din servicii
+          externe, acestea pot folosi propriile tehnologii de măsurare și securitate.
         </LegalSection>
 
         <LegalSection title="5. Controlul cookie-urilor">
-          Poți șterge sau bloca cookie-urile din setările browserului. Unele funcții, precum
-          autentificarea sau păstrarea preferințelor, pot să nu mai funcționeze corect dacă sunt
-          dezactivate complet.
+          Poți șterge sau bloca cookie-urile din setările browserului. Unele preferințe sau funcții
+          de bază pot să nu mai funcționeze corect dacă sunt dezactivate complet.
         </LegalSection>
 
         <LegalSection title="6. Actualizări">
