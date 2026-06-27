@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: '/placeholder.jpg',
+        url: '/images/vppconstruct-hero.png',
         width: 1200,
         height: 630,
         alt: siteName,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'VPPCONSTRUCT LTD',
     description: siteDescription,
-    images: ['/placeholder.jpg'],
+    images: ['/images/vppconstruct-hero.png'],
   },
   icons: {
     icon: [
@@ -93,7 +93,7 @@ export default function RootLayout({
         '@id': `${getSiteUrl()}/#organization`,
         name: siteName,
         url: getSiteUrl(),
-        image: absoluteUrl('/placeholder.jpg'),
+        image: absoluteUrl('/images/vppconstruct-hero.png'),
         description: siteDescription,
         areaServed: 'Edgware, London',
       },
