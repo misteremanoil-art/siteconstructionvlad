@@ -19,7 +19,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-[#fbfaf6] text-foreground shadow-sm">
-      <div className="mx-auto flex h-24 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-3 px-4 sm:h-24 sm:px-6">
         <SiteLogo className="shrink-0" />
 
         <nav className="hidden items-center gap-9 lg:flex">
@@ -51,7 +51,7 @@ export function SiteHeader() {
           </Link>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-border text-foreground/80 lg:hidden"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-border text-foreground/80 lg:hidden sm:h-11 sm:w-11"
             aria-label="Menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
