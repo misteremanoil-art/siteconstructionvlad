@@ -17,9 +17,14 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.co.uk
 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=google-search-console-verification-code
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-domain.co.uk
+RESEND_API_KEY=re_xxxxxxxxx
+CONTACT_TO_EMAIL=quotes@example.com
+CONTACT_FROM_EMAIL=VPPCONSTRUCT LTD <hello@your-domain.co.uk>
 ```
 
 Use either Google Analytics or Plausible. After the final public domain is connected, add the domain in Google Search Console, verify it, submit `/sitemap.xml`, and request indexing for the homepage.
+
+The contact form uses the `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, and `CONTACT_FROM_EMAIL` variables. Use a verified sender/domain in Resend before enabling the form in production.
 
 ## Getting Started
 
