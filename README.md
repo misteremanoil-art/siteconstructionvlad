@@ -6,6 +6,21 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v
 
 This repository contains a clean presentation website for VPPCONSTRUCT LTD.
 
+## SEO setup
+
+The site includes local SEO metadata, LocalBusiness schema, Open Graph/Twitter image metadata, favicon icons, a web manifest, `robots.txt`, and `sitemap.xml`.
+
+Set these environment variables in Vercel when available:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.co.uk
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=google-search-console-verification-code
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your-domain.co.uk
+```
+
+Use either Google Analytics or Plausible. After the final public domain is connected, add the domain in Google Search Console, verify it, submit `/sitemap.xml`, and request indexing for the homepage.
+
 ## Getting Started
 
 First, run the development server:

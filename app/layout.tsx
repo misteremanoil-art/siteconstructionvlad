@@ -1,16 +1,28 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { BackToTop } from '@/components/back-to-top'
-import { absoluteUrl, getSiteUrl, siteDescription, siteName } from '@/lib/seo'
+import {
+  absoluteUrl,
+  getSiteUrl,
+  phoneInternational,
+  primaryArea,
+  serviceAreas,
+  services,
+  siteDescription,
+  siteKeywords,
+  siteName,
+  siteTitle,
+} from '@/lib/seo'
 import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: 'VPPCONSTRUCT LTD',
+    default: siteTitle,
     template: '%s | VPPCONSTRUCT LTD',
   },
   description: siteDescription,
@@ -21,20 +33,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  keywords: [
-    'builders edgware',
-    'construction company london',
-    'renovations edgware',
-    'general building services',
-    'vppconstruct ltd',
-    'edgware builders',
-  ],
+  keywords: siteKeywords,
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_GB',
     url: '/',
     siteName,
-    title: 'VPPCONSTRUCT LTD',
+    title: siteTitle,
     description: siteDescription,
     images: [
       {
@@ -47,10 +55,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VPPCONSTRUCT LTD',
+    title: siteTitle,
     description: siteDescription,
     images: ['/images/vppconstruct-hero.png'],
   },
+  category: 'construction',
   icons: {
     icon: [
       { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
@@ -74,28 +83,56 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const siteUrl = getSiteUrl()
+  const gaId = process.env.NEXT_PUBLIC_GA_ID
+  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'WebSite',
-        '@id': `${getSiteUrl()}/#website`,
-        url: getSiteUrl(),
+        '@id': `${siteUrl}/#website`,
+        url: siteUrl,
         name: siteName,
         description: siteDescription,
         inLanguage: 'en-GB',
         publisher: {
-          '@id': `${getSiteUrl()}/#organization`,
+          '@id': `${siteUrl}/#localbusiness`,
         },
       },
       {
-        '@type': 'Organization',
-        '@id': `${getSiteUrl()}/#organization`,
+        '@type': ['LocalBusiness', 'HomeAndConstructionBusiness'],
+        '@id': `${siteUrl}/#localbusiness`,
         name: siteName,
-        url: getSiteUrl(),
-        image: absoluteUrl('/images/vppconstruct-hero.png'),
+        url: siteUrl,
+        logo: absoluteUrl('/images/vpp-logo.jpg'),
+        image: [
+          absoluteUrl('/images/vppconstruct-hero.png'),
+          absoluteUrl('/images/vppconstruct-extension.png'),
+          absoluteUrl('/images/vppconstruct-interior.png'),
+        ],
         description: siteDescription,
-        areaServed: 'Edgware, London',
+        telephone: phoneInternational,
+        priceRange: '££',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Edgware',
+          addressRegion: 'London',
+          addressCountry: 'GB',
+        },
+        areaServed: serviceAreas.map((area) => ({
+          '@type': 'Place',
+          name: area,
+        })),
+        makesOffer: services.map((service) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: service,
+            areaServed: primaryArea,
+          },
+        })),
       },
     ],
   }
@@ -125,6 +162,27 @@ export default function RootLayout({
           <BackToTop />
         </ThemeProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {gaId ? (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaId}');
+              `}
+            </Script>
+          </>
+        ) : null}
+        {plausibleDomain ? (
+          <Script
+            defer
+            data-domain={plausibleDomain}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   )
