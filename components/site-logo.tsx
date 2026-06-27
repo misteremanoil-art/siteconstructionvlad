@@ -28,7 +28,7 @@ export function SiteLogo({
         />
       </span>
       <span className="flex min-w-0 flex-col leading-none">
-        <span className="hidden text-[0.68rem] uppercase tracking-[0.22em] text-[#c59d54] sm:block">Construction Companies</span>
+        <span className="hidden text-[0.68rem] uppercase tracking-[0.22em] text-[#c59d54] sm:block">Construction Company</span>
         <span className="mt-0.5 max-w-[9.5rem] truncate text-sm font-black tracking-[0.03em] text-current sm:mt-1 sm:max-w-none sm:text-lg">VPPCONSTRUCT LTD</span>
       </span>
     </Link>
