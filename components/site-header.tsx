@@ -43,7 +43,7 @@ export function SiteHeader() {
             <span className="truncate">07466 206758</span>
           </Link>
           <Link
-            href="https://wa.me/447466206758"
+            href="https://wa.me/447466206758?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20building%2Frenovation%20work%20in%20London."
             className="header-action hidden h-11 items-center gap-2 rounded-sm border border-border px-4 text-sm font-bold text-foreground transition-colors hover:border-brand hover:text-brand md:inline-flex"
           >
             <MessageCircle className="h-4 w-4 shrink-0" />
@@ -83,7 +83,7 @@ export function SiteHeader() {
                 Call 07466 206758
               </Link>
               <Link
-                href="https://wa.me/447466206758"
+                href="https://wa.me/447466206758?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20building%2Frenovation%20work%20in%20London."
                 onClick={() => setMenuOpen(false)}
                 className="rounded-sm border border-border px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted"
               >

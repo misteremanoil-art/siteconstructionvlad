@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   Hammer,
   Home,
-  Mail,
   MapPin,
   MessageCircle,
   Phone,
@@ -81,7 +80,10 @@ export default function HomePage() {
                   Request a free quote
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="https://wa.me/447466206758" className="secondary-action">
+                <Link
+                  href="https://wa.me/447466206758?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20building%2Frenovation%20work%20in%20London."
+                  className="secondary-action"
+                >
                   <MessageCircle className="h-4 w-4" />
                   Message me on WhatsApp
                 </Link>
@@ -234,14 +236,13 @@ export default function HomePage() {
               <Phone className="h-5 w-5" />
               <span>07466 206758</span>
             </a>
-            <a className="contact-row" href="https://wa.me/447466206758">
+            <a
+              className="contact-row"
+              href="https://wa.me/447466206758?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20building%2Frenovation%20work%20in%20London."
+            >
               <MessageCircle className="h-5 w-5" />
               <span>Message me on WhatsApp</span>
             </a>
-            <div className="contact-row">
-              <Mail className="h-5 w-5" />
-              <span>Email address to be added</span>
-            </div>
             <div className="contact-row">
               <ShieldCheck className="h-5 w-5" />
               <span>Domestic and commercial work</span>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { MapPin, MessageCircle, Phone } from 'lucide-react'
 import { SiteLogo } from '@/components/site-logo'
 
 export async function SiteFooter() {
@@ -21,13 +21,12 @@ export async function SiteFooter() {
               </p>
               <p className="inline-flex items-center gap-2">
                 <MessageCircle className="h-4 w-4" />
-                <a href="https://wa.me/447466206758" className="transition-colors hover:text-brand">
+                <a
+                  href="https://wa.me/447466206758?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20building%2Frenovation%20work%20in%20London."
+                  className="transition-colors hover:text-brand"
+                >
                   Message me on WhatsApp
                 </a>
-              </p>
-              <p className="inline-flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                Email address coming soon
               </p>
               <p className="inline-flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
