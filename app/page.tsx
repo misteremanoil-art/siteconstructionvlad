@@ -14,7 +14,6 @@ import {
   Sparkles,
   Wrench,
 } from 'lucide-react'
-import { ContactForm } from '@/components/contact-form'
 
 const services = [
   {
@@ -272,10 +271,9 @@ export default function HomePage() {
           <p className="section-kicker">Contact</p>
           <h2>Request a free quote.</h2>
           <p>
-            Send a few details about the project and we will get back to you shortly. You can also
-            call directly or message on WhatsApp if you prefer a quick conversation.
+            Call directly or send a WhatsApp message with a few details about the project, location
+            and preferred timing.
           </p>
-          <ContactForm />
           <div className="contact-list">
             <div className="contact-row">
               <MapPin className="h-5 w-5" />
