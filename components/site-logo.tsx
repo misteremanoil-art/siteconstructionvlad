@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 
 export function SiteLogo({
   className,
@@ -10,10 +9,12 @@ export function SiteLogo({
     <Link
       href="/"
       aria-label="VPPCONSTRUCT LTD"
-      className={cn(
+      className={[
         'group inline-flex items-center gap-3 text-current transition-colors hover:text-brand',
         className,
-      )}
+      ]
+        .filter(Boolean)
+        .join(' ')}
     >
       <span
         aria-hidden="true"
