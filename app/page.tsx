@@ -81,9 +81,9 @@ export default function HomePage() {
                   Request a free quote
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="#contact" className="secondary-action">
+                <Link href="https://wa.me/447466206758" className="secondary-action">
                   <MessageCircle className="h-4 w-4" />
-                  Contact us
+                  Message me on WhatsApp
                 </Link>
               </div>
               <div className="hero-stats" aria-label="Company highlights">
@@ -221,18 +221,22 @@ export default function HomePage() {
           <p className="section-kicker">Contact</p>
           <h2>Request a free quote.</h2>
           <p>
-            Add the real phone number and email when ready. Until then, the page stays clean and
-            honest without fake contact details.
+            Call directly or send a WhatsApp message with a few details about the project, location
+            and preferred timing.
           </p>
           <div className="contact-list">
             <div className="contact-row">
               <MapPin className="h-5 w-5" />
               <span>Edgware, London</span>
             </div>
-            <div className="contact-row">
+            <a className="contact-row" href="tel:07466206758">
               <Phone className="h-5 w-5" />
-              <span>Phone number to be added</span>
-            </div>
+              <span>07466 206758</span>
+            </a>
+            <a className="contact-row" href="https://wa.me/447466206758">
+              <MessageCircle className="h-5 w-5" />
+              <span>Message me on WhatsApp</span>
+            </a>
             <div className="contact-row">
               <Mail className="h-5 w-5" />
               <span>Email address to be added</span>

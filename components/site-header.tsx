@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, Phone, X } from 'lucide-react'
+import { Menu, MessageCircle, Phone, X } from 'lucide-react'
 import { SiteLogo } from '@/components/site-logo'
 
 const NAV = [
@@ -36,11 +36,18 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/#contact"
+            href="tel:07466206758"
             className="hidden h-11 items-center gap-2 rounded-sm bg-brand px-4 text-sm font-bold text-brand-foreground transition-colors hover:bg-foreground sm:inline-flex"
           >
             <Phone className="h-4 w-4 shrink-0" />
-            <span className="truncate">Request a quote</span>
+            <span className="truncate">07466 206758</span>
+          </Link>
+          <Link
+            href="https://wa.me/447466206758"
+            className="hidden h-11 items-center gap-2 rounded-sm border border-border px-4 text-sm font-bold text-foreground transition-colors hover:border-brand hover:text-brand md:inline-flex"
+          >
+            <MessageCircle className="h-4 w-4 shrink-0" />
+            <span className="truncate">WhatsApp</span>
           </Link>
           <button
             type="button"
@@ -69,11 +76,18 @@ export function SiteHeader() {
                 </Link>
               ))}
               <Link
-                href="/#contact"
+                href="tel:07466206758"
                 onClick={() => setMenuOpen(false)}
                 className="mt-2 rounded-sm border border-border px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted"
               >
-                Request a quote
+                Call 07466 206758
+              </Link>
+              <Link
+                href="https://wa.me/447466206758"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-sm border border-border px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted"
+              >
+                Message me on WhatsApp
               </Link>
             </nav>
           </div>

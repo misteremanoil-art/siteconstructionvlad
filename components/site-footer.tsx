@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { SiteLogo } from '@/components/site-logo'
 
 export async function SiteFooter() {
@@ -15,7 +15,15 @@ export async function SiteFooter() {
             <div className="grid gap-2 text-sm text-[#c9c1b0]">
               <p className="inline-flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                Numar de telefon de adaugat
+                <a href="tel:07466206758" className="transition-colors hover:text-brand">
+                  07466 206758
+                </a>
+              </p>
+              <p className="inline-flex items-center gap-2">
+                <MessageCircle className="h-4 w-4" />
+                <a href="https://wa.me/447466206758" className="transition-colors hover:text-brand">
+                  Message me on WhatsApp
+                </a>
               </p>
               <p className="inline-flex items-center gap-2">
                 <Mail className="h-4 w-4" />
