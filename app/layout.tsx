@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: 'website',
-    locale: 'ro_RO',
+    locale: 'en_GB',
     url: '/',
     siteName,
     title: 'VPPCONSTRUCT LTD',
@@ -83,7 +83,7 @@ export default function RootLayout({
         url: getSiteUrl(),
         name: siteName,
         description: siteDescription,
-        inLanguage: 'ro-RO',
+        inLanguage: 'en-GB',
         publisher: {
           '@id': `${getSiteUrl()}/#organization`,
         },
@@ -102,7 +102,7 @@ export default function RootLayout({
 
   return (
     <html
-      lang="ro"
+      lang="en"
       suppressHydrationWarning
       className="bg-background"
     >

@@ -18,7 +18,7 @@ export function BackToTop() {
   return (
     <button
       type="button"
-      aria-label="Înapoi sus"
+      aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       className="fixed bottom-6 right-6 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-lg transition-colors hover:border-brand hover:text-brand"
     >

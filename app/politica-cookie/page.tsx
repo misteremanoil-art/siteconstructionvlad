@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Politica de cookie',
-  description:
-    'Informații despre cookie-uri și tehnologii similare folosite pe site-ul VPPCONSTRUCT LTD.',
+  title: 'Cookie policy',
+  description: 'How cookies and similar technologies may be used on the VPPCONSTRUCT LTD website.',
   alternates: {
     canonical: '/politica-cookie',
   },
@@ -14,41 +13,39 @@ export default function CookiePolicyPage() {
   return (
     <main className="page-shell max-w-4xl">
       <p className="page-kicker">Legal</p>
-      <h1 className="page-title mt-3">Politica de cookie</h1>
+      <h1 className="page-title mt-3">Cookie policy</h1>
       <p className="page-intro mt-5">
-        Această politică explică folosirea cookie-urilor și a tehnologiilor similare pe site.
+        This page explains how cookies and similar technologies may be used on the website.
       </p>
 
       <section className="surface-card mt-10 space-y-7 p-6 leading-relaxed text-muted-foreground sm:p-8">
-        <LegalSection title="1. Ce sunt cookie-urile">
-          Cookie-urile sunt fișiere mici salvate în browser pentru ca un site să poată funcționa
-          corect, să rețină anumite preferințe sau să ofere funcții precum autentificarea.
+        <LegalSection title="1. What cookies are">
+          Cookies are small files stored in your browser. They help websites work properly, remember
+          basic preferences and support security or performance features.
         </LegalSection>
 
-        <LegalSection title="2. Cookie-uri necesare">
-          Site-ul poate folosi cookie-uri sau stocare locală pentru funcționare, preferința de temă
-          și setări tehnice similare. Acestea ajută site-ul să funcționeze corect.
+        <LegalSection title="2. Essential cookies">
+          The website may use cookies or local storage for basic operation, theme preference and
+          similar technical settings.
         </LegalSection>
 
-        <LegalSection title="3. Analitice și servicii externe">
-          În funcție de mediul de publicare, site-ul poate folosi servicii de analiză sau hosting
-          care colectează date tehnice agregate, precum pagini vizitate, tip de browser sau
-          informații despre performanță. Aceste date ajută la înțelegerea funcționării site-ului.
+        <LegalSection title="3. Analytics and hosting">
+          Depending on the publishing setup, hosting or analytics services may collect technical
+          information such as visited pages, browser type and performance data.
         </LegalSection>
 
-        <LegalSection title="4. Servicii externe">
-          Dacă site-ul include hărți, imagini, fonturi sau alte resurse încărcate din servicii
-          externe, acestea pot folosi propriile tehnologii de măsurare și securitate.
+        <LegalSection title="4. External services">
+          If the website uses maps, fonts, images or other external resources, those providers may
+          use their own measurement and security technologies.
         </LegalSection>
 
-        <LegalSection title="5. Controlul cookie-urilor">
-          Poți șterge sau bloca cookie-urile din setările browserului. Unele preferințe sau funcții
-          de bază pot să nu mai funcționeze corect dacă sunt dezactivate complet.
+        <LegalSection title="5. Managing cookies">
+          You can block or delete cookies in your browser settings. Some preferences or basic site
+          functions may not work as expected if cookies are fully disabled.
         </LegalSection>
 
-        <LegalSection title="6. Actualizări">
-          Politica de cookie poate fi actualizată atunci când se schimbă funcționalitățile site-ului
-          sau serviciile tehnice folosite.
+        <LegalSection title="6. Updates">
+          This policy may be updated when the website features or technical services change.
         </LegalSection>
       </section>
     </main>

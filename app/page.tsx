@@ -105,27 +105,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-shell split-section" id="despre">
+      <section className="page-shell split-section" id="about">
         <div>
           <p className="section-kicker">About VPPCONSTRUCT LTD</p>
           <h2 className="section-title">
-            A local building team for complete renovations and practical construction work.
+            A practical building team for homes and commercial spaces.
           </h2>
         </div>
         <div className="section-copy">
           <p>
-            The site is now focused on VPPCONSTRUCT LTD as a broad, capable building company in
-            Edgware. The message is simple: one team for renovations, extensions, kitchens,
-            bathrooms, exterior work and general building jobs.
+            VPPCONSTRUCT LTD helps clients in and around Edgware with the kind of building work that
+            needs care, coordination and a steady pair of hands. From full renovations to smaller
+            repairs, the aim is to keep the job clear, tidy and properly finished.
           </p>
           <p>
-            This keeps the business away from the old content structure and presents it like a clean,
-            premium construction website built for enquiries.
+            You can get in touch for kitchens, bathrooms, extensions, interior upgrades, exterior
+            improvements and general construction work. If the job needs a reliable builder, it is
+            worth a quick conversation.
           </p>
         </div>
       </section>
 
-      <section className="dark-section" id="servicii">
+      <section className="dark-section" id="services">
         <div className="page-shell">
           <div className="section-header">
             <div>
@@ -151,7 +152,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-shell" id="proiecte">
+      <section className="page-shell" id="work">
         <div className="section-header">
           <div>
             <p className="section-kicker">Project focus</p>
@@ -177,7 +178,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="feature-band" id="proces">
+      <section className="feature-band" id="why-us">
         <div className="page-shell feature-grid">
           <div>
             <p className="section-kicker">Why choose us</p>
@@ -185,8 +186,8 @@ export default function HomePage() {
               Clear stages, tidy execution and flexible construction support.
             </h2>
             <p className="feature-copy">
-              From the first conversation to final handover, the work is presented around practical
-              planning, realistic quotations and consistent attention to finishing details.
+              From the first conversation to final handover, the focus is on practical planning,
+              realistic quotations and finishing details that look right in everyday use.
             </p>
           </div>
           <div className="reason-list">
@@ -200,13 +201,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-shell area-contact-grid" id="zona">
+      <section className="page-shell area-contact-grid" id="area">
         <div className="area-panel">
           <p className="section-kicker">Service area</p>
           <h2 className="section-title">Based around Edgware and nearby London areas.</h2>
           <p>
-            The site keeps the local focus clear, while still showing that VPPCONSTRUCT LTD can
-            support different types of residential and commercial work.
+            Most enquiries come from Edgware and nearby parts of London. If your project is close by,
+            send a message and the scope can be checked quickly.
           </p>
           <div className="area-chips">
             {coverage.map((area) => (

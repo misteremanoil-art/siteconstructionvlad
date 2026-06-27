@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Politica de confidențialitate',
-  description:
-    'Informații despre datele personale prelucrate pe site-ul VPPCONSTRUCT LTD.',
+  title: 'Privacy policy',
+  description: 'How VPPCONSTRUCT LTD handles basic website and contact information.',
   alternates: {
     canonical: '/confidentialitate',
   },
@@ -14,49 +13,46 @@ export default function PrivacyPage() {
   return (
     <main className="page-shell max-w-4xl">
       <p className="page-kicker">Legal</p>
-      <h1 className="page-title mt-3">Politica de confidențialitate</h1>
+      <h1 className="page-title mt-3">Privacy policy</h1>
       <p className="page-intro mt-5">
-        Această pagină explică ce date pot fi colectate atunci când folosești site-ul și cum sunt
-        utilizate.
+        This page explains what information may be handled when you visit the website or contact
+        VPPCONSTRUCT LTD.
       </p>
 
       <section className="surface-card mt-10 space-y-7 p-6 leading-relaxed text-muted-foreground sm:p-8">
-        <LegalSection title="1. Date colectate">
-          Site-ul este o pagină de prezentare și nu oferă conturi de utilizator, comentarii,
-          newsletter sau formulare conectate la o bază de date. Pot fi prelucrate doar date tehnice
-          minime generate de browser, hosting sau serviciile de analiză activate de platforma de
-          publicare.
+        <LegalSection title="1. Information we may receive">
+          This is a simple presentation website. It does not offer user accounts, comments,
+          newsletters or database-backed forms. The website may still process basic technical data
+          created by your browser, hosting provider or analytics tools.
         </LegalSection>
 
-        <LegalSection title="2. Scopul prelucrării">
-          Datele tehnice sunt folosite pentru livrarea paginii, securitate, performanță și
-          înțelegerea funcționării site-ului.
+        <LegalSection title="2. How the information is used">
+          Technical information is used to deliver the website, keep it secure, understand basic
+          performance and make sure pages load properly.
         </LegalSection>
 
-        <LegalSection title="3. Servicii terțe">
-          Site-ul poate folosi servicii de hosting, deploy și analiză tehnică. Aceste servicii pot
-          procesa informații standard precum adresa IP, tipul de browser, pagina accesată și timpul
-          de încărcare.
+        <LegalSection title="3. Contact details">
+          If you call or send a WhatsApp message, the information you choose to share will be used
+          to respond to your enquiry and discuss the work you are asking about.
         </LegalSection>
 
-        <LegalSection title="4. Contact">
-          Dacă alegi să contactezi VPPCONSTRUCT LTD prin telefon, email sau alt canal publicat pe
-          site, datele trimise voluntar vor fi folosite pentru a răspunde solicitării tale.
+        <LegalSection title="4. Third-party services">
+          Hosting, deployment and analytics services may process standard technical details such as
+          IP address, browser type, pages visited and loading times.
         </LegalSection>
 
-        <LegalSection title="5. Păstrarea datelor">
-          Datele sunt păstrate doar atât timp cât este necesar pentru scopul pentru care au fost
-          furnizate sau pentru îndeplinirea obligațiilor legale aplicabile.
+        <LegalSection title="5. Keeping information">
+          Information is kept only for as long as needed for the reason it was provided, or where
+          there is a legal or practical reason to keep a record.
         </LegalSection>
 
-        <LegalSection title="6. Drepturile tale">
-          Poți solicita accesul, corectarea sau ștergerea datelor tale, în limitele permise de lege
-          și de funcționalitățile tehnice ale site-ului.
+        <LegalSection title="6. Your rights">
+          You can ask for access, correction or deletion of personal information where the law gives
+          you that right and where the request can reasonably be fulfilled.
         </LegalSection>
 
-        <LegalSection title="7. Întrebări">
-          Pentru întrebări despre confidențialitate sau date personale, poți folosi datele de
-          contact publicate pe site.
+        <LegalSection title="7. Questions">
+          For privacy questions, use the contact details published on the website.
         </LegalSection>
       </section>
     </main>

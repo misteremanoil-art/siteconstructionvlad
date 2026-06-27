@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Termeni și condiții',
-  description:
-    'Termenii de utilizare pentru site-ul VPPCONSTRUCT LTD.',
+  title: 'Terms and conditions',
+  description: 'Terms for using the VPPCONSTRUCT LTD website.',
   alternates: {
     canonical: '/termeni',
   },
@@ -14,41 +13,41 @@ export default function TermsPage() {
   return (
     <main className="page-shell max-w-4xl">
       <p className="page-kicker">Legal</p>
-      <h1 className="page-title mt-3">Termeni și condiții</h1>
+      <h1 className="page-title mt-3">Terms and conditions</h1>
       <p className="page-intro mt-5">
-        Acești termeni stabilesc condițiile generale de utilizare a site-ului VPPCONSTRUCT LTD.
+        These terms explain how this website can be used and how enquiries should be understood.
       </p>
 
       <section className="surface-card mt-10 space-y-7 p-6 leading-relaxed text-muted-foreground sm:p-8">
-        <LegalSection title="1. Utilizarea site-ului">
-          Site-ul este o prezentare online a serviciilor VPPCONSTRUCT LTD. Îl poți accesa pentru
-          informații despre servicii, zonă de lucru și modalități de contact.
+        <LegalSection title="1. Using the website">
+          The website presents VPPCONSTRUCT LTD and its building, renovation and fit-out services.
+          You may use it to read about the services, check the working area and get in touch.
         </LegalSection>
 
-        <LegalSection title="2. Drepturi de autor">
-          Textele, structura vizuală și materialele originale publicate pe site aparțin
-          VPPCONSTRUCT LTD sau sunt folosite cu drept de utilizare. Reproducerea sau folosirea
-          comercială necesită acord scris.
+        <LegalSection title="2. Website content">
+          Text, layout, images and original materials on the website belong to VPPCONSTRUCT LTD or
+          are used with permission. Please do not copy or reuse them commercially without written
+          agreement.
         </LegalSection>
 
-        <LegalSection title="3. Informații despre servicii">
-          Informațiile de pe site au rol de prezentare generală. Detaliile finale despre lucrări,
-          costuri, termene și disponibilitate se stabilesc direct cu echipa, în funcție de proiect.
+        <LegalSection title="3. Service information">
+          The information on the website is general. Final details about cost, timing, materials and
+          availability are agreed directly after the project has been discussed.
         </LegalSection>
 
-        <LegalSection title="4. Solicitări și oferte">
-          O solicitare trimisă prin datele de contact publicate pe site nu reprezintă automat o
-          comandă confirmată. Orice lucrare se stabilește prin comunicare directă și acord explicit.
+        <LegalSection title="4. Enquiries and quotes">
+          Sending an enquiry does not automatically create a confirmed booking. Work is only agreed
+          once the scope, price and timing have been confirmed directly.
         </LegalSection>
 
-        <LegalSection title="5. Limitarea răspunderii">
-          Conținutul este pregătit cu atenție, dar pot exista modificări, erori sau informații care
-          se actualizează în timp. Verifică direct detaliile importante înainte de a lua o decizie.
+        <LegalSection title="5. Accuracy">
+          The website is kept as clear and accurate as possible, but details may change over time.
+          Always confirm important information before making a decision.
         </LegalSection>
 
-        <LegalSection title="6. Modificări">
-          Acești termeni pot fi actualizați periodic. Versiunea publicată pe această pagină este cea
-          aplicabilă la momentul accesării site-ului.
+        <LegalSection title="6. Updates">
+          These terms may be updated when the website or services change. The version shown on this
+          page is the current version.
         </LegalSection>
       </section>
     </main>

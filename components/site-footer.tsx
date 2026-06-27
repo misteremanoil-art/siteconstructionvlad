@@ -27,7 +27,7 @@ export async function SiteFooter() {
               </p>
               <p className="inline-flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                Adresa de email de adaugat
+                Email address coming soon
               </p>
               <p className="inline-flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
@@ -37,17 +37,17 @@ export async function SiteFooter() {
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-[#c9c1b0] md:max-w-md md:justify-end">
-            <Link href="/#despre" className="transition-colors hover:text-brand">
-              Despre
+            <Link href="/#about" className="transition-colors hover:text-brand">
+              About
             </Link>
-            <Link href="/#servicii" className="transition-colors hover:text-brand">
-              Servicii
+            <Link href="/#services" className="transition-colors hover:text-brand">
+              Services
             </Link>
-            <Link href="/#proiecte" className="transition-colors hover:text-brand">
-              Proiecte
+            <Link href="/#work" className="transition-colors hover:text-brand">
+              Work
             </Link>
-            <Link href="/#proces" className="transition-colors hover:text-brand">
-              Proces
+            <Link href="/#why-us" className="transition-colors hover:text-brand">
+              Why us
             </Link>
             <Link href="/#contact" className="transition-colors hover:text-brand">
               Contact
@@ -61,17 +61,17 @@ export async function SiteFooter() {
               © 2026 VPPCONSTRUCT LTD
             </p>
             <p className="mt-2 max-w-4xl text-xs leading-relaxed text-[#c9c1b0]">
-              Site de prezentare pentru servicii de constructii, renovari si amenajari in Edgware si zonele apropiate din Londra.
+              Building, renovation and fit-out services in Edgware and the surrounding London areas.
             </p>
             <nav className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[#c9c1b0]">
               <Link href="/termeni" className="transition-colors hover:text-brand">
-                Termeni
+                Terms
               </Link>
               <Link href="/confidentialitate" className="transition-colors hover:text-brand">
-                Confidențialitate
+                Privacy
               </Link>
               <Link href="/politica-cookie" className="transition-colors hover:text-brand">
-                Politică cookie
+                Cookie policy
               </Link>
             </nav>
           </div>

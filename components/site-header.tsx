@@ -6,11 +6,11 @@ import { Menu, MessageCircle, Phone, X } from 'lucide-react'
 import { SiteLogo } from '@/components/site-logo'
 
 const NAV = [
-  { href: '/#despre', label: 'About' },
-  { href: '/#servicii', label: 'Services' },
-  { href: '/#proiecte', label: 'Work' },
-  { href: '/#proces', label: 'Why us' },
-  { href: '/#zona', label: 'Area' },
+  { href: '/#about', label: 'About' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#work', label: 'Work' },
+  { href: '/#why-us', label: 'Why us' },
+  { href: '/#area', label: 'Area' },
   { href: '/#contact', label: 'Contact' },
 ]
 
@@ -52,7 +52,7 @@ export function SiteHeader() {
           <button
             type="button"
             className="inline-flex h-11 w-11 items-center justify-center rounded-sm border border-border text-foreground/80 lg:hidden"
-            aria-label="Meniu"
+            aria-label="Menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
           >
