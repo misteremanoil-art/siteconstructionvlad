@@ -13,8 +13,8 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
-    default: 'Albert-Beniamin Cucu • Blog personal',
-    template: '%s — Albert-Beniamin Cucu',
+    default: 'VPPCONSTRUCT LTD',
+    template: '%s | VPPCONSTRUCT LTD',
   },
   description: siteDescription,
   applicationName: siteName,
@@ -25,36 +25,34 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   keywords: [
-    'Albert-Beniamin Cucu',
-    'teologie',
-    'studiu biblic',
-    'pastor adventist',
-    'rugăciune',
-    'credință',
-    'articole creștine',
-    'Apocalipsa',
+    'builders edgware',
+    'construction company london',
+    'renovations edgware',
+    'general building services',
+    'vppconstruct ltd',
+    'edgware builders',
   ],
   openGraph: {
     type: 'website',
     locale: 'ro_RO',
     url: '/',
     siteName,
-    title: 'Albert-Beniamin Cucu • Blog personal',
+    title: 'VPPCONSTRUCT LTD',
     description: siteDescription,
     images: [
       {
-        url: '/images/site-logo-gold.png',
+        url: '/placeholder.jpg',
         width: 1200,
-        height: 1200,
+        height: 630,
         alt: siteName,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Albert-Beniamin Cucu • Blog personal',
+    title: 'VPPCONSTRUCT LTD',
     description: siteDescription,
-    images: ['/images/site-logo-gold.png'],
+    images: ['/placeholder.jpg'],
   },
   icons: {
     icon: [
@@ -69,8 +67,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: 'light dark',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f4f3f0' },
-    { media: '(prefers-color-scheme: dark)', color: '#0e0e11' },
+    { media: '(prefers-color-scheme: light)', color: '#f3eee6' },
+    { media: '(prefers-color-scheme: dark)', color: '#111417' },
   ],
 }
 
@@ -90,25 +88,17 @@ export default function RootLayout({
         description: siteDescription,
         inLanguage: 'ro-RO',
         publisher: {
-          '@id': `${getSiteUrl()}/#person`,
-        },
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: `${absoluteUrl('/cautare')}?q={search_term_string}`,
-          'query-input': 'required name=search_term_string',
+          '@id': `${getSiteUrl()}/#organization`,
         },
       },
       {
-        '@type': 'Person',
-        '@id': `${getSiteUrl()}/#person`,
+        '@type': 'Organization',
+        '@id': `${getSiteUrl()}/#organization`,
         name: siteName,
         url: getSiteUrl(),
-        image: absoluteUrl('/images/author.jpg'),
-        jobTitle: 'Pastor, teolog și autor',
-        worksFor: {
-          '@type': 'Organization',
-          name: 'Biserica Adventistă de Ziua a Șaptea',
-        },
+        image: absoluteUrl('/placeholder.jpg'),
+        description: siteDescription,
+        areaServed: 'Edgware, London',
       },
     ],
   }

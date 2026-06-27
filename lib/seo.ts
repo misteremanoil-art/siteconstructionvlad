@@ -1,7 +1,7 @@
-export const siteName = 'Albert-Beniamin Cucu'
+export const siteName = 'VPPCONSTRUCT LTD'
 
 export const siteDescription =
-  'Eseuri, reflecții biblice, conversații audio și apariții video despre teologie, credință, rugăciune și viață spirituală.'
+  'VPPCONSTRUCT LTD provides building, renovation and general construction services in Edgware, London and surrounding areas.'
 
 export function getSiteUrl() {
   const rawUrl =
