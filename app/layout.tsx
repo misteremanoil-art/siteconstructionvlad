@@ -118,6 +118,7 @@ export default function RootLayout({
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Edgware',
+          postalCode: 'HA8 9LS',
           addressRegion: 'London',
           addressCountry: 'GB',
         },

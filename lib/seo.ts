@@ -22,15 +22,17 @@ export const phoneInternational = '+447466206758'
 export const whatsappUrl =
   'https://wa.me/447466206758?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20building%2Frenovation%20work%20in%20London.'
 
-export const primaryArea = 'Edgware, London'
+export const primaryArea = 'Edgware, HA8 9LS'
 export const serviceAreas = [
   'Edgware',
+  'HA8',
   'Barnet',
   'Harrow',
-  'Brent',
   'Hendon',
   'Mill Hill',
-  'North London',
+  'Stanmore',
+  'Wembley',
+  'Finchley',
   'North West London',
 ]
 

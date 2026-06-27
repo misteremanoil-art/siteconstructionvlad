@@ -73,7 +73,7 @@ const testimonials = [
   },
 ]
 
-const coverage = ['Edgware', 'Barnet', 'Harrow', 'Brent', 'Hendon', 'Mill Hill', 'North London', 'North West London']
+const coverage = ['Edgware', 'HA8', 'Barnet', 'Harrow', 'Hendon', 'Mill Hill', 'Stanmore', 'Wembley', 'Finchley', 'North West London']
 
 export default function HomePage() {
   return (
@@ -240,10 +240,10 @@ export default function HomePage() {
       <section className="page-shell area-contact-grid" id="area">
         <div className="area-panel">
           <p className="section-kicker">Service area</p>
-          <h2 className="section-title">Based around Edgware and nearby London areas.</h2>
+          <h2 className="section-title">Edgware, HA8 9LS</h2>
           <p>
-            Most enquiries come from Edgware and nearby parts of London. If your project is close by,
-            send a message and the scope can be checked quickly.
+            Based in Edgware and covering nearby North West London areas for renovations, kitchens,
+            bathrooms, extensions and general building work.
           </p>
           <div className="area-chips">
             {coverage.map((area) => (
@@ -252,6 +252,19 @@ export default function HomePage() {
               </span>
             ))}
           </div>
+          <div className="area-meta">
+            <div className="area-meta-icon">
+              <MapPin className="h-5 w-5" />
+            </div>
+            <div>
+              <span>Base postcode</span>
+              <strong>HA8 9LS · Edgware</strong>
+            </div>
+          </div>
+          <Link href="#contact" className="area-action">
+            Check coverage
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
         <div className="contact-panel" id="contact">

@@ -727,6 +727,63 @@
     transform: translateY(-2px);
   }
 
+  .area-meta {
+    align-items: center;
+    background: color-mix(in srgb, var(--brand) 7%, transparent);
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+  }
+
+  .area-meta-icon {
+    align-items: center;
+    background: var(--brand);
+    color: var(--brand-foreground);
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 2.75rem;
+    justify-content: center;
+    width: 2.75rem;
+  }
+
+  .area-meta span {
+    color: var(--muted-foreground);
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .area-meta strong {
+    color: var(--foreground);
+    display: block;
+    font-size: 1.05rem;
+    margin-top: 0.2rem;
+  }
+
+  .area-action {
+    align-items: center;
+    background: var(--ink);
+    color: #fffaf1;
+    display: inline-flex;
+    font-weight: 800;
+    gap: 0.65rem;
+    justify-content: center;
+    margin-top: 1.4rem;
+    min-height: 3.45rem;
+    padding: 0.9rem 1.25rem;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .area-action:hover {
+    background: var(--gold);
+    color: #101411;
+    transform: translateY(-2px);
+  }
+
   .contact-panel {
     background:
       linear-gradient(150deg, rgba(77, 114, 92, 0.16), transparent 44%),
@@ -976,6 +1033,25 @@
       padding: 0.52rem 0.72rem;
     }
 
+    .area-meta {
+      align-items: flex-start;
+      margin-top: 1.2rem;
+      padding: 0.9rem;
+    }
+
+    .area-meta-icon {
+      height: 2.45rem;
+      width: 2.45rem;
+    }
+
+    .area-meta strong {
+      font-size: 1rem;
+    }
+
+    .area-action {
+      width: 100%;
+    }
+
     .contact-panel h2 {
       font-size: clamp(1.95rem, 10vw, 2.65rem);
     }
@@ -1020,6 +1096,7 @@
     .area-panel,
     .contact-panel,
     .area-chip,
+    .area-action,
     .contact-row,
     .contact-row svg,
     .surface-card {
@@ -1043,6 +1120,7 @@
     .area-panel:hover,
     .contact-panel:hover,
     .area-chip:hover,
+    .area-action:hover,
     .contact-row:hover,
     .contact-row:hover svg,
     .surface-card:hover {
