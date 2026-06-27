@@ -616,6 +616,60 @@
     transform: scale(1.08);
   }
 
+  .testimonials-section {
+    padding-top: 5rem;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 820px) {
+    .testimonial-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .testimonial-card {
+    background:
+      linear-gradient(160deg, color-mix(in srgb, var(--brand) 8%, transparent), transparent 50%),
+      var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 15rem;
+    padding: 1.5rem;
+    transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+
+  .testimonial-card:hover {
+    border-color: color-mix(in srgb, var(--gold) 46%, var(--border));
+    box-shadow: 0 22px 70px rgba(20, 33, 30, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .testimonial-card blockquote {
+    color: var(--foreground);
+    font-family: var(--font-heading);
+    font-size: clamp(1.35rem, 2vw, 1.75rem);
+    line-height: 1.22;
+    text-wrap: pretty;
+  }
+
+  .testimonial-card figcaption {
+    border-top: 1px solid var(--border);
+    color: var(--muted-foreground);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    text-transform: uppercase;
+  }
+
   .area-contact-grid {
     display: grid;
     gap: 1rem;
@@ -751,6 +805,7 @@
     .project-card-overlay,
     .reason-row,
     .reason-row svg,
+    .testimonial-card,
     .area-panel,
     .contact-panel,
     .area-chip,
@@ -773,6 +828,7 @@
     .project-card:hover img,
     .reason-row:hover,
     .reason-row:hover svg,
+    .testimonial-card:hover,
     .area-panel:hover,
     .contact-panel:hover,
     .area-chip:hover,

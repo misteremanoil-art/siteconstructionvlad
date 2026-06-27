@@ -58,6 +58,21 @@ const reasons = [
   'Flexible scope from small repairs to larger projects',
 ]
 
+const testimonials = [
+  {
+    quote: 'Reliable, tidy and easy to speak with. The work was explained clearly and the finish was clean.',
+    source: 'Homeowner, Edgware',
+  },
+  {
+    quote: 'Good communication from start to finish. Small changes were handled sensibly and without fuss.',
+    source: 'Renovation client, North West London',
+  },
+  {
+    quote: 'Turned up when agreed, kept the place organised and left the job looking properly finished.',
+    source: 'Residential project, Barnet area',
+  },
+]
+
 const coverage = ['Edgware', 'Barnet', 'Harrow', 'Brent', 'Hendon', 'Mill Hill', 'North London', 'North West London']
 
 export default function HomePage() {
@@ -200,6 +215,25 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="page-shell testimonials-section" aria-labelledby="testimonials-title">
+        <div className="section-header">
+          <div>
+            <p className="section-kicker">Client notes</p>
+            <h2 className="section-title" id="testimonials-title">
+              Simple feedback from everyday building work.
+            </h2>
+          </div>
+        </div>
+        <div className="testimonial-grid">
+          {testimonials.map((testimonial) => (
+            <figure key={testimonial.source} className="testimonial-card">
+              <blockquote>“{testimonial.quote}”</blockquote>
+              <figcaption>{testimonial.source}</figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
