@@ -18,7 +18,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-[#fbfaf6] text-foreground shadow-sm">
+    <header className="site-header-glass sticky top-0 z-50 text-foreground">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-3 px-4 sm:h-24 sm:px-6">
         <SiteLogo className="shrink-0" />
 
@@ -62,7 +62,7 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="border-t border-border bg-[#fbfaf6] lg:hidden">
+        <div className="mobile-menu-glass border-t border-border lg:hidden">
           <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
             <nav className="flex flex-col gap-1">
               {NAV.map((item) => (
