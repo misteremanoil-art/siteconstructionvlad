@@ -1400,13 +1400,12 @@
 
   .testimonial-card {
     background:
-      linear-gradient(160deg, color-mix(in srgb, var(--brand) 10%, transparent), transparent 50%),
-      rgba(255, 253, 248, 0.7);
+      linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.72)),
+      var(--card);
     border: 1px solid rgba(255, 255, 255, 0.48);
-    border-radius: var(--radius-lg);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    border-radius: var(--radius-md);
+    display: grid;
+    gap: 1rem;
     min-height: 15rem;
     padding: 1.5rem;
     box-shadow: 0 16px 54px rgba(31, 41, 51, 0.08);
@@ -1421,21 +1420,58 @@
     transform: translateY(-6px);
   }
 
+  .testimonial-top {
+    align-items: center;
+    display: flex;
+    gap: 0.85rem;
+  }
+
+  .testimonial-avatar {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid rgba(31, 41, 51, 0.1);
+    box-shadow: 0 10px 28px rgba(31, 41, 51, 0.1);
+    color: var(--gold);
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 0.82rem;
+    font-weight: 900;
+    height: 2.8rem;
+    justify-content: center;
+    width: 2.8rem;
+  }
+
+  .testimonial-top figcaption {
+    color: var(--foreground);
+    font-size: 0.95rem;
+    font-weight: 900;
+  }
+
+  .testimonial-top p {
+    color: var(--muted-foreground);
+    font-size: 0.78rem;
+    margin-top: 0.18rem;
+  }
+
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+  }
+
   .testimonial-card blockquote {
     color: var(--foreground);
-    font-family: var(--font-heading);
-    font-size: clamp(1.35rem, 2vw, 1.75rem);
-    line-height: 1.22;
+    font-size: 1rem;
+    line-height: 1.72;
     text-wrap: pretty;
   }
 
-  .testimonial-card figcaption {
+  .testimonial-note {
     border-top: 1px solid var(--border);
     color: var(--muted-foreground);
-    font-size: 0.82rem;
+    font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.1em;
-    margin-top: 1.5rem;
     padding-top: 1rem;
     text-transform: uppercase;
   }

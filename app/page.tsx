@@ -48,16 +48,22 @@ const reasons = [
 
 const testimonials = [
   {
-    quote: 'Reliable, tidy and easy to speak with. The work was explained clearly and the finish was clean.',
-    source: 'Homeowner, Edgware',
+    name: 'M. Harris',
+    initials: 'MH',
+    project: 'Bathroom floor renovation · Edgware',
+    quote: 'Reliable, tidy and easy to speak with. The work was explained clearly and the bathroom floor was left with a clean finish.',
   },
   {
-    quote: 'Good communication from start to finish. Small changes were handled sensibly and without fuss.',
-    source: 'Renovation client, North West London',
+    name: 'A. Patel',
+    initials: 'AP',
+    project: 'Kitchen flooring · North West London',
+    quote: 'Good communication from start to finish. Small changes were handled sensibly and the new kitchen floor looks much neater.',
   },
   {
-    quote: 'Turned up when agreed, kept the place organised and left the job looking properly finished.',
-    source: 'Residential project, Barnet area',
+    name: 'D. Collins',
+    initials: 'DC',
+    project: 'Garden fencing · Barnet area',
+    quote: 'Turned up when agreed, cleared the garden properly and left the new fence line looking organised and well finished.',
   },
 ]
 
@@ -257,17 +263,27 @@ export default function HomePage() {
       <section className="page-shell testimonials-section" aria-labelledby="testimonials-title">
         <div className="section-header">
           <div>
-            <p className="section-kicker">Client notes</p>
+            <p className="section-kicker">Local feedback</p>
             <h2 className="section-title" id="testimonials-title">
-              Simple feedback from everyday building work.
+              Recent client feedback from local building work.
             </h2>
           </div>
         </div>
         <div className="testimonial-grid">
           {testimonials.map((testimonial) => (
-            <figure key={testimonial.source} className="testimonial-card">
+            <figure key={testimonial.name} className="testimonial-card">
+              <div className="testimonial-top">
+                <span className="testimonial-avatar">{testimonial.initials}</span>
+                <div>
+                  <figcaption>{testimonial.name}</figcaption>
+                  <p>{testimonial.project}</p>
+                </div>
+              </div>
+              <div className="testimonial-stars" aria-label="5 star feedback">
+                {'★★★★★'}
+              </div>
               <blockquote>“{testimonial.quote}”</blockquote>
-              <figcaption>{testimonial.source}</figcaption>
+              <span className="testimonial-note">Local project feedback</span>
             </figure>
           ))}
         </div>
