@@ -62,7 +62,7 @@ const testimonials = [
 ]
 
 const coverage = ['Edgware', 'HA8', 'Barnet', 'Harrow', 'Hendon', 'Mill Hill', 'Stanmore', 'Wembley', 'Finchley', 'North West London']
-const featuredProject = projects[0]
+const featuredProjects = projects.slice(0, 3)
 
 export default function HomePage() {
   return (
@@ -169,23 +169,41 @@ export default function HomePage() {
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <Link href="/projects" className="home-project-card">
-          <div className="home-project-image">
-            <Image
-              src={featuredProject.heroImage}
-              alt={featuredProject.shortTitle}
-              fill
-              sizes="(max-width: 900px) 100vw, 52vw"
-              className="object-cover"
-            />
-            <span>{featuredProject.category}</span>
-          </div>
-          <div className="home-project-copy">
-            <p>{featuredProject.location}</p>
-            <h3>{featuredProject.title}</h3>
-            <span>{featuredProject.summary}</span>
-          </div>
-        </Link>
+        <div className="home-project-grid">
+          {featuredProjects.map((project) => (
+            <Link key={project.slug} href="/projects" className="home-project-card">
+              <div className="home-project-image">
+                <Image
+                  src={project.heroImage}
+                  alt={project.shortTitle}
+                  fill
+                  sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                  className="object-cover"
+                />
+                <span>{project.category}</span>
+              </div>
+              <div className="home-project-copy">
+                <p>{project.location}</p>
+                <h3>{project.shortTitle}</h3>
+                <span>{project.summary}</span>
+              </div>
+            </Link>
+          ))}
+          <Link href="/projects" className="home-project-card home-project-card-cta">
+            <div className="home-project-cta-inner">
+              <p>More project work</p>
+              <h3>View the full portfolio</h3>
+              <span>
+                Browse recent renovation, flooring, fencing and general building work, then send a
+                quick message for a similar quote.
+              </span>
+              <strong>
+                View projects
+                <ArrowRight className="h-4 w-4" />
+              </strong>
+            </div>
+          </Link>
+        </div>
       </section>
 
       <section className="feature-band" id="why-us">
