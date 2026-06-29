@@ -130,11 +130,6 @@ export const projects = [
         alt: 'Finished kitchen floor renovation with a clean modern floor finish',
         label: 'Final finish',
       },
-      {
-        src: '/images/projects/kitchen-floor-renovation/finished-kitchen-floor.jpeg',
-        alt: 'Completed kitchen floor viewed from the doorway',
-        label: 'After',
-      },
     ],
   },
 ]
