@@ -5,7 +5,6 @@ export type ServicePage = {
   eyebrow: string
   summary: string
   metaDescription: string
-  heroImage: string
   intro: string[]
   highlights: string[]
   included: string[]
@@ -22,7 +21,6 @@ export const servicePages: ServicePage[] = [
     summary: 'Durable driveway and block paving work with clean preparation, neat edges and a practical finish for everyday use.',
     metaDescription:
       'Driveway and block paving services in Edgware and North West London, including ground preparation, edging, paving layout and finishing.',
-    heroImage: '/images/projects/garden-clearance-fence-installation/timber-fence-final.jpeg',
     intro: [
       'VPPCONSTRUCT LTD helps homeowners improve the front or rear of their property with practical driveway and paving work planned around durability, drainage and everyday use.',
       'The focus is on correct preparation, clean lines, sensible material choices and a finish that improves both the look and usability of the outside space.',
@@ -51,7 +49,6 @@ export const servicePages: ServicePage[] = [
     summary: 'Roofing support for repairs, maintenance and improvement work, handled with careful inspection and tidy completion.',
     metaDescription:
       'Roofing services in Edgware and North West London for repairs, maintenance and practical roof improvement work.',
-    heroImage: '/images/vppconstruct-extension.png',
     intro: [
       'Roofing work needs a careful look at the existing condition, access, materials and any signs of water ingress before the right solution is recommended.',
       'VPPCONSTRUCT LTD can help with practical roofing repairs and improvement work, keeping the process clear and the site as tidy as possible.',
@@ -80,7 +77,6 @@ export const servicePages: ServicePage[] = [
     summary: 'Extension and home improvement work planned around useful space, practical construction and a clean final finish.',
     metaDescription:
       'Home extension services in Edgware and North West London, from practical building support to interior finishing.',
-    heroImage: '/images/vppconstruct-hero.png',
     intro: [
       'A good extension should feel useful, well connected to the existing property and finished in a way that suits everyday living.',
       'VPPCONSTRUCT LTD can support extension and home improvement projects with a practical approach to stages, coordination and final finishing.',
@@ -109,7 +105,6 @@ export const servicePages: ServicePage[] = [
     summary: 'Reliable renovation work for homes and commercial spaces, from preparation and repairs to flooring, walls and final finishes.',
     metaDescription:
       'Renovation services in Edgware and North West London for homes and commercial spaces, including repairs, flooring, walls and finishing.',
-    heroImage: '/images/projects/custom-arched-feature-wall/final-arched-media-wall.jpeg',
     intro: [
       'Renovation work is about making a space cleaner, more practical and better finished without losing sight of how it will be used every day.',
       'From smaller updates to larger refurbishments, VPPCONSTRUCT LTD keeps the work organised, clear and focused on a durable result.',
@@ -138,7 +133,6 @@ export const servicePages: ServicePage[] = [
     summary: 'Kitchen and bathroom renovation work with careful fitting, tiling, flooring and clean finishing around everyday use.',
     metaDescription:
       'Bathroom and kitchen renovation services in Edgware and North West London, including fitting, tiling, flooring and finishing.',
-    heroImage: '/images/projects/bathroom-floor-renovation/finished-floor-toilet.jpeg',
     intro: [
       'Bathrooms and kitchens need careful work because they are used every day and small details make a big difference to the final result.',
       'VPPCONSTRUCT LTD can help with practical upgrades, flooring, tiling, fitting and finishing so the space looks cleaner and works better.',

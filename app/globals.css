@@ -1098,11 +1098,25 @@
 
   .services-index-hero {
     background:
-      linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(17, 24, 39, 0.72)),
-      linear-gradient(225deg, rgba(200, 155, 60, 0.22), transparent 38%),
-      url('/images/vppconstruct-hero.png');
+      radial-gradient(circle at 16% 18%, rgba(200, 155, 60, 0.24), transparent 30%),
+      radial-gradient(circle at 84% 14%, rgba(216, 196, 163, 0.18), transparent 28%),
+      linear-gradient(135deg, #111827 0%, #1f2933 48%, #111827 100%);
     background-position: center;
     background-size: cover;
+  }
+
+  .services-index-hero::before,
+  .service-detail-hero::before {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      radial-gradient(circle at 72% 56%, rgba(200, 155, 60, 0.14), transparent 34%);
+    background-size: 5.2rem 5.2rem, 5.2rem 5.2rem, auto;
+    content: "";
+    inset: 0;
+    opacity: 0.55;
+    pointer-events: none;
+    position: absolute;
   }
 
   .services-index-shell {
@@ -1142,19 +1156,33 @@
 
   .service-index-card {
     background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.66)),
+      radial-gradient(circle at 16% 0%, rgba(200, 155, 60, 0.14), transparent 34%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.7)),
       var(--card);
     border: 1px solid rgba(255, 255, 255, 0.52);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
     color: var(--foreground);
     display: grid;
-    grid-template-rows: minmax(15rem, auto) 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 21rem;
     overflow: hidden;
+    padding: 1.25rem;
     position: relative;
     transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
     backdrop-filter: blur(18px) saturate(1.12);
     -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  }
+
+  .service-index-card::before {
+    background:
+      linear-gradient(135deg, rgba(200, 155, 60, 0.18), transparent 42%),
+      radial-gradient(circle at 88% 12%, rgba(17, 24, 39, 0.08), transparent 32%);
+    content: "";
+    inset: 0;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 220ms ease;
   }
 
   .service-index-card:hover {
@@ -1163,26 +1191,29 @@
     transform: translateY(-6px);
   }
 
-  .service-index-image {
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .service-index-image img {
-    filter: saturate(1.02) contrast(1.02);
-    transition: transform 520ms ease, filter 220ms ease;
-  }
-
-  .service-index-card:hover .service-index-image img {
-    filter: saturate(1.08) contrast(1.05);
-    transform: scale(1.06);
+  .service-index-card:hover::before {
+    opacity: 1;
   }
 
   .service-index-copy {
     display: grid;
     gap: 0.75rem;
-    padding: 1.25rem;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .service-index-number {
+    color: color-mix(in srgb, var(--gold) 84%, #111827);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    margin-bottom: 2rem;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 1;
   }
 
   .service-index-copy p {
@@ -1196,7 +1227,7 @@
 
   .service-index-copy h2 {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 2.7vw, 2.35rem);
     line-height: 1.02;
   }
 
@@ -1231,6 +1262,7 @@
     right: 1rem;
     transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
     width: 2.45rem;
+    z-index: 1;
   }
 
   .service-index-card:hover .service-index-arrow {
@@ -1239,22 +1271,11 @@
     transform: translateX(3px);
   }
 
-  .service-detail-bg {
-    inset: 0;
-    position: absolute;
-  }
-
-  .service-detail-bg::after {
+  .service-detail-hero {
     background:
-      linear-gradient(90deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.72)),
-      linear-gradient(180deg, rgba(17, 24, 39, 0.2), rgba(17, 24, 39, 0.9));
-    content: "";
-    inset: 0;
-    position: absolute;
-  }
-
-  .service-detail-bg img {
-    filter: saturate(1.04) contrast(1.04);
+      radial-gradient(circle at 16% 18%, rgba(200, 155, 60, 0.24), transparent 30%),
+      radial-gradient(circle at 82% 16%, rgba(216, 196, 163, 0.16), transparent 30%),
+      linear-gradient(135deg, #111827 0%, #1f2933 48%, #111827 100%);
   }
 
   .service-detail-hero-shell {
@@ -2973,15 +2994,12 @@
     }
 
     .service-index-card {
-      grid-template-rows: auto 1fr;
-    }
-
-    .service-index-image {
-      aspect-ratio: 4 / 3.35;
+      min-height: 17rem;
+      padding: 1rem;
     }
 
     .service-index-copy {
-      padding: 1rem;
+      padding: 0;
     }
 
     .service-index-copy h2,
@@ -3247,7 +3265,7 @@
     .service-card::before,
     .service-icon,
     .service-index-card,
-    .service-index-image img,
+    .service-index-card::before,
     .service-index-arrow,
     .service-quote-card a,
     .project-card,
@@ -3290,7 +3308,6 @@
     .service-card:hover,
     .service-card:hover .service-icon,
     .service-index-card:hover,
-    .service-index-card:hover .service-index-image img,
     .service-index-card:hover .service-index-arrow,
     .service-quote-card a:hover,
     .project-card:hover,

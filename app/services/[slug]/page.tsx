@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, CheckCircle2, MapPin, ShieldCheck } from 'lucide-react'
@@ -35,12 +34,6 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     openGraph: {
       title: `${service.title} | VPPCONSTRUCT LTD`,
       description: service.metaDescription,
-      images: [
-        {
-          url: service.heroImage,
-          alt: service.shortTitle,
-        },
-      ],
     },
   }
 }
@@ -56,16 +49,6 @@ export default async function ServicePage({ params }: ServicePageProps) {
   return (
     <main className="service-page">
       <section className="service-detail-hero">
-        <div className="service-detail-bg">
-          <Image
-            src={service.heroImage}
-            alt={service.shortTitle}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
         <div className="page-shell service-detail-hero-shell">
           <div className="service-detail-hero-copy">
             <Link href="/services" className="project-back-link">

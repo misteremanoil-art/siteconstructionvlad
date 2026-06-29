@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { servicePages } from '@/lib/service-pages'
@@ -29,17 +28,9 @@ export default function ServicesPage() {
       </section>
 
       <section className="page-shell services-index-grid" aria-label="Service pages">
-        {servicePages.map((service) => (
+        {servicePages.map((service, index) => (
           <Link key={service.slug} href={`/services/${service.slug}`} className="service-index-card">
-            <div className="service-index-image">
-              <Image
-                src={service.heroImage}
-                alt={service.shortTitle}
-                fill
-                sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                className="object-cover"
-              />
-            </div>
+            <span className="service-index-number">{String(index + 1).padStart(2, '0')}</span>
             <div className="service-index-copy">
               <p>{service.eyebrow}</p>
               <h2>{service.shortTitle}</h2>
