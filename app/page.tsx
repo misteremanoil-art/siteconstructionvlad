@@ -62,7 +62,7 @@ const testimonials = [
 ]
 
 const coverage = ['Edgware', 'HA8', 'Barnet', 'Harrow', 'Hendon', 'Mill Hill', 'Stanmore', 'Wembley', 'Finchley', 'North West London']
-const featuredProjects = projects.slice(0, 4)
+const featuredProjects = projects.slice(-4)
 
 export default function HomePage() {
   return (

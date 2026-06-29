@@ -235,6 +235,66 @@ export const projects = [
       },
     ],
   },
+  {
+    slug: 'bespoke-media-wall-installation',
+    title: 'Bespoke Media Wall Installation',
+    shortTitle: 'Bespoke media wall installation',
+    category: 'Media Wall Installation',
+    location: 'Edgware, HA8',
+    summary:
+      'A plain living room wall was upgraded into a modern media feature wall with slatted panels, LED lighting, a marble-effect TV surround, floating unit and electric fireplace.',
+    caption:
+      'A bespoke media wall installation with slatted panels, LED lighting and an electric fireplace, finished with a clean, modern and premium look.',
+    description: [
+      'For this project, a plain living room wall was transformed into a modern bespoke media wall with a premium feature finish. The work included setting out the wall layout, preparing the structure, installing decorative slatted wall panels, adding a marble-effect TV feature section, integrating LED lighting and completing the area with a clean floating media unit and electric fireplace feature.',
+      'The finished design creates a strong focal point for the room, combining modern materials, warm lighting and practical entertainment space. Special attention was given to symmetry, clean lines, cable positioning, lighting detail and the overall finish, giving the room a much more stylish and high-end appearance.',
+    ],
+    servicesIncluded: [
+      'Wall preparation and layout planning',
+      'Bespoke media wall installation',
+      'Decorative slatted panel fitting',
+      'Marble-effect TV feature panel',
+      'LED lighting installation',
+      'TV mounting preparation',
+      'Cable management',
+      'Floating media unit installation',
+      'Electric fireplace feature fitting',
+      'Final finishing and detailing',
+    ],
+    finalResult:
+      'A modern, stylish and premium media wall with integrated lighting, TV feature panel, slatted wall detail and an electric fireplace, creating a clean and impressive focal point for the living room.',
+    heroImage: '/images/projects/bespoke-media-wall-installation/final-bespoke-media-wall.jpeg',
+    beforeImage: '/images/projects/bespoke-media-wall-installation/plain-living-room-wall.jpeg',
+    afterImage: '/images/projects/bespoke-media-wall-installation/final-bespoke-media-wall.jpeg',
+    highlights: [
+      'Plain living room wall upgraded',
+      'Slatted wall panels and marble-effect TV section',
+      'Integrated LED lighting and cable management',
+      'Floating media unit with electric fireplace feature',
+    ],
+    gallery: [
+      {
+        src: '/images/projects/bespoke-media-wall-installation/plain-living-room-wall.jpeg',
+        alt: 'Plain living room wall before the bespoke media wall installation',
+        label: 'Before',
+      },
+      {
+        src: '/images/projects/bespoke-media-wall-installation/media-wall-structure.jpeg',
+        alt: 'Media wall structure and floating unit during installation',
+        label: 'Structure',
+      },
+      {
+        src: '/images/projects/bespoke-media-wall-installation/media-wall-with-lighting.jpeg',
+        alt: 'Bespoke media wall with slatted panels, TV and LED lighting',
+        label: 'Lighting',
+      },
+      {
+        src: '/images/projects/bespoke-media-wall-installation/final-bespoke-media-wall.jpeg',
+        alt: 'Completed bespoke media wall with TV, slatted panels and electric fireplace',
+        label: 'Final finish',
+      },
+    ],
+  },
 ]
 
 export type Project = (typeof projects)[number]
