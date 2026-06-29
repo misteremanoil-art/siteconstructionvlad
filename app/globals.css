@@ -974,6 +974,25 @@
     margin-top: 1.2rem;
   }
 
+  .project-back-link {
+    align-items: center;
+    color: #f6df9f;
+    display: inline-flex;
+    font-size: 0.8rem;
+    font-weight: 900;
+    gap: 0.45rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 180ms ease, transform 180ms ease;
+  }
+
+  .project-back-link:hover {
+    color: #fffaf1;
+    transform: translateX(-3px);
+  }
+
   .project-showcase {
     padding-top: 4rem;
   }

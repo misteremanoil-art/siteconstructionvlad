@@ -211,7 +211,7 @@ export default function HomePage() {
           {featuredProjects.map((project, index) => (
             <Link
               key={project.slug}
-              href={`/projects?project=${project.slug}`}
+              href={`/projects/${project.slug}`}
               className="home-project-card"
             >
               <span className="home-project-topline">
