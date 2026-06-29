@@ -62,11 +62,6 @@ export function ProjectTabs({ projects }: ProjectTabsProps) {
                 <span>{String(index + 1).padStart(2, '0')}</span>
                 <ArrowRight className="h-4 w-4" />
               </span>
-              <span className="project-tab-copy">
-                <span>{project.category}</span>
-                <strong>{project.shortTitle}</strong>
-                <small>{project.summary}</small>
-              </span>
               <span className="project-tab-image">
                 <Image
                   src={project.heroImage}
@@ -75,6 +70,11 @@ export function ProjectTabs({ projects }: ProjectTabsProps) {
                   sizes="(max-width: 760px) 100vw, 50vw"
                   className="object-cover"
                 />
+              </span>
+              <span className="project-tab-copy">
+                <span>{project.category}</span>
+                <strong>{project.shortTitle}</strong>
+                <small>{project.summary}</small>
               </span>
             </button>
           )
