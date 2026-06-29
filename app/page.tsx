@@ -79,11 +79,12 @@ export default function HomePage() {
             <div className="hero-copy">
               <p className="hero-pill">VPPCONSTRUCT LTD · Edgware & North West London</p>
               <h1 className="hero-title">
-                Renovation work that looks sharp and lasts.
+                Driveways, roofing, extensions and renovations in Edgware.
               </h1>
               <p className="hero-intro">
-                Clean, practical building and finishing work for homes and commercial spaces:
-                bathrooms, kitchens, flooring, media walls, fencing and full renovation support.
+                Reliable local builders for block paving, landscaping, roofing, home extensions and
+                renovation work across North West London, with careful workmanship and finishes made
+                to last.
               </p>
               <div className="hero-actions">
                 <Link href="#contact" className="primary-action">
