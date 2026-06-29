@@ -178,6 +178,63 @@ export const projects = [
       },
     ],
   },
+  {
+    slug: 'custom-arched-feature-wall',
+    title: 'Custom Arched Feature Wall Installation',
+    shortTitle: 'Custom arched feature wall',
+    category: 'Interior Feature Wall',
+    location: 'Edgware, HA8',
+    summary:
+      'A plain wall was transformed into a bespoke arched feature wall, creating a modern and elegant focal point with a clean, smooth finish.',
+    caption:
+      'A bespoke arched feature wall, carefully built and finished to create a stylish and modern focal point for the room.',
+    description: [
+      'For this project, a plain wall area was transformed into a bespoke arched feature wall designed to create a cleaner and more stylish focal point within the room. The work included setting out the structure, forming the curved arch detail, preparing the wall surface, finishing the edges neatly and creating a smooth final finish ready for decoration and TV installation.',
+      'The completed feature wall adds depth, character and a more refined architectural look to the space. Special attention was given to the shape of the arch, the symmetry of the structure and the overall finish, resulting in a modern and elegant focal point that works beautifully as a media wall.',
+    ],
+    servicesIncluded: [
+      'Wall preparation',
+      'Framing and structural set-out',
+      'Custom arch feature construction',
+      'Surface boarding and shaping',
+      'Finishing and smoothing',
+      'Preparation for TV mounting',
+      'Final detailing and completion',
+    ],
+    finalResult:
+      'A clean, modern and elegant arched feature wall that enhances the room and creates a stylish focal point for the TV area.',
+    heroImage: '/images/projects/custom-arched-feature-wall/final-arched-media-wall.jpeg',
+    beforeImage: '/images/projects/custom-arched-feature-wall/before-tv-wall.jpeg',
+    afterImage: '/images/projects/custom-arched-feature-wall/final-arched-media-wall.jpeg',
+    highlights: [
+      'Plain wall transformed into a feature wall',
+      'Custom curved arch construction',
+      'Smooth finish ready for decoration',
+      'Modern focal point for the TV area',
+    ],
+    gallery: [
+      {
+        src: '/images/projects/custom-arched-feature-wall/before-tv-wall.jpeg',
+        alt: 'Plain TV wall before the arched feature wall installation',
+        label: 'Before',
+      },
+      {
+        src: '/images/projects/custom-arched-feature-wall/arch-setout.jpeg',
+        alt: 'Custom arch set-out and framing marked on the wall',
+        label: 'Set-out',
+      },
+      {
+        src: '/images/projects/custom-arched-feature-wall/arched-wall-finished-before-tv.jpeg',
+        alt: 'Finished arched feature wall before TV installation',
+        label: 'Arch finish',
+      },
+      {
+        src: '/images/projects/custom-arched-feature-wall/final-arched-media-wall.jpeg',
+        alt: 'Completed custom arched feature wall with TV installed',
+        label: 'Final finish',
+      },
+    ],
+  },
 ]
 
 export type Project = (typeof projects)[number]

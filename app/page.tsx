@@ -62,7 +62,7 @@ const testimonials = [
 ]
 
 const coverage = ['Edgware', 'HA8', 'Barnet', 'Harrow', 'Hendon', 'Mill Hill', 'Stanmore', 'Wembley', 'Finchley', 'North West London']
-const featuredProjects = projects.slice(0, 3)
+const featuredProjects = projects.slice(0, 4)
 
 export default function HomePage() {
   return (
@@ -189,20 +189,6 @@ export default function HomePage() {
               </div>
             </Link>
           ))}
-          <Link href="/projects" className="home-project-card home-project-card-cta">
-            <div className="home-project-cta-inner">
-              <p>More project work</p>
-              <h3>View the full portfolio</h3>
-              <span>
-                Browse recent renovation, flooring, fencing and general building work, then send a
-                quick message for a similar quote.
-              </span>
-              <strong>
-                View projects
-                <ArrowRight className="h-4 w-4" />
-              </strong>
-            </div>
-          </Link>
         </div>
       </section>
 
