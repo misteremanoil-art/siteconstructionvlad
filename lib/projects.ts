@@ -6,14 +6,31 @@ export const projects = [
     category: 'Bathroom Renovation',
     location: 'Edgware, HA8',
     summary:
-      'Electric underfloor heating installed, new floor tiles fitted and grouted for a cleaner, warmer and more modern bathroom finish.',
+      'Bathroom floor upgraded with electric underfloor heating and new tiles, carefully installed and grouted for a clean, modern and comfortable finish.',
+    caption:
+      'A complete bathroom floor renovation with electric underfloor heating, finished with modern tiles for a warmer, cleaner and more practical space.',
+    description: [
+      'For this project, the existing bathroom floor was fully renovated and upgraded with an electric underfloor heating system. The work included preparing the floor surface, installing the heating mat, carefully laying the new floor tiles and finishing the area with clean grouting for a neat, practical and long-lasting result.',
+      'The new tiled floor improves both the look and comfort of the bathroom, creating a warmer and more modern space for everyday use. Special attention was given to the layout, tile alignment, edges around the toilet and shower area, and the final finish to ensure the floor looks clean, consistent and well completed.',
+    ],
+    servicesIncluded: [
+      'Bathroom floor preparation',
+      'Electric underfloor heating installation',
+      'Installation of new floor tiles',
+      'Careful tile alignment and levelling',
+      'Cutting and fitting around bathroom fixtures',
+      'Grouting and final finishing',
+      'Clean-up and completion',
+    ],
+    finalResult:
+      'A modern, warmer and more comfortable bathroom floor with a durable tiled finish, improved practicality and a clean overall appearance.',
     heroImage: '/images/projects/bathroom-floor-renovation/finished-floor-toilet.jpeg',
     beforeImage: '/images/projects/bathroom-floor-renovation/underfloor-heating-layout.jpeg',
     afterImage: '/images/projects/bathroom-floor-renovation/finished-floor-toilet.jpeg',
     highlights: [
-      'Electric underfloor heating mat installed',
-      'Large format floor tiles fitted cleanly around fixtures',
-      'Tile levelling and neat grout finish',
+      'Electric underfloor heating installation',
+      'New floor tiles fitted and levelled',
+      'Clean grouting and final finishing',
       'Warmer, cleaner and more practical bathroom floor',
     ],
     gallery: [

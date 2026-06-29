@@ -828,6 +828,32 @@
     margin-top: 0.4rem;
   }
 
+  .project-result {
+    background: rgba(67, 109, 88, 0.08);
+    border: 1px solid rgba(67, 109, 88, 0.14);
+    padding: 1rem;
+  }
+
+  .project-result span,
+  .project-services-title {
+    color: var(--gold);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .project-result p {
+    color: var(--foreground);
+    margin-top: 0.45rem;
+  }
+
+  .project-services-title {
+    margin-top: 0.4rem;
+  }
+
   .project-feature-copy li {
     align-items: center;
     color: var(--foreground);
@@ -847,6 +873,11 @@
 
   .before-after-section {
     padding-top: 2rem;
+  }
+
+  .project-caption {
+    margin-top: 1rem;
+    max-width: 44rem;
   }
 
   .before-after-grid,

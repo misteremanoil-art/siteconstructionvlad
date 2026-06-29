@@ -46,13 +46,20 @@ export default function ProjectsPage() {
           <div className="project-feature-copy">
             <p className="section-kicker">Featured project</p>
             <h2>{project.title}</h2>
-            <p>{project.summary}</p>
+            {project.description.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
             <div className="project-location">
               <MapPin className="h-4 w-4" />
               {project.location}
             </div>
+            <div className="project-result">
+              <span>Final result</span>
+              <p>{project.finalResult}</p>
+            </div>
+            <h3 className="project-services-title">Services included</h3>
             <ul>
-              {project.highlights.map((item) => (
+              {project.servicesIncluded.map((item) => (
                 <li key={item}>
                   <CheckCircle2 className="h-4 w-4" />
                   <span>{item}</span>
@@ -72,6 +79,7 @@ export default function ProjectsPage() {
           <div>
             <p className="section-kicker">Before & after</p>
             <h2 className="section-title">From heating mat installation to a clean tiled finish.</h2>
+            <p className="section-copy project-caption">{project.caption}</p>
           </div>
         </div>
         <div className="before-after-grid">
