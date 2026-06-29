@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { ArrowRight, CheckCircle2, MapPin } from 'lucide-react'
 import type { Project } from '@/lib/projects'
 
@@ -11,8 +12,22 @@ type ProjectTabsProps = {
 }
 
 export function ProjectTabs({ projects }: ProjectTabsProps) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const selectedProject = searchParams.get('project')
   const [activeSlug, setActiveSlug] = useState(projects[0]?.slug)
   const activeProject = projects.find((project) => project.slug === activeSlug) ?? projects[0]
+
+  useEffect(() => {
+    if (selectedProject && projects.some((project) => project.slug === selectedProject)) {
+      setActiveSlug(selectedProject)
+    }
+  }, [projects, selectedProject])
+
+  function handleProjectSelect(slug: string) {
+    setActiveSlug(slug)
+    router.replace(`/projects?project=${slug}`, { scroll: false })
+  }
 
   if (!activeProject) {
     return null
@@ -40,7 +55,7 @@ export function ProjectTabs({ projects }: ProjectTabsProps) {
               type="button"
               className="project-tab"
               data-active={isActive}
-              onClick={() => setActiveSlug(project.slug)}
+              onClick={() => handleProjectSelect(project.slug)}
               aria-pressed={isActive}
             >
               <span className="project-tab-topline">

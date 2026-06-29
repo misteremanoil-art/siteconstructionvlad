@@ -171,7 +171,11 @@ export default function HomePage() {
         </div>
         <div className="home-project-grid">
           {featuredProjects.map((project) => (
-            <Link key={project.slug} href="/projects" className="home-project-card">
+            <Link
+              key={project.slug}
+              href={`/projects?project=${project.slug}`}
+              className="home-project-card"
+            >
               <div className="home-project-image">
                 <Image
                   src={project.heroImage}

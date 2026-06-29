@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { ProjectTabs } from '@/components/project-tabs'
 import { projects } from '@/lib/projects'
 
@@ -26,7 +27,9 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <ProjectTabs projects={projects} />
+      <Suspense fallback={null}>
+        <ProjectTabs projects={projects} />
+      </Suspense>
     </main>
   )
 }
