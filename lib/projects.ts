@@ -132,6 +132,52 @@ export const projects = [
       },
     ],
   },
+  {
+    slug: 'garden-clearance-fence-installation',
+    title: 'Garden Clearance & Fence Installation',
+    shortTitle: 'Garden clearance & fence installation',
+    category: 'Garden & Fencing',
+    location: 'Edgware, HA8',
+    summary:
+      'Overgrown garden area cleared and upgraded with new timber fencing, creating a cleaner, safer and more private outdoor space.',
+    caption:
+      'A complete garden clearance and timber fence installation, finished with a neat, practical and more private outdoor result.',
+    description: [
+      'For this project, the garden area was cleared and improved with a new timber fence installation. The work included removing overgrown vegetation, clearing branches and garden waste, preparing the boundary line and fitting new wooden fence panels to create a cleaner, safer and more private outdoor space.',
+      'The new fencing gives the garden a much neater and more organised look, while also improving privacy and defining the property boundary. Attention was given to the alignment of the panels, the overall finish and the clean-up of the surrounding area, leaving the garden ready for future landscaping or everyday use.',
+    ],
+    servicesIncluded: [
+      'Garden clearance',
+      'Removal of overgrown vegetation and branches',
+      'Boundary preparation',
+      'Timber fence panel installation',
+      'Site clean-up and waste clearing',
+      'Final finishing and tidy-up',
+    ],
+    finalResult:
+      'A cleaner, brighter and more private garden space with a fresh timber fence, improved structure and a much more organised outdoor appearance.',
+    heroImage: '/images/projects/garden-clearance-fence-installation/timber-fence-final.jpeg',
+    beforeImage: '/images/projects/garden-clearance-fence-installation/garden-before-clearance.jpeg',
+    afterImage: '/images/projects/garden-clearance-fence-installation/timber-fence-final.jpeg',
+    highlights: [
+      'Overgrown garden area cleared',
+      'Boundary line prepared',
+      'New timber fence panels installed',
+      'Cleaner, safer and more private garden space',
+    ],
+    gallery: [
+      {
+        src: '/images/projects/garden-clearance-fence-installation/garden-before-clearance.jpeg',
+        alt: 'Overgrown garden area before clearance and fence installation',
+        label: 'Before',
+      },
+      {
+        src: '/images/projects/garden-clearance-fence-installation/timber-fence-final.jpeg',
+        alt: 'Garden after clearance with new timber fence panels installed',
+        label: 'Final finish',
+      },
+    ],
+  },
 ]
 
 export type Project = (typeof projects)[number]
