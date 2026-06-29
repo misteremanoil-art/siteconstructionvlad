@@ -59,6 +59,9 @@ export async function SiteFooter() {
             <p className="text-sm font-medium text-[#fffaf1]">
               © 2026 VPPCONSTRUCT LTD
             </p>
+            <p className="mt-2 text-xs font-semibold text-[#f6df9f]">
+              Registered in England &amp; Wales · Company No. 17135694
+            </p>
             <p className="mt-2 max-w-4xl text-xs leading-relaxed text-[#c9c1b0]">
               Building, renovation and fit-out services in Edgware and the surrounding London areas.
             </p>
