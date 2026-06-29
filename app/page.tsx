@@ -170,12 +170,16 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="home-project-grid">
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => (
             <Link
               key={project.slug}
               href={`/projects?project=${project.slug}`}
               className="home-project-card"
             >
+              <span className="home-project-topline">
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <ArrowRight className="h-4 w-4" />
+              </span>
               <div className="home-project-image">
                 <Image
                   src={project.heroImage}
@@ -184,10 +188,9 @@ export default function HomePage() {
                   sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw"
                   className="object-cover"
                 />
-                <span>{project.category}</span>
               </div>
               <div className="home-project-copy">
-                <p>{project.location}</p>
+                <p>{project.category}</p>
                 <h3>{project.shortTitle}</h3>
                 <span>{project.summary}</span>
               </div>
