@@ -28,40 +28,41 @@
 
 :root {
   color-scheme: light;
-  --background: #f5f3ed;
-  --foreground: #111917;
-  --card: rgba(255, 253, 248, 0.78);
-  --card-foreground: #14211e;
-  --muted: rgba(232, 227, 215, 0.72);
-  --muted-foreground: #5c665f;
-  --brand: #436d58;
+  --background: #f7f4ef;
+  --foreground: #1f2933;
+  --card: rgba(255, 255, 255, 0.82);
+  --card-foreground: #1f2933;
+  --muted: rgba(216, 196, 163, 0.28);
+  --muted-foreground: #64707d;
+  --brand: #c89b3c;
   --brand-foreground: #ffffff;
-  --gold: #c59d54;
-  --ink: #0f1513;
-  --border: rgba(20, 33, 30, 0.12);
-  --ring: #4d725c;
-  --glass: rgba(255, 255, 255, 0.58);
-  --glass-strong: rgba(255, 255, 255, 0.72);
-  --glass-dark: rgba(15, 21, 19, 0.72);
-  --glass-border: rgba(255, 255, 255, 0.24);
-  --shadow-soft: 0 22px 70px rgba(17, 25, 23, 0.12);
-  --shadow-deep: 0 28px 90px rgba(8, 12, 11, 0.28);
+  --gold: #c89b3c;
+  --stone: #d8c4a3;
+  --ink: #111827;
+  --border: rgba(31, 41, 51, 0.12);
+  --ring: #c89b3c;
+  --glass: rgba(255, 255, 255, 0.62);
+  --glass-strong: rgba(255, 255, 255, 0.78);
+  --glass-dark: rgba(17, 24, 39, 0.76);
+  --glass-border: rgba(255, 255, 255, 0.34);
+  --shadow-soft: 0 22px 70px rgba(31, 41, 51, 0.12);
+  --shadow-deep: 0 28px 90px rgba(17, 24, 39, 0.28);
 }
 
 .dark {
   color-scheme: dark;
-  --background: #111715;
+  --background: #111827;
   --foreground: #f5f0e6;
-  --card: #17201d;
+  --card: #1f2933;
   --card-foreground: #f5f0e6;
-  --muted: #1d2925;
+  --muted: #27313d;
   --muted-foreground: #c9c1b0;
-  --brand: #9fbea8;
-  --brand-foreground: #111715;
+  --brand: #d8c4a3;
+  --brand-foreground: #111827;
   --gold: #d7b66d;
-  --ink: #0b0f0e;
+  --ink: #0b1220;
   --border: rgba(255, 255, 255, 0.12);
-  --ring: #9fbea8;
+  --ring: #d8c4a3;
 }
 
 @layer base {
@@ -77,9 +78,9 @@
   body {
     @apply bg-background text-foreground;
     background:
-      linear-gradient(120deg, rgba(197, 157, 84, 0.1), transparent 22%),
-      linear-gradient(240deg, rgba(67, 109, 88, 0.12), transparent 32%),
-      linear-gradient(180deg, #fbfaf5 0%, #f1eee6 48%, #f6f3ec 100%);
+      linear-gradient(120deg, rgba(200, 155, 60, 0.12), transparent 22%),
+      linear-gradient(240deg, rgba(216, 196, 163, 0.24), transparent 32%),
+      linear-gradient(180deg, #ffffff 0%, #f7f4ef 46%, #efe6d8 100%);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -89,16 +90,16 @@
   .site-header-glass {
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
-      linear-gradient(90deg, rgba(197, 157, 84, 0.08), rgba(67, 109, 88, 0.08));
-    border-bottom: 1px solid rgba(20, 33, 30, 0.1);
-    box-shadow: 0 12px 44px rgba(17, 25, 23, 0.08);
+      linear-gradient(90deg, rgba(200, 155, 60, 0.1), rgba(216, 196, 163, 0.18));
+    border-bottom: 1px solid rgba(31, 41, 51, 0.1);
+    box-shadow: 0 12px 44px rgba(31, 41, 51, 0.08);
     backdrop-filter: blur(18px) saturate(1.18);
     -webkit-backdrop-filter: blur(18px) saturate(1.18);
   }
 
   .mobile-menu-glass {
     background: rgba(251, 250, 246, 0.88);
-    box-shadow: 0 24px 60px rgba(17, 25, 23, 0.1);
+    box-shadow: 0 24px 60px rgba(31, 41, 51, 0.1);
     backdrop-filter: blur(18px) saturate(1.12);
     -webkit-backdrop-filter: blur(18px) saturate(1.12);
   }
@@ -168,7 +169,7 @@
 
   .surface-card:hover {
     border-color: color-mix(in srgb, var(--gold) 46%, var(--border));
-    box-shadow: 0 28px 86px rgba(20, 33, 30, 0.16);
+    box-shadow: 0 28px 86px rgba(31, 41, 51, 0.16);
     transform: translateY(-3px);
   }
 
@@ -213,7 +214,7 @@
   }
 
   .header-action:hover {
-    box-shadow: 0 14px 32px rgba(20, 33, 30, 0.14);
+    box-shadow: 0 14px 32px rgba(31, 41, 51, 0.14);
     transform: translateY(-1px);
   }
 
@@ -281,8 +282,8 @@
 
   .primary-action {
     background: linear-gradient(135deg, var(--gold), #f1d58e);
-    color: #101411;
-    box-shadow: 0 18px 44px rgba(197, 157, 84, 0.28);
+    color: #111827;
+    box-shadow: 0 18px 44px rgba(200, 155, 60, 0.28);
   }
 
   .primary-action:hover,
@@ -291,7 +292,7 @@
   }
 
   .primary-action:hover {
-    box-shadow: 0 24px 60px rgba(197, 157, 84, 0.36);
+    box-shadow: 0 24px 60px rgba(200, 155, 60, 0.36);
   }
 
   .secondary-action {
@@ -311,9 +312,9 @@
 
   .hero-band {
     background-image:
-      linear-gradient(90deg, rgba(9, 13, 12, 0.94) 0%, rgba(10, 15, 13, 0.82) 48%, rgba(10, 15, 13, 0.46) 100%),
-      linear-gradient(135deg, rgba(197, 157, 84, 0.2), transparent 32%, rgba(67, 109, 88, 0.24)),
-      linear-gradient(180deg, rgba(10, 13, 12, 0.16), rgba(10, 13, 12, 0.78)),
+      linear-gradient(90deg, rgba(17, 24, 39, 0.94) 0%, rgba(17, 24, 39, 0.82) 48%, rgba(17, 24, 39, 0.46) 100%),
+      linear-gradient(135deg, rgba(200, 155, 60, 0.2), transparent 32%, rgba(216, 196, 163, 0.24)),
+      linear-gradient(180deg, rgba(17, 24, 39, 0.16), rgba(17, 24, 39, 0.78)),
       url('/images/vppconstruct-hero.png');
     background-position: 58% center;
     background-size: cover;
@@ -372,7 +373,7 @@
 
   .hero-pill:hover {
     background: rgba(255, 255, 255, 0.13);
-    border-color: rgba(246, 223, 159, 0.42);
+    border-color: rgba(216, 196, 163, 0.42);
     transform: translateY(-1px);
   }
 
@@ -424,7 +425,7 @@
 
   .hero-stats div:hover {
     background: rgba(255, 255, 255, 0.11);
-    border-color: rgba(246, 223, 159, 0.65);
+    border-color: rgba(216, 196, 163, 0.65);
     box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
     transform: translateY(-2px);
   }
@@ -472,8 +473,8 @@
 
   .dark-section {
     background:
-      linear-gradient(135deg, rgba(197, 157, 84, 0.08), transparent 32%),
-      linear-gradient(225deg, rgba(159, 190, 168, 0.1), transparent 28%),
+      linear-gradient(135deg, rgba(200, 155, 60, 0.08), transparent 32%),
+      linear-gradient(225deg, rgba(216, 196, 163, 0.1), transparent 28%),
       var(--ink);
     color: #f8f4eb;
   }
@@ -524,7 +525,7 @@
   }
 
   .service-card::before {
-    background: linear-gradient(135deg, rgba(197, 157, 84, 0.2), rgba(159, 190, 168, 0.08));
+    background: linear-gradient(135deg, rgba(200, 155, 60, 0.2), rgba(216, 196, 163, 0.08));
     content: "";
     inset: 0;
     opacity: 0;
@@ -535,9 +536,9 @@
 
   .service-card:hover {
     background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(197, 157, 84, 0.055)),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(200, 155, 60, 0.055)),
       rgba(24, 35, 31, 0.9);
-    box-shadow: inset 0 0 0 1px rgba(197, 157, 84, 0.2), 0 24px 60px rgba(0, 0, 0, 0.22);
+    box-shadow: inset 0 0 0 1px rgba(200, 155, 60, 0.2), 0 24px 60px rgba(0, 0, 0, 0.22);
     transform: translateY(-6px);
     z-index: 1;
   }
@@ -548,7 +549,7 @@
 
   .service-icon {
     align-items: center;
-    background: rgba(197, 157, 84, 0.14);
+    background: rgba(200, 155, 60, 0.14);
     color: var(--gold);
     display: inline-flex;
     height: 3.4rem;
@@ -559,7 +560,7 @@
   }
 
   .service-card:hover .service-icon {
-    background: rgba(197, 157, 84, 0.24);
+    background: rgba(200, 155, 60, 0.24);
     color: #f6df9f;
     transform: rotate(-3deg) scale(1.06);
   }
@@ -595,7 +596,7 @@
   .project-card {
     aspect-ratio: 4 / 3;
     border-radius: var(--radius-lg);
-    box-shadow: 0 18px 54px rgba(20, 33, 30, 0.12);
+    box-shadow: 0 18px 54px rgba(31, 41, 51, 0.12);
     overflow: hidden;
     position: relative;
     transform: translateZ(0);
@@ -607,7 +608,7 @@
   }
 
   .project-card:hover {
-    box-shadow: 0 32px 90px rgba(20, 33, 30, 0.2);
+    box-shadow: 0 32px 90px rgba(31, 41, 51, 0.2);
     transform: translateY(-7px);
   }
 
@@ -617,7 +618,7 @@
   }
 
   .project-card-overlay {
-    background: linear-gradient(180deg, transparent 20%, rgba(10, 13, 12, 0.84));
+    background: linear-gradient(180deg, transparent 20%, rgba(17, 24, 39, 0.84));
     color: #fffaf1;
     inset: 0;
     display: flex;
@@ -629,7 +630,7 @@
   }
 
   .project-card:hover .project-card-overlay {
-    background: linear-gradient(180deg, rgba(10, 13, 12, 0.02) 8%, rgba(10, 13, 12, 0.9));
+    background: linear-gradient(180deg, rgba(17, 24, 39, 0.02) 8%, rgba(17, 24, 39, 0.9));
   }
 
   .project-card-overlay span {
@@ -672,7 +673,7 @@
 
   .home-project-card:hover {
     border-color: color-mix(in srgb, var(--gold) 48%, var(--border));
-    box-shadow: 0 32px 92px rgba(20, 33, 30, 0.18);
+    box-shadow: 0 32px 92px rgba(31, 41, 51, 0.18);
     transform: translateY(-6px);
   }
 
@@ -696,7 +697,7 @@
   .project-feature-media span,
   .project-gallery-item figcaption,
   .before-after-card figcaption {
-    background: rgba(15, 21, 19, 0.72);
+    background: rgba(17, 24, 39, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.18);
     color: #f6df9f;
     font-size: 0.72rem;
@@ -748,8 +749,8 @@
 
   .projects-hero {
     background:
-      linear-gradient(135deg, rgba(15, 21, 19, 0.94), rgba(15, 21, 19, 0.72)),
-      linear-gradient(225deg, rgba(197, 157, 84, 0.22), transparent 38%),
+      linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(17, 24, 39, 0.72)),
+      linear-gradient(225deg, rgba(200, 155, 60, 0.22), transparent 38%),
       url('/images/projects/bathroom-floor-renovation/finished-floor-toilet.jpeg');
     background-position: center;
     background-size: cover;
@@ -800,7 +801,7 @@
       var(--card);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: var(--radius-md);
-    box-shadow: 0 14px 42px rgba(20, 33, 30, 0.08);
+    box-shadow: 0 14px 42px rgba(31, 41, 51, 0.08);
     color: var(--foreground);
     cursor: pointer;
     display: grid;
@@ -816,7 +817,7 @@
   }
 
   .project-tab::before {
-    background: linear-gradient(135deg, rgba(197, 157, 84, 0.18), transparent 45%);
+    background: linear-gradient(135deg, rgba(200, 155, 60, 0.18), transparent 45%);
     content: '';
     inset: 0;
     opacity: 0;
@@ -828,13 +829,13 @@
   .project-tab:hover,
   .project-tab[data-active='true'] {
     border-color: color-mix(in srgb, var(--gold) 48%, var(--border));
-    box-shadow: 0 20px 60px rgba(20, 33, 30, 0.14);
+    box-shadow: 0 20px 60px rgba(31, 41, 51, 0.14);
     transform: translateY(-3px);
   }
 
   .project-tab[data-active='true'] {
     background:
-      linear-gradient(145deg, rgba(15, 21, 19, 0.96), rgba(31, 43, 39, 0.9)),
+      linear-gradient(145deg, rgba(17, 24, 39, 0.96), rgba(31, 41, 51, 0.9)),
       var(--foreground);
     color: #fffaf1;
   }
@@ -977,8 +978,8 @@
   }
 
   .project-result {
-    background: rgba(67, 109, 88, 0.08);
-    border: 1px solid rgba(67, 109, 88, 0.14);
+    background: rgba(216, 196, 163, 0.08);
+    border: 1px solid rgba(216, 196, 163, 0.14);
     padding: 1rem;
   }
 
@@ -1085,7 +1086,7 @@
   .feature-band {
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.48), transparent 34%),
-      linear-gradient(225deg, rgba(67, 109, 88, 0.1), transparent 34%),
+      linear-gradient(225deg, rgba(216, 196, 163, 0.1), transparent 34%),
       #e9e4d6;
     border-block: 1px solid var(--border);
   }
@@ -1172,7 +1173,7 @@
     justify-content: space-between;
     min-height: 15rem;
     padding: 1.5rem;
-    box-shadow: 0 16px 54px rgba(20, 33, 30, 0.08);
+    box-shadow: 0 16px 54px rgba(31, 41, 51, 0.08);
     transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -1180,7 +1181,7 @@
 
   .testimonial-card:hover {
     border-color: color-mix(in srgb, var(--gold) 46%, var(--border));
-    box-shadow: 0 28px 86px rgba(20, 33, 30, 0.15);
+    box-shadow: 0 28px 86px rgba(31, 41, 51, 0.15);
     transform: translateY(-6px);
   }
 
@@ -1231,7 +1232,7 @@
   .area-panel:hover,
   .contact-panel:hover {
     border-color: color-mix(in srgb, var(--gold) 42%, var(--border));
-    box-shadow: 0 30px 90px rgba(20, 33, 30, 0.16);
+    box-shadow: 0 30px 90px rgba(31, 41, 51, 0.16);
     transform: translateY(-5px);
   }
 
@@ -1322,15 +1323,15 @@
 
   .area-action:hover {
     background: var(--gold);
-    color: #101411;
+    color: #111827;
     transform: translateY(-2px);
   }
 
   .contact-panel {
     background:
       linear-gradient(150deg, rgba(77, 114, 92, 0.2), transparent 44%),
-      linear-gradient(320deg, rgba(197, 157, 84, 0.12), transparent 34%),
-      rgba(15, 21, 19, 0.88);
+      linear-gradient(320deg, rgba(200, 155, 60, 0.12), transparent 34%),
+      rgba(17, 24, 39, 0.88);
     border-color: rgba(255, 255, 255, 0.16);
     color: #f8f4eb;
   }
@@ -1377,7 +1378,7 @@
 
   .contact-row:hover {
     background: rgba(255, 255, 255, 0.11);
-    border-color: rgba(197, 157, 84, 0.58);
+    border-color: rgba(200, 155, 60, 0.58);
     color: var(--gold);
     transform: translateY(-2px);
   }
@@ -1444,7 +1445,7 @@
 
     .hero-band {
       background-image:
-        linear-gradient(180deg, rgba(10, 13, 12, 0.92) 0%, rgba(10, 13, 12, 0.84) 56%, rgba(10, 13, 12, 0.72) 100%),
+        linear-gradient(180deg, rgba(17, 24, 39, 0.92) 0%, rgba(17, 24, 39, 0.84) 56%, rgba(17, 24, 39, 0.72) 100%),
         url('/images/vppconstruct-hero.png');
       background-position: 62% center;
       min-height: auto;
@@ -1542,7 +1543,7 @@
 
     .project-card {
       aspect-ratio: 5 / 4;
-      box-shadow: 0 14px 40px rgba(20, 33, 30, 0.1);
+      box-shadow: 0 14px 40px rgba(31, 41, 51, 0.1);
     }
 
     .home-project-image,
