@@ -71,13 +71,14 @@ export default function HomePage() {
         <div className="hero-overlay">
           <div className="page-shell hero-shell">
             <div className="hero-copy">
-              <p className="hero-pill">Renovations · Kitchens · Bathrooms · Extensions</p>
+              <p className="hero-pill">Edgware builders · Renovations · Interior finishes</p>
               <h1 className="hero-title">
-                Premium building and renovation work across Edgware & London.
+                Built clean. Finished properly. Made for everyday living.
               </h1>
               <p className="hero-intro">
-                VPPCONSTRUCT LTD delivers general building, renovation, fit-out and finishing work
-                for homeowners and commercial clients who want clear communication and reliable execution.
+                VPPCONSTRUCT LTD helps homeowners and local businesses with renovations, bathrooms,
+                kitchens, flooring, media walls, fencing and general building work across Edgware
+                and North West London.
               </p>
               <div className="hero-actions">
                 <Link href="#contact" className="primary-action">
@@ -91,6 +92,37 @@ export default function HomePage() {
                   <MessageCircle className="h-4 w-4" />
                   Message me on WhatsApp
                 </Link>
+              </div>
+              <div className="hero-trust-row" aria-label="Work standards">
+                {['Clean finish', 'Clear communication', 'Local builder'].map((item) => (
+                  <span key={item}>
+                    <BadgeCheck className="h-4 w-4" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="hero-showcase" aria-label="Recent project highlights">
+              <div className="hero-showcase-main">
+                <Image
+                  src="/images/projects/bespoke-media-wall-installation/final-bespoke-media-wall.jpeg"
+                  alt="Completed bespoke media wall with lighting and electric fireplace"
+                  fill
+                  priority
+                  sizes="(max-width: 980px) 100vw, 42vw"
+                  className="object-cover"
+                />
+                <span>Bespoke media walls</span>
+              </div>
+              <div className="hero-showcase-grid">
+                <div>
+                  <strong>5</strong>
+                  <span>recent project studies</span>
+                </div>
+                <div>
+                  <strong>HA8</strong>
+                  <span>Edgware based</span>
+                </div>
               </div>
               <div className="hero-stats" aria-label="Company highlights">
                 <div>
