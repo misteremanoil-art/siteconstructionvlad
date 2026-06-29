@@ -6,6 +6,7 @@ import { Menu, MessageCircle, Phone, X } from 'lucide-react'
 import { SiteLogo } from '@/components/site-logo'
 
 const NAV = [
+  { href: '/#top', label: 'Home' },
   { href: '/#about', label: 'About' },
   { href: '/#services', label: 'Services' },
   { href: '/projects', label: 'Projects' },
