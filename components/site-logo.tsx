@@ -17,18 +17,18 @@ export function SiteLogo({
         .filter(Boolean)
         .join(' ')}
     >
-      <span className="flex h-12 w-15 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-[#c59d54]/45 bg-white p-1 shadow-sm sm:h-16 sm:w-20">
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-[#c89b3c]/45 bg-white p-1 shadow-sm sm:h-16 sm:w-16">
         <Image
-          src="/images/vpp-logo.jpg"
+          src="/images/vpp-logo-new.png"
           alt=""
-          width={132}
-          height={118}
+          width={256}
+          height={256}
           className="h-full w-full object-contain"
           aria-hidden="true"
         />
       </span>
       <span className="flex min-w-0 flex-col leading-none">
-        <span className="hidden text-[0.68rem] uppercase tracking-[0.22em] text-[#c59d54] sm:block">Construction Company</span>
+        <span className="hidden text-[0.68rem] uppercase tracking-[0.22em] text-[#c89b3c] sm:block">Construction Company</span>
         <span className="mt-0.5 max-w-[9.5rem] truncate text-sm font-black tracking-[0.03em] text-current sm:mt-1 sm:max-w-none sm:text-lg">VPPCONSTRUCT LTD</span>
       </span>
     </Link>

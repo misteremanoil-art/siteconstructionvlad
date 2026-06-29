@@ -106,7 +106,7 @@ export default function RootLayout({
         '@id': `${siteUrl}/#localbusiness`,
         name: siteName,
         url: siteUrl,
-        logo: absoluteUrl('/images/vpp-logo.jpg'),
+        logo: absoluteUrl('/images/vpp-logo-new.png'),
         image: [
           absoluteUrl('/images/vppconstruct-hero.png'),
           absoluteUrl('/images/vppconstruct-extension.png'),
