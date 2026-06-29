@@ -14,6 +14,7 @@ import {
   Sparkles,
   Wrench,
 } from 'lucide-react'
+import { faqItems } from '@/lib/faqs'
 import { projects } from '@/lib/projects'
 
 const services = [
@@ -69,10 +70,26 @@ const testimonials = [
 
 const coverage = ['Edgware', 'HA8', 'Barnet', 'Harrow', 'Hendon', 'Mill Hill', 'Stanmore', 'Wembley', 'Finchley', 'North West London']
 const featuredProjects = projects.slice(-4)
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+}
 
 export default function HomePage() {
   return (
     <main className="construction-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <section className="hero-band" id="top">
         <div className="hero-overlay">
           <div className="page-shell hero-shell">
@@ -270,6 +287,36 @@ export default function HomePage() {
               <span className="testimonial-note">Local project feedback</span>
             </figure>
           ))}
+        </div>
+      </section>
+
+      <section className="faq-section" id="faq" aria-labelledby="faq-title">
+        <div className="page-shell faq-shell">
+          <div className="faq-intro">
+            <p className="section-kicker">FAQ</p>
+            <h2 className="section-title" id="faq-title">
+              Questions people usually ask before booking building work.
+            </h2>
+            <p>
+              A quick guide to quotes, areas covered, job sizes and how the enquiry process usually
+              works.
+            </p>
+            <Link href="/contact" className="faq-action">
+              Ask about your project
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="faq-list">
+            {faqItems.map((item, index) => (
+              <details key={item.question} className="faq-item" open={index === 0}>
+                <summary>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {item.question}
+                </summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -1584,6 +1584,140 @@
     text-transform: uppercase;
   }
 
+  .faq-section {
+    background:
+      linear-gradient(135deg, rgba(200, 155, 60, 0.1), transparent 34%),
+      linear-gradient(315deg, rgba(216, 196, 163, 0.18), transparent 38%),
+      rgba(255, 255, 255, 0.34);
+    border-block: 1px solid rgba(31, 41, 51, 0.08);
+  }
+
+  .faq-shell {
+    align-items: start;
+    display: grid;
+    gap: clamp(1.4rem, 4vw, 3rem);
+  }
+
+  @media (min-width: 900px) {
+    .faq-shell {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    }
+  }
+
+  .faq-intro {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .faq-intro p:not(.section-kicker) {
+    color: var(--muted-foreground);
+    line-height: 1.75;
+    margin-top: 1rem;
+    max-width: 34rem;
+  }
+
+  .faq-action {
+    align-items: center;
+    background: var(--ink);
+    color: #fffaf1;
+    display: inline-flex;
+    font-weight: 900;
+    gap: 0.65rem;
+    justify-content: center;
+    margin-top: 1.35rem;
+    min-height: 3.4rem;
+    padding: 0.85rem 1.15rem;
+    transition: background-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .faq-action:hover {
+    background: var(--gold);
+    box-shadow: 0 18px 46px rgba(200, 155, 60, 0.24);
+    color: #111827;
+    transform: translateY(-2px);
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .faq-item {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+      var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.54);
+    border-radius: var(--radius-md);
+    box-shadow: 0 16px 54px rgba(31, 41, 51, 0.08);
+    overflow: hidden;
+    transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    backdrop-filter: blur(16px) saturate(1.1);
+    -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  }
+
+  .faq-item:hover,
+  .faq-item[open] {
+    border-color: color-mix(in srgb, var(--gold) 48%, var(--border));
+    box-shadow: 0 24px 76px rgba(200, 155, 60, 0.14);
+  }
+
+  .faq-item:hover {
+    transform: translateY(-3px);
+  }
+
+  .faq-item summary {
+    align-items: center;
+    color: var(--foreground);
+    cursor: pointer;
+    display: grid;
+    font-weight: 900;
+    gap: 0.85rem;
+    grid-template-columns: auto 1fr auto;
+    list-style: none;
+    min-height: 4.4rem;
+    padding: 1rem 1.15rem;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    background: var(--gold);
+    color: #111827;
+    content: "+";
+    display: inline-flex;
+    font-size: 1.2rem;
+    font-weight: 900;
+    grid-column: 3;
+    height: 2rem;
+    justify-content: center;
+    line-height: 1.85rem;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+    width: 2rem;
+  }
+
+  .faq-item[open] summary::after {
+    background: var(--ink);
+    color: #fffaf1;
+    content: "-";
+    transform: rotate(180deg);
+  }
+
+  .faq-item summary span {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  .faq-item p {
+    border-top: 1px solid rgba(31, 41, 51, 0.08);
+    color: var(--muted-foreground);
+    line-height: 1.76;
+    padding: 0 1.15rem 1.15rem 3.65rem;
+  }
+
   .area-contact-grid {
     display: grid;
     gap: 1rem;
@@ -2472,6 +2606,38 @@
       line-height: 1.26;
     }
 
+    .faq-intro {
+      position: static;
+    }
+
+    .faq-action {
+      width: 100%;
+    }
+
+    .faq-list {
+      gap: 0.65rem;
+    }
+
+    .faq-item summary {
+      align-items: start;
+      gap: 0.65rem;
+      grid-template-columns: auto 1fr auto;
+      min-height: auto;
+      padding: 0.95rem;
+    }
+
+    .faq-item summary::after {
+      height: 1.8rem;
+      line-height: 1.65rem;
+      width: 1.8rem;
+    }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      line-height: 1.68;
+      padding: 0 0.95rem 0.95rem;
+    }
+
     .area-panel,
     .contact-panel {
       padding: 1.25rem;
@@ -2606,6 +2772,9 @@
     .reason-row,
     .reason-row svg,
     .testimonial-card,
+    .faq-action,
+    .faq-item,
+    .faq-item summary::after,
     .area-panel,
     .contact-panel,
     .area-chip,
@@ -2641,6 +2810,9 @@
     .reason-row:hover,
     .reason-row:hover svg,
     .testimonial-card:hover,
+    .faq-action:hover,
+    .faq-item:hover,
+    .faq-item[open] summary::after,
     .area-panel:hover,
     .contact-panel:hover,
     .area-chip:hover,
