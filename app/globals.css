@@ -1730,6 +1730,311 @@
     margin-top: 1.1rem;
   }
 
+  .contact-panel-action {
+    align-items: center;
+    background: var(--gold);
+    color: #111827;
+    display: inline-flex;
+    font-weight: 900;
+    gap: 0.65rem;
+    justify-content: center;
+    margin-top: 1.4rem;
+    min-height: 3.45rem;
+    padding: 0.9rem 1.25rem;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .contact-panel-action:hover {
+    background: #fffaf1;
+    transform: translateY(-2px);
+  }
+
+  .contact-page {
+    overflow: clip;
+  }
+
+  .contact-hero {
+    background-image:
+      linear-gradient(90deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.78)),
+      linear-gradient(180deg, rgba(17, 24, 39, 0.28), rgba(17, 24, 39, 0.92)),
+      url("/images/projects/kitchen-floor-renovation/final-tiled-kitchen-floor.jpeg");
+    background-position: center;
+    background-size: cover;
+    color: #f8f4eb;
+    position: relative;
+  }
+
+  .contact-hero::before {
+    background:
+      radial-gradient(circle at 22% 18%, rgba(200, 155, 60, 0.26), transparent 28%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: auto, 76px 76px, 76px 76px;
+    content: "";
+    inset: 0;
+    opacity: 0.62;
+    pointer-events: none;
+    position: absolute;
+  }
+
+  .contact-hero-shell {
+    align-items: end;
+    display: grid;
+    gap: 2rem;
+    min-height: 34rem;
+    padding-block: clamp(4.4rem, 8vw, 7rem) clamp(3.5rem, 7vw, 5rem);
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 900px) {
+    .contact-hero-shell {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+    }
+  }
+
+  .contact-hero .page-title {
+    color: #fffaf1;
+    max-width: 48rem;
+  }
+
+  .contact-hero-copy {
+    color: rgba(248, 244, 235, 0.78);
+    font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+    line-height: 1.75;
+    margin-top: 1.2rem;
+    max-width: 43rem;
+  }
+
+  .contact-hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-hero-tags span {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(248, 244, 235, 0.84);
+    display: inline-flex;
+    gap: 0.45rem;
+    padding: 0.62rem 0.8rem;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .contact-hero-tags svg {
+    color: var(--gold);
+  }
+
+  .contact-hero-card {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.055)),
+      rgba(17, 24, 39, 0.56);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: var(--shadow-deep);
+    padding: 1.25rem;
+    backdrop-filter: blur(20px) saturate(1.16);
+    -webkit-backdrop-filter: blur(20px) saturate(1.16);
+  }
+
+  .contact-hero-card > span {
+    color: var(--gold);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .contact-hero-card strong {
+    color: #fffaf1;
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    line-height: 1;
+    margin-top: 1.6rem;
+  }
+
+  .contact-hero-actions {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1.3rem;
+  }
+
+  .contact-hero-actions a {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #fffaf1;
+    display: inline-flex;
+    font-weight: 900;
+    gap: 0.55rem;
+    justify-content: center;
+    min-height: 3.1rem;
+    padding: 0.78rem 0.9rem;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .contact-hero-actions a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #111827;
+    transform: translateY(-2px);
+  }
+
+  .contact-layout {
+    align-items: start;
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 980px) {
+    .contact-layout {
+      grid-template-columns: minmax(18rem, 0.46fr) minmax(0, 1fr);
+    }
+  }
+
+  .contact-info-panel {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .contact-info-card,
+  .contact-response-card,
+  .contact-form-panel {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
+      var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(18px) saturate(1.12);
+    -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  }
+
+  .contact-info-card {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1.1rem;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .contact-info-card:hover {
+    border-color: color-mix(in srgb, var(--gold) 48%, var(--border));
+    box-shadow: 0 24px 70px rgba(31, 41, 51, 0.14);
+    transform: translateY(-3px);
+  }
+
+  .contact-info-card svg {
+    color: var(--gold);
+  }
+
+  .contact-info-card span {
+    color: var(--muted-foreground);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .contact-info-card a,
+  .contact-info-card strong {
+    color: var(--foreground);
+    font-size: 1.05rem;
+    font-weight: 900;
+  }
+
+  .contact-response-card {
+    padding: 1.2rem;
+  }
+
+  .contact-steps {
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 1.1rem;
+  }
+
+  .contact-steps div {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .contact-steps span {
+    align-items: center;
+    background: var(--ink);
+    color: #fffaf1;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 900;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+  }
+
+  .contact-steps p {
+    color: var(--foreground);
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  .contact-form-panel {
+    background:
+      linear-gradient(150deg, rgba(200, 155, 60, 0.14), transparent 34%),
+      linear-gradient(320deg, rgba(216, 196, 163, 0.16), transparent 42%),
+      rgba(17, 24, 39, 0.92);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #f8f4eb;
+    padding: clamp(1.25rem, 4vw, 2.4rem);
+  }
+
+  .contact-form-heading {
+    align-items: start;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  .contact-form-heading h2 {
+    color: #fffaf1;
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1;
+    margin-top: 0.65rem;
+  }
+
+  .contact-form-heading svg {
+    color: var(--gold);
+    flex: 0 0 auto;
+  }
+
+  .contact-form-panel > p {
+    color: rgba(248, 244, 235, 0.72);
+    line-height: 1.75;
+    margin-top: 1rem;
+    max-width: 42rem;
+  }
+
+  .contact-form-footnote {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(248, 244, 235, 0.72);
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    padding: 0.82rem 0.95rem;
+  }
+
+  .contact-form-footnote svg {
+    color: var(--gold);
+    flex: 0 0 auto;
+  }
+
   .contact-form {
     display: grid;
     gap: 0.85rem;
@@ -1778,6 +2083,11 @@
 
   .contact-form select {
     appearance: none;
+  }
+
+  .contact-form option {
+    background: #111827;
+    color: #fffaf1;
   }
 
   .contact-form textarea {
@@ -2167,6 +2477,56 @@
 
     .contact-panel h2 {
       font-size: clamp(1.95rem, 10vw, 2.65rem);
+    }
+
+    .contact-hero {
+      background-position: 58% center;
+    }
+
+    .contact-hero-shell {
+      min-height: auto;
+      padding-block: 3.2rem 2.6rem;
+    }
+
+    .contact-hero-tags span {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .contact-hero-card {
+      padding: 1rem;
+    }
+
+    .contact-hero-card strong {
+      font-size: 1.65rem;
+      margin-top: 1.2rem;
+    }
+
+    .contact-info-card,
+    .contact-response-card,
+    .contact-form-panel {
+      border-radius: var(--radius-md);
+    }
+
+    .contact-form-heading {
+      gap: 0.75rem;
+    }
+
+    .contact-form-heading h2 {
+      font-size: clamp(2rem, 10vw, 2.7rem);
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      font-size: 0.95rem;
+      min-height: 3.15rem;
+      padding: 0.78rem 0.85rem;
+    }
+
+    .contact-form button,
+    .contact-panel-action {
+      width: 100%;
     }
 
     .contact-list {

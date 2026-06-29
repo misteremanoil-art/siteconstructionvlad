@@ -12,7 +12,7 @@ const NAV = [
   { href: '/projects', label: 'Projects' },
   { href: '/#why-us', label: 'Why us' },
   { href: '/#area', label: 'Area' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export function SiteHeader() {

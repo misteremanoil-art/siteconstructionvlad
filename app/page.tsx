@@ -14,7 +14,6 @@ import {
   Sparkles,
   Wrench,
 } from 'lucide-react'
-import { ContactForm } from '@/components/contact-form'
 import { projects } from '@/lib/projects'
 
 const services = [
@@ -88,7 +87,7 @@ export default function HomePage() {
                 to last.
               </p>
               <div className="hero-actions">
-                <Link href="#contact" className="primary-action">
+                <Link href="/contact" className="primary-action">
                   Request a free quote
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -162,7 +161,7 @@ export default function HomePage() {
               <p className="section-kicker">Services</p>
               <h2 className="section-title">Building services shaped around real projects.</h2>
             </div>
-            <Link href="#contact" className="text-action">
+            <Link href="/contact" className="text-action">
               Start an enquiry
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -298,7 +297,7 @@ export default function HomePage() {
               <strong>HA8 9LS · Edgware</strong>
             </div>
           </div>
-          <Link href="#contact" className="area-action">
+          <Link href="/contact" className="area-action">
             Check coverage
             <ArrowRight className="h-4 w-4" />
           </Link>
@@ -308,10 +307,13 @@ export default function HomePage() {
           <p className="section-kicker">Contact</p>
           <h2>Request a free quote.</h2>
           <p>
-            Send a few details about the project, location and preferred timing. You can also call
-            directly or send a WhatsApp message.
+            Send the project details through the quote form, or get in touch directly if you prefer
+            a quicker conversation.
           </p>
-          <ContactForm />
+          <Link href="/contact" className="contact-panel-action">
+            Open quote form
+            <ArrowRight className="h-4 w-4" />
+          </Link>
           <div className="contact-list">
             <div className="contact-row">
               <MapPin className="h-5 w-5" />

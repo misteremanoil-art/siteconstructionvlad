@@ -45,7 +45,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
               </li>
             ))}
           </ul>
-          <Link href="/#contact" className="primary-action project-quote-action">
+          <Link href="/contact" className="primary-action project-quote-action">
             Request a similar quote
             <ArrowRight className="h-4 w-4" />
           </Link>
