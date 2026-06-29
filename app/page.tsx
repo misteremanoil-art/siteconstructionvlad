@@ -14,6 +14,7 @@ import {
   Sparkles,
   Wrench,
 } from 'lucide-react'
+import { projects } from '@/lib/projects'
 
 const services = [
   {
@@ -35,19 +36,6 @@ const services = [
     title: 'General building',
     description: 'Domestic and commercial building work, repairs, conversions, exterior upgrades and planned improvements.',
     icon: Building2,
-  },
-]
-
-const gallery = [
-  {
-    title: 'Home extensions',
-    label: 'Structural work',
-    image: '/images/vppconstruct-extension.png',
-  },
-  {
-    title: 'Interior renovations',
-    label: 'Finishing work',
-    image: '/images/vppconstruct-interior.png',
   },
 ]
 
@@ -74,6 +62,7 @@ const testimonials = [
 ]
 
 const coverage = ['Edgware', 'HA8', 'Barnet', 'Harrow', 'Hendon', 'Mill Hill', 'Stanmore', 'Wembley', 'Finchley', 'North West London']
+const featuredProject = projects[0]
 
 export default function HomePage() {
   return (
@@ -173,26 +162,30 @@ export default function HomePage() {
         <div className="section-header">
           <div>
             <p className="section-kicker">Project focus</p>
-            <h2 className="section-title">Renovations, extensions and detailed finishing.</h2>
+            <h2 className="section-title">Recent project work with clear before and after progress.</h2>
           </div>
+          <Link href="/projects" className="text-action">
+            View projects
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-        <div className="gallery-grid">
-          {gallery.map((item) => (
-            <article key={item.title} className="project-card">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-              />
-              <div className="project-card-overlay">
-                <span>{item.label}</span>
-                <h3>{item.title}</h3>
-              </div>
-            </article>
-          ))}
-        </div>
+        <Link href="/projects" className="home-project-card">
+          <div className="home-project-image">
+            <Image
+              src={featuredProject.heroImage}
+              alt={featuredProject.shortTitle}
+              fill
+              sizes="(max-width: 900px) 100vw, 52vw"
+              className="object-cover"
+            />
+            <span>{featuredProject.category}</span>
+          </div>
+          <div className="home-project-copy">
+            <p>{featuredProject.location}</p>
+            <h3>{featuredProject.title}</h3>
+            <span>{featuredProject.summary}</span>
+          </div>
+        </Link>
       </section>
 
       <section className="feature-band" id="why-us">

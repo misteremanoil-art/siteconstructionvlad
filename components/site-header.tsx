@@ -8,7 +8,7 @@ import { SiteLogo } from '@/components/site-logo'
 const NAV = [
   { href: '/#about', label: 'About' },
   { href: '/#services', label: 'Services' },
-  { href: '/#work', label: 'Work' },
+  { href: '/projects', label: 'Projects' },
   { href: '/#why-us', label: 'Why us' },
   { href: '/#area', label: 'Area' },
   { href: '/#contact', label: 'Contact' },
