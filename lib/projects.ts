@@ -100,9 +100,9 @@ export const projects = [
     ],
     finalResult:
       'A cleaner, brighter and more comfortable kitchen space with a modern floor finish that is durable, practical and easy to maintain.',
-    heroImage: '/images/projects/kitchen-floor-renovation/finished-kitchen-floor.jpeg',
+    heroImage: '/images/projects/kitchen-floor-renovation/final-tiled-kitchen-floor.jpeg',
     beforeImage: '/images/projects/kitchen-floor-renovation/subfloor-preparation.jpeg',
-    afterImage: '/images/projects/kitchen-floor-renovation/finished-kitchen-floor.jpeg',
+    afterImage: '/images/projects/kitchen-floor-renovation/final-tiled-kitchen-floor.jpeg',
     highlights: [
       'Old kitchen flooring removed',
       'Subfloor prepared for a reliable finish',
@@ -126,9 +126,14 @@ export const projects = [
         label: 'Levelling',
       },
       {
-        src: '/images/projects/kitchen-floor-renovation/finished-kitchen-floor.jpeg',
+        src: '/images/projects/kitchen-floor-renovation/final-tiled-kitchen-floor.jpeg',
         alt: 'Finished kitchen floor renovation with a clean modern floor finish',
         label: 'Final finish',
+      },
+      {
+        src: '/images/projects/kitchen-floor-renovation/finished-kitchen-floor.jpeg',
+        alt: 'Completed kitchen floor viewed from the doorway',
+        label: 'After',
       },
     ],
   },
