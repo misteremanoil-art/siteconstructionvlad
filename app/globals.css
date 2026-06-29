@@ -1732,7 +1732,9 @@
 
   .contact-panel-action {
     align-items: center;
-    background: var(--gold);
+    background:
+      linear-gradient(135deg, var(--gold), #d8c4a3);
+    border: 1px solid rgba(216, 196, 163, 0.7);
     color: #111827;
     display: inline-flex;
     font-weight: 900;
@@ -1741,11 +1743,12 @@
     margin-top: 1.4rem;
     min-height: 3.45rem;
     padding: 0.9rem 1.25rem;
-    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+    transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
   }
 
   .contact-panel-action:hover {
-    background: #fffaf1;
+    border-color: rgba(255, 250, 241, 0.9);
+    box-shadow: 0 18px 46px rgba(200, 155, 60, 0.28);
     transform: translateY(-2px);
   }
 
@@ -1880,8 +1883,10 @@
   }
 
   .contact-hero-actions a:hover {
-    background: var(--gold);
+    background:
+      linear-gradient(135deg, var(--gold), #d8c4a3);
     border-color: var(--gold);
+    box-shadow: 0 18px 44px rgba(200, 155, 60, 0.28);
     color: #111827;
     transform: translateY(-2px);
   }
@@ -1920,17 +1925,34 @@
     display: grid;
     gap: 0.4rem;
     padding: 1.1rem;
+    position: relative;
+    overflow: hidden;
     transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .contact-info-card::before {
+    background: linear-gradient(90deg, rgba(200, 155, 60, 0.18), transparent 72%);
+    content: "";
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 180ms ease;
   }
 
   .contact-info-card:hover {
     border-color: color-mix(in srgb, var(--gold) 48%, var(--border));
-    box-shadow: 0 24px 70px rgba(31, 41, 51, 0.14);
+    box-shadow: 0 24px 70px rgba(200, 155, 60, 0.16);
     transform: translateY(-3px);
+  }
+
+  .contact-info-card:hover::before {
+    opacity: 1;
   }
 
   .contact-info-card svg {
     color: var(--gold);
+    position: relative;
   }
 
   .contact-info-card span {
@@ -1946,6 +1968,13 @@
     color: var(--foreground);
     font-size: 1.05rem;
     font-weight: 900;
+    position: relative;
+    transition: color 180ms ease;
+  }
+
+  .contact-info-card:hover a,
+  .contact-info-card:hover strong {
+    color: var(--gold);
   }
 
   .contact-response-card {
@@ -1966,7 +1995,7 @@
 
   .contact-steps span {
     align-items: center;
-    background: var(--ink);
+    background: linear-gradient(135deg, var(--gold), #d8c4a3);
     color: #fffaf1;
     display: inline-flex;
     flex: 0 0 auto;
@@ -2110,8 +2139,9 @@
 
   .contact-form button {
     align-items: center;
-    background: var(--gold);
-    border: 0;
+    background:
+      linear-gradient(135deg, var(--gold), #d8c4a3);
+    border: 1px solid rgba(216, 196, 163, 0.7);
     color: #111827;
     cursor: pointer;
     display: inline-flex;
@@ -2121,11 +2151,12 @@
     justify-content: center;
     min-height: 3.45rem;
     padding: 0.9rem 1.2rem;
-    transition: background-color 180ms ease, color 180ms ease, opacity 180ms ease, transform 180ms ease;
+    transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease, opacity 180ms ease, transform 180ms ease;
   }
 
   .contact-form button:hover {
-    background: #fffaf1;
+    border-color: rgba(255, 250, 241, 0.9);
+    box-shadow: 0 18px 46px rgba(200, 155, 60, 0.28);
     transform: translateY(-2px);
   }
 
