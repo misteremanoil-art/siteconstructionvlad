@@ -19,24 +19,34 @@ import { projects } from '@/lib/projects'
 
 const services = [
   {
-    title: 'Renovations',
-    description: 'Complete property refreshes, structural changes, plastering, flooring, decorating and final finishes.',
+    title: 'Driveways',
+    description: 'Block paving, driveway preparation, edging and practical outdoor finishing.',
     icon: Hammer,
+    href: '/services/driveways',
   },
   {
-    title: 'Kitchens & bathrooms',
-    description: 'Careful fitting, tiling, plumbing coordination and detail-led finishing for the busiest rooms in the home.',
-    icon: Sparkles,
+    title: 'Roofing',
+    description: 'Roofing repairs, maintenance and exterior improvement work handled with care.',
+    icon: Wrench,
+    href: '/services/roofing',
   },
   {
     title: 'Extensions',
-    description: 'Practical new space for London homes, from groundwork and shell construction through to interior completion.',
+    description: 'Practical home extension support from building stages through to interior completion.',
     icon: Home,
+    href: '/services/extensions',
   },
   {
-    title: 'General building',
-    description: 'Domestic and commercial building work, repairs, conversions, exterior upgrades and planned improvements.',
+    title: 'Renovations',
+    description: 'Property refreshes, repairs, flooring, walls and detailed final finishes.',
     icon: Building2,
+    href: '/services/renovations',
+  },
+  {
+    title: 'Kitchens & bathrooms',
+    description: 'Careful fitting, tiling, flooring and clean finishing for everyday rooms.',
+    icon: Sparkles,
+    href: '/services/bathrooms-kitchens',
   },
 ]
 
@@ -184,14 +194,14 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="service-grid">
-            {services.map(({ title, description, icon: Icon }) => (
-              <article key={title} className="service-card">
+            {services.map(({ title, description, icon: Icon, href }) => (
+              <Link key={title} href={href} className="service-card">
                 <span className="service-icon">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3>{title}</h3>
                 <p>{description}</p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

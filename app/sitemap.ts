@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getSiteUrl } from '@/lib/seo'
 import { projects } from '@/lib/projects'
+import { servicePages } from '@/lib/service-pages'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl()
@@ -9,6 +10,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     { path: '', priority: 1, changeFrequency: 'weekly' as const },
     { path: '/contact', priority: 0.85, changeFrequency: 'monthly' as const },
+    { path: '/services', priority: 0.9, changeFrequency: 'monthly' as const },
+    ...servicePages.map((service) => ({
+      path: `/services/${service.slug}`,
+      priority: 0.82,
+      changeFrequency: 'monthly' as const,
+    })),
     { path: '/projects', priority: 0.8, changeFrequency: 'monthly' as const },
     ...projects.map((project) => ({
       path: `/projects/${project.slug}`,

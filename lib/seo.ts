@@ -3,11 +3,14 @@ export const siteName = 'VPPCONSTRUCT LTD'
 export const siteTitle = 'Builder in Edgware | Renovations, Kitchens, Bathrooms & Extensions'
 
 export const siteDescription =
-  'VPPCONSTRUCT LTD is a local builder in Edgware offering renovations, kitchens, bathrooms, extensions and general building work across North West London.'
+  'VPPCONSTRUCT LTD is a local builder in Edgware offering driveways, roofing, extensions, renovations, kitchens, bathrooms and general building work across North West London.'
 
 export const siteKeywords = [
   'builder in Edgware',
   'builders Edgware',
+  'driveways Edgware',
+  'block paving Edgware',
+  'roofing Edgware',
   'renovations Edgware',
   'kitchen fitters Edgware',
   'bathroom renovations Edgware',
@@ -37,6 +40,9 @@ export const serviceAreas = [
 ]
 
 export const services = [
+  'Driveways',
+  'Block paving',
+  'Roofing',
   'Renovations',
   'Kitchen fitting',
   'Bathroom renovations',

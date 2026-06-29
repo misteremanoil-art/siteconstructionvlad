@@ -39,7 +39,7 @@ export async function SiteFooter() {
             <Link href="/#about" className="transition-colors hover:text-brand">
               About
             </Link>
-            <Link href="/#services" className="transition-colors hover:text-brand">
+            <Link href="/services" className="transition-colors hover:text-brand">
               Services
             </Link>
             <Link href="/projects" className="transition-colors hover:text-brand">

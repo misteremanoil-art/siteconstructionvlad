@@ -724,7 +724,7 @@
 
   @media (min-width: 1080px) {
     .service-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 
@@ -739,6 +739,9 @@
     transition: background-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    color: inherit;
+    display: block;
+    text-decoration: none;
   }
 
   .service-card::before {
@@ -1084,6 +1087,425 @@
 
   .project-showcase {
     padding-top: 4rem;
+  }
+
+  .services-index-hero,
+  .service-detail-hero {
+    color: #fffaf1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .services-index-hero {
+    background:
+      linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(17, 24, 39, 0.72)),
+      linear-gradient(225deg, rgba(200, 155, 60, 0.22), transparent 38%),
+      url('/images/vppconstruct-hero.png');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .services-index-shell {
+    min-height: 28rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+
+  .services-index-hero .page-title {
+    color: #fffaf1;
+    max-width: 54rem;
+  }
+
+  .services-index-intro {
+    color: rgba(248, 244, 235, 0.76);
+    margin-top: 1.2rem;
+    max-width: 44rem;
+  }
+
+  .services-index-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 760px) {
+    .services-index-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .services-index-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .service-index-card {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.66)),
+      var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    color: var(--foreground);
+    display: grid;
+    grid-template-rows: minmax(15rem, auto) 1fr;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+    backdrop-filter: blur(18px) saturate(1.12);
+    -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  }
+
+  .service-index-card:hover {
+    border-color: color-mix(in srgb, var(--gold) 56%, var(--border));
+    box-shadow: 0 28px 86px rgba(200, 155, 60, 0.16);
+    transform: translateY(-6px);
+  }
+
+  .service-index-image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .service-index-image img {
+    filter: saturate(1.02) contrast(1.02);
+    transition: transform 520ms ease, filter 220ms ease;
+  }
+
+  .service-index-card:hover .service-index-image img {
+    filter: saturate(1.08) contrast(1.05);
+    transform: scale(1.06);
+  }
+
+  .service-index-copy {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .service-index-copy p {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .service-index-copy h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    line-height: 1.02;
+  }
+
+  .service-index-copy span {
+    color: var(--muted-foreground);
+    line-height: 1.65;
+  }
+
+  .service-index-copy div {
+    align-items: center;
+    color: var(--foreground);
+    display: flex;
+    font-weight: 900;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .service-index-copy svg,
+  .service-index-arrow {
+    color: var(--gold);
+  }
+
+  .service-index-arrow {
+    align-items: center;
+    background: #fffaf1;
+    bottom: 1rem;
+    box-shadow: 0 14px 32px rgba(31, 41, 51, 0.12);
+    display: inline-flex;
+    height: 2.45rem;
+    justify-content: center;
+    position: absolute;
+    right: 1rem;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+    width: 2.45rem;
+  }
+
+  .service-index-card:hover .service-index-arrow {
+    background: var(--gold);
+    color: #111827;
+    transform: translateX(3px);
+  }
+
+  .service-detail-bg {
+    inset: 0;
+    position: absolute;
+  }
+
+  .service-detail-bg::after {
+    background:
+      linear-gradient(90deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.72)),
+      linear-gradient(180deg, rgba(17, 24, 39, 0.2), rgba(17, 24, 39, 0.9));
+    content: "";
+    inset: 0;
+    position: absolute;
+  }
+
+  .service-detail-bg img {
+    filter: saturate(1.04) contrast(1.04);
+  }
+
+  .service-detail-hero-shell {
+    align-items: end;
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    min-height: 34rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 940px) {
+    .service-detail-hero-shell {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+    }
+  }
+
+  .service-detail-hero .page-title {
+    color: #fffaf1;
+    max-width: 52rem;
+  }
+
+  .service-detail-hero-copy > p:not(.page-kicker) {
+    color: rgba(248, 244, 235, 0.78);
+    font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+    line-height: 1.75;
+    margin-top: 1.15rem;
+    max-width: 44rem;
+  }
+
+  .service-detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.45rem;
+  }
+
+  .service-detail-tags span {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(248, 244, 235, 0.84);
+    display: inline-flex;
+    gap: 0.45rem;
+    padding: 0.62rem 0.8rem;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .service-detail-tags svg {
+    color: var(--gold);
+  }
+
+  .service-quote-card {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.055)),
+      rgba(17, 24, 39, 0.56);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: var(--shadow-deep);
+    padding: 1.25rem;
+    backdrop-filter: blur(20px) saturate(1.16);
+    -webkit-backdrop-filter: blur(20px) saturate(1.16);
+  }
+
+  .service-quote-card span {
+    color: var(--gold);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .service-quote-card strong {
+    color: #fffaf1;
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    line-height: 1;
+    margin-top: 1.4rem;
+  }
+
+  .service-quote-card a {
+    align-items: center;
+    background: linear-gradient(135deg, var(--gold), #d8c4a3);
+    color: #111827;
+    display: inline-flex;
+    font-weight: 900;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 1.2rem;
+    min-height: 3.1rem;
+    padding: 0.78rem 0.95rem;
+    transition: box-shadow 180ms ease, transform 180ms ease;
+    width: 100%;
+  }
+
+  .service-quote-card a:hover {
+    box-shadow: 0 18px 44px rgba(200, 155, 60, 0.28);
+    transform: translateY(-2px);
+  }
+
+  .service-detail-layout,
+  .service-info-grid {
+    align-items: start;
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 920px) {
+    .service-detail-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+    }
+
+    .service-info-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .service-main-panel,
+  .service-side-panel,
+  .service-list-panel,
+  .service-process-panel,
+  .service-cta-band {
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.62)),
+      var(--card);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(18px) saturate(1.1);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  }
+
+  .service-main-panel,
+  .service-side-panel,
+  .service-list-panel,
+  .service-process-panel {
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .service-main-panel h2,
+  .service-list-panel h2,
+  .service-process-panel h2,
+  .service-cta-band h2 {
+    color: var(--foreground);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+    margin-top: 0.75rem;
+  }
+
+  .service-main-panel p:not(.section-kicker),
+  .service-cta-band p {
+    color: var(--muted-foreground);
+    line-height: 1.78;
+    margin-top: 1rem;
+  }
+
+  .service-area-note {
+    align-items: center;
+    background: rgba(200, 155, 60, 0.12);
+    border: 1px solid rgba(200, 155, 60, 0.22);
+    color: var(--foreground);
+    display: flex;
+    font-weight: 800;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .service-area-note svg {
+    color: var(--gold);
+    flex: 0 0 auto;
+  }
+
+  .service-side-panel ul,
+  .service-list-panel ul {
+    display: grid;
+    gap: 0.75rem;
+    list-style: none;
+    margin-top: 1.1rem;
+    padding: 0;
+  }
+
+  .service-side-panel li,
+  .service-list-panel li {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.54);
+    border: 1px solid rgba(31, 41, 51, 0.08);
+    color: var(--foreground);
+    display: flex;
+    font-weight: 800;
+    gap: 0.65rem;
+    min-height: 3.2rem;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .service-side-panel li svg,
+  .service-list-panel li svg {
+    color: var(--gold);
+    flex: 0 0 auto;
+  }
+
+  .service-process-list {
+    counter-reset: service-process;
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 1.25rem;
+  }
+
+  .service-process-list div {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(31, 41, 51, 0.08);
+    display: flex;
+    gap: 0.8rem;
+    padding: 0.9rem;
+  }
+
+  .service-process-list span {
+    align-items: center;
+    background: linear-gradient(135deg, var(--gold), #d8c4a3);
+    color: #111827;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-weight: 900;
+    height: 2.1rem;
+    justify-content: center;
+    width: 2.1rem;
+  }
+
+  .service-process-list p {
+    color: var(--foreground);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .service-cta-band {
+    align-items: center;
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+    padding: clamp(1.25rem, 4vw, 2.4rem);
+  }
+
+  @media (min-width: 860px) {
+    .service-cta-band {
+      grid-template-columns: 1fr auto;
+    }
   }
 
   .project-tabs-header {
@@ -2538,6 +2960,70 @@
       line-height: 1.62;
     }
 
+    .services-index-shell,
+    .service-detail-hero-shell {
+      min-height: auto;
+      padding-block: 3.2rem 2.8rem;
+    }
+
+    .services-index-intro,
+    .service-detail-hero-copy > p:not(.page-kicker) {
+      font-size: 0.98rem;
+      line-height: 1.68;
+    }
+
+    .service-index-card {
+      grid-template-rows: auto 1fr;
+    }
+
+    .service-index-image {
+      aspect-ratio: 4 / 3.35;
+    }
+
+    .service-index-copy {
+      padding: 1rem;
+    }
+
+    .service-index-copy h2,
+    .service-quote-card strong {
+      font-size: 1.65rem;
+    }
+
+    .service-index-arrow {
+      bottom: 0.85rem;
+      right: 0.85rem;
+    }
+
+    .service-detail-tags span {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .service-quote-card,
+    .service-main-panel,
+    .service-side-panel,
+    .service-list-panel,
+    .service-process-panel,
+    .service-cta-band {
+      border-radius: var(--radius-md);
+    }
+
+    .service-main-panel h2,
+    .service-list-panel h2,
+    .service-process-panel h2,
+    .service-cta-band h2 {
+      font-size: clamp(1.8rem, 9vw, 2.45rem);
+    }
+
+    .service-area-note,
+    .service-process-list div {
+      align-items: flex-start;
+    }
+
+    .service-cta-band {
+      margin-bottom: 3rem;
+    }
+
     .project-card {
       aspect-ratio: 5 / 4;
       box-shadow: 0 14px 40px rgba(31, 41, 51, 0.1);
@@ -2760,6 +3246,10 @@
     .service-card,
     .service-card::before,
     .service-icon,
+    .service-index-card,
+    .service-index-image img,
+    .service-index-arrow,
+    .service-quote-card a,
     .project-card,
     .project-card img,
     .project-card-overlay,
@@ -2799,6 +3289,10 @@
     .hero-project-card:hover,
     .service-card:hover,
     .service-card:hover .service-icon,
+    .service-index-card:hover,
+    .service-index-card:hover .service-index-image img,
+    .service-index-card:hover .service-index-arrow,
+    .service-quote-card a:hover,
     .project-card:hover,
     .project-card:hover img,
     .home-project-card:hover,
